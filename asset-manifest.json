@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/catalog/static/css/main.31d6cfe0.css",
-    "main.js": "/catalog/static/js/main.e454c712.js",
-    "index.html": "/catalog/index.html",
-    "main.e454c712.js.map": "/catalog/static/js/main.e454c712.js.map"
+    "main.css": "/home/static/css/main.31d6cfe0.css",
+    "main.js": "/home/static/js/main.e454c712.js",
+    "index.html": "/home/index.html",
+    "main.e454c712.js.map": "/home/static/js/main.e454c712.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
