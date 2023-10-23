@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/home/static/css/main.31d6cfe0.css",
-    "main.js": "/home/static/js/main.e454c712.js",
-    "index.html": "/home/index.html",
-    "main.e454c712.js.map": "/home/static/js/main.e454c712.js.map"
+    "main.css": "/fe-product-catalog/static/css/main.31d6cfe0.css",
+    "main.js": "/fe-product-catalog/static/js/main.e454c712.js",
+    "index.html": "/fe-product-catalog/index.html",
+    "main.e454c712.js.map": "/fe-product-catalog/static/js/main.e454c712.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
