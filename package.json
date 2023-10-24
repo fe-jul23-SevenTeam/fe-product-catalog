@@ -12,6 +12,7 @@
     "@types/react-dom": "^18.2.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.17.0",
     "react-scripts": "5.0.1",
     "sass": "^1.69.4",
     "web-vitals": "^2.1.4"
@@ -22,13 +23,20 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install",
+    "format": "prettier .  --ignore-path .gitignore --write",
+    "lint": "eslint .  --ignore-path .gitignore --fix",
+    "fix-style": "npm run format & npm run lint"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
+  },
+  "engines": {
+    "node": ">= 18.0.0"
   },
   "browserslist": {
     "production": [
@@ -48,7 +56,14 @@
     "eslint": "^8.1.0",
     "eslint-config-prettier": "^9.0.0",
     "gh-pages": "^6.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.2",
     "prettier": "3.0.3",
     "typescript": "^5.2.2"
+  },
+  "lint-staged": {
+    "*.js": "npm run fix-style",
+    "*.ts": "npm run fix-style",
+    "*.tsx": "npm run fix-style"
   }
 }

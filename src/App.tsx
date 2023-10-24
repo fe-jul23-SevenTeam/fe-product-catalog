@@ -1,9 +1,12 @@
+import { Outlet } from 'react-router-dom';
 import './App.css';
 
-function App() {
+export const App = () => {
   return (
-    <div>Group Project</div>
-  );
-}
+    <>
+      <Outlet />
 
-export default App;
+      <div>Group Project</div>
+    </>
+  );
+};
