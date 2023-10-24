@@ -1,9 +1,7 @@
-import './App.css';
+import './App.scss';
 
 function App() {
-  return (
-    <div>Group Project</div>
-  );
+  return <div>Group Project</div>;
 }
 
 export default App;
