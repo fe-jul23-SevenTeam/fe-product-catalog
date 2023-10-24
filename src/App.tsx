@@ -1,7 +1,12 @@
-import './App.scss';
+import { Outlet } from 'react-router-dom';
+import './App.css';
 
-function App() {
-  return <div>Group Project</div>;
-}
+export const App = () => {
+  return (
+    <>
+      <Outlet />
 
-export default App;
+      <div>Group Project</div>
+    </>
+  );
+};
