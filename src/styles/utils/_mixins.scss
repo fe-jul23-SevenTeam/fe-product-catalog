@@ -1,10 +1,12 @@
+@import './vars';
+
 @mixin onTablet {
-  @media (min-width: 640px) {
+  @media (min-width: $tablet-width) {
     @content;
   }
 }
 @mixin onDesktop {
-  @media (min-width: 1200px) {
+  @media (min-width: $desctop-width) {
     @content;
   }
 }

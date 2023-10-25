@@ -1,0 +1,14 @@
+@import './mixins';
+
+.wrapper {
+  margin-inline: 16px;
+
+  @include onTablet {
+    margin-inline: 24px;
+  }
+
+  @include onDesktop {
+    max-width: 1200px;
+    margin-inline: auto;
+  }
+}
