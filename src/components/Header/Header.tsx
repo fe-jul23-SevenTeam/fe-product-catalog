@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { Navigation } from '../Navigation';
+import { Navigation } from './Navigation';
 import { ReactComponent as Logo } from '../../assets/Logo-svg.svg';
-import { HeaderButtons } from '../HeaderButtons/HeaderButtons';
+import { HeaderButtons } from './HeaderButtons/HeaderButtons';
 
 import './Header.scss';
 

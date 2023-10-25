@@ -1,0 +1,53 @@
+@import '../../../styles/utils/mixins';
+
+.nav {
+  display: flex;
+
+  &__list {
+    display: none;
+
+    margin-left: 16px;
+
+    @include onTablet {
+      display: flex;
+      width: 330px;
+      justify-content: space-between;
+
+      list-style: none;
+
+      text-transform: uppercase;
+    }
+
+    @include onDesktop {
+      margin-left: 24px;
+      width: 425px;
+    }
+  }
+
+  &__link {
+    display: block;
+    height: 48px;
+
+    font-size: 12px;
+    font-family: 'Mont';
+    font-weight: 700;
+
+    line-height: 48px;
+
+    color: var(--gray-secondary-color);
+
+    &:hover {
+      color: var(--gray-primary-color);
+    }
+
+    &.is-active {
+      color: var(--gray-primary-color);
+      border-bottom: 3px solid var(--gray-primary-color);
+    }
+
+    @include onDesktop {
+      height: 64px;
+      line-height: 64px;
+    }
+  }
+}
