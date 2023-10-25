@@ -1,0 +1,42 @@
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/vars';
+
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  border-bottom: solid 1px var(--gray-elements-color);
+
+  &__left {
+    display: flex;
+    justify-content: flex-start;
+  }
+}
+
+.logo {
+  display: flex;
+
+  height: $header-height;
+  width: 2 * $header-height;
+
+  justify-content: center;
+  align-items: center;
+
+  &__img {
+    display: block;
+
+    margin: 0 auto;
+    width: 64px;
+  }
+
+  @include onDesktop {
+    height: $header-desktop-height;
+    width: 2 * $header-desktop-height;
+
+    &__img {
+      width: 80px;
+    }
+  }
+}
