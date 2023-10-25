@@ -1,5 +1,7 @@
 import './ProductCard.scss';
 import { ReactComponent as FavoritesIcon } from '../../assets/icons/favorites_icon.svg';
+import { PhoneInfo } from '../../pages/home/components/CardSlider';
+import React from 'react';
 
 const phoneTest = {
   id: 1,
@@ -19,13 +21,17 @@ const phoneTest = {
   updatedAt: '2023-10-24T07:48:54.344Z',
 };
 
-export const ProductCard = () => {
-  const { name, price, screen, capacity, ram } = phoneTest;
+type Props = {
+  phone: PhoneInfo;
+};
+
+export const ProductCard: React.FC<Props> = ({ phone }) => {
+  const { name, price, screen, capacity, ram, image } = phone;
 
   return (
     <div className="card" data-qa="card">
       <img
-        src={require('../../assets/img/phones/apple-iphone-11-pro-max/midnightgreen/image 2.png')}
+        src={`https://be-product-catalog-fhdi.onrender.com/images/${image}`}
         alt="APPLE A1419 iMac 27"
         className="card__image"
       />
