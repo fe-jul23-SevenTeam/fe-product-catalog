@@ -5,9 +5,8 @@ import { Header } from './components/Header';
 export const App = () => {
   return (
     <>
-      {/* <Outlet /> */}
       <Header />
-      {/* <div>Group Project</div> */}
+      <Outlet />
     </>
   );
 };
