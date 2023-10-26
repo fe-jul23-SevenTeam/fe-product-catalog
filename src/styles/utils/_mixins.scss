@@ -6,7 +6,7 @@
   }
 }
 @mixin onDesktop {
-  @media (min-width: $desctop-width) {
+  @media (min-width: $desktop-width) {
     @content;
   }
 }

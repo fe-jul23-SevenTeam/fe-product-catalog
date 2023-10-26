@@ -1,0 +1,124 @@
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/vars';
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: var(--white-color);
+
+  // display: block;
+  border-top: 1px solid var(--gray-elements-color);
+
+  &__container {
+    max-width: 1200px;
+    padding: 32px 16px;
+
+    @include onTablet {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__logo {
+    margin-bottom: 32px;
+
+    &--icon {
+      width: 89px;
+      height: 32px;
+    }
+
+    @include onTablet {
+      margin-bottom: 0;
+    }
+  }
+
+  &__btn {
+    margin: 0 auto;
+    padding-top: 32px;
+    display: flex;
+    align-items: center;
+
+    border: none;
+    background-color: var(--white-color);
+
+    font-size: 12px;
+    font-family: 'Mont', sans-serif;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    color: var(--gray-secondary-color);
+
+    transition: color $transition-duration;
+
+    @include onTablet {
+      margin: 0;
+      padding-top: 0;
+
+      &:hover {
+        color: var(--gray-primary-color);
+      }
+
+      &:hover .footer__btn--icon {
+        border-color: var(--gray-primary-color);
+      }
+    }
+
+    &--icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 24px;
+      height: 24px;
+      margin-left: 16px;
+      border: 1px solid var(--gray-icons-placeholders-color);
+
+      transition: border $transition-duration;
+    }
+  }
+}
+
+.contacts {
+  max-width: 370px;
+  width: 100%;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-transform: uppercase;
+
+    @include onTablet {
+      justify-content: center;
+      flex-direction: row;
+      // align-self: stretch;
+      gap: 32px;
+    }
+
+    @include onDesktop {
+      gap: 100px;
+    }
+  }
+
+  &__link {
+    display: flex;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.48px;
+
+    color: var(--gray-secondary-color);
+    transition: color $transition-duration;
+
+    @include onTablet {
+      &:hover {
+        color: var(--gray-primary-color);
+      }
+    }
+  }
+}
