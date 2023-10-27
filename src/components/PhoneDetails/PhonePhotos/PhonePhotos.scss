@@ -34,7 +34,6 @@
 
 .photo {
   &--big {
-    
     width: 288px;
     height: 288px;
 
@@ -49,7 +48,6 @@
     @include onDesktop {
       width: 464px;
       height: 464px;
-      
     }
   }
 

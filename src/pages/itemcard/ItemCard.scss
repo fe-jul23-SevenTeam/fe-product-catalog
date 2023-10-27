@@ -33,7 +33,7 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 56px;
-    
+
     @include onTablet {
       flex-direction: row;
       align-items: start;
@@ -71,7 +71,7 @@
 
   &__about {
     margin-bottom: 56px;
-  
+
     @include onTablet {
       margin-bottom: 64px;
     }
@@ -106,7 +106,6 @@
 
   &__category {
     text-transform: capitalize;
-
   }
 
   &__phones {
