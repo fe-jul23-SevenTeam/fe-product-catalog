@@ -1,0 +1,54 @@
+@import 'src/styles/utils/_mixins.scss';
+
+.checkout {
+  width: 100%;
+  border: 1px solid var(--gray-elements, #e2e6e9);
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  gap: 16px;
+
+  @include onDesktop {
+    gap: 24px;
+  }
+
+  &__price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-bottom: 16px;
+
+    @include onDesktop {
+      padding-bottom: 25px;
+    }
+    border-bottom: solid 1px var(--gray-elements-color);
+  }
+
+  &__title {
+    color: var(--gray-primary-color);
+    font-size: 32px;
+    font-weight: 600;
+  }
+
+  &__subtitle {
+    color: var(--gray-secondary-color);
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  &__button {
+    color: var(--white-color);
+    font-size: 14px;
+    font-weight: 300;
+
+    width: 100%;
+    height: 48px;
+    border: none;
+    background-color: var(--gray-primary-color);
+
+    @include buttonHover;
+  }
+}
