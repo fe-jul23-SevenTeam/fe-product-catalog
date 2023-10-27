@@ -8,8 +8,9 @@ export const App = () => {
   return (
     <>
       <Header />
-      <Outlet />
-      {/* <ProductCard /> */}
+      <main style={{ flex: '1' }}>
+        <Outlet />
+      </main>
       <Footer />
     </>
   );

@@ -27,36 +27,36 @@ export const CartCard = () => {
   const handleRemoveItem = () => localStorage.removeItem(`${id}`);
 
   return (
-    <div className="card">
-      <div className="card__product-info-container">
+    <div className="cart-card">
+      <div className="cart-card__product-info-container">
         <button
           type="button"
           onClick={handleRemoveItem}
-          className="card__remove-button"
+          className="cart-card__remove-button"
         >
-          <CloseIcon className="card__remove-icon" />
+          <CloseIcon className="cart-card__remove-icon" />
         </button>
 
-        <div className="card__img-container">
-          <img src={image} alt={name} className="card__img" />
+        <div className="cart-card__img-container">
+          <img src={image} alt={name} className="cart-card__img" />
         </div>
 
-        <h4 className="card__title">{name}</h4>
+        <h4 className="cart-card__title">{name}</h4>
       </div>
 
-      <div className="card__actions-container">
-        <div className="card__amount">
-          <button className="card__amount-button">
-            <MinusIcon className="card__amount-button-icon" />
+      <div className="cart-card__actions-container">
+        <div className="cart-card__amount">
+          <button className="cart-card__amount-button">
+            <MinusIcon className="cart-card__amount-button-icon" />
           </button>
 
-          <span className="card__amount-number">{amount}</span>
+          <span className="cart-card__amount-number">{amount}</span>
 
-          <button className="card__amount-button">
-            <PlusIcon className="card__amount-button-icon" />
+          <button className="cart-card__amount-button">
+            <PlusIcon className="cart-card__amount-button-icon" />
           </button>
         </div>
-        <h5 className="card__price">{`$${price}`}</h5>
+        <h5 className="cart-card__price">{`$${price}`}</h5>
       </div>
     </div>
   );
