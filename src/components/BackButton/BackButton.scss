@@ -1,3 +1,5 @@
+@import 'src/styles/utils/_mixins.scss';
+
 .back-link {
   display: flex;
   align-items: center;
@@ -17,7 +19,5 @@
     height: 16px;
   }
 
-  &:hover {
-    color: var(--gray-primary-color);
-  }
+  @include defaultHover;
 }
