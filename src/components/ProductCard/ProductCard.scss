@@ -1,17 +1,31 @@
 .card {
   display: flex;
   width: 272px;
-  height: 506px;
+  height: auto;
   padding: 32px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
   flex-shrink: 0;
   border: 1px solid var(--gray-elements-color);
 
-  &__image {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     width: 208px;
+    height: 442px;
+    gap: 8px;
+  }
+
+  &__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 196px;
+
+    &-img {
+      max-height: 196px;
+    }
   }
 
   &__name {
@@ -29,6 +43,7 @@
   }
 
   &__divider {
+    display: block;
     width: 208px;
     height: 1px;
     background-color: var(--gray-elements-color);
@@ -100,6 +115,50 @@
         width: 16px;
         height: 16px;
         flex-shrink: 0;
+      }
+    }
+  }
+
+  @media (max-width: 1199px) {
+    width: 237px;
+
+    &__container {
+      width: 173px;
+      height: 448px;
+      gap: 8px;
+    }
+
+    &__divider {
+      width: 173px;
+    }
+
+    &__image {
+      width: 173px;
+      height: 202px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    width: 212px;
+    height: auto;
+
+    &__container {
+      width: 148px;
+      height: auto;
+      gap: 8px;
+    }
+
+    &__divider {
+      height: 1px;
+      width: 148px;
+    }
+
+    &__image {
+      width: 148px;
+      height: 129px;
+
+      &-img {
+        height: 130px;
       }
     }
   }
