@@ -1,62 +1,27 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 const BASE_URL = 'https://be-product-catalog-fhdi.onrender.com';
 
-export const getProducts = () => {
-  return axios
-    .get(`${BASE_URL}/products`)
-    .then(response => {
-      return response.data;
-    })
-    .catch(error => {
-      throw new Error(error);
-    });
+const fetchData = async (url: string) => {
+  try {
+    const response: AxiosResponse = await axios.get(url);
+    return response.data;
+  } catch (e) {
+    throw new Error(`An error occurred: ${String(e)}`);
+  }
 };
 
-export const getProductById = (phoneId: number) => {
-  return axios
-    .get(`${BASE_URL}/products/${phoneId}`)
-    .then(response => {
-      return response.data;
-    })
-    .catch(error => {
-      throw new Error(error);
-    });
-};
-
-export const getProductsByCategory = (category: string) => {
-  return axios
-    .get(`${BASE_URL}/products-info/${category}`)
-    .then(response => {
-      return response.data;
-    })
-    .catch(error => {
-      throw new Error(error);
-    });
-};
-
-export const getProductInfoById = (itemId: string) => {
-  return axios
-    .get(`${BASE_URL}/products-info/find/${itemId}`)
-    .then(response => {
-      return response.data;
-    })
-    .catch(error => {
-      throw new Error(error);
-    });
-};
+export const getProducts = () => fetchData(`${BASE_URL}/products`);
+export const getProductById = (phoneId: number) =>
+  fetchData(`${BASE_URL}/products/${phoneId}`);
+export const getProductsByCategory = (category: string) =>
+  fetchData(`${BASE_URL}/products-info/${category}`);
+export const getProductInfoById = (itemId: string) =>
+  fetchData(`${BASE_URL}/products-info/find/${itemId}`);
+export const getProductImage = (pathname: string) =>
+  fetchData(`${BASE_URL}/images/${pathname}`);
 
 export const getProductsSorted = (sortField: string) => {
-  const params = {
-    sort: sortField,
-  };
-
-  return axios
-    .get(BASE_URL, { params })
-    .then(response => {
-      return response.data;
-    })
-    .catch(error => {
-      throw new Error(error);
-    });
+  const url = `${BASE_URL}?sort=${sortField}`;
+  return fetchData(url);
 };
