@@ -1,4 +1,3 @@
-import React from 'react';
 import { CategoryItem } from '../CategoryItem/CategoryItem';
 import './CategoriesShop.scss';
 
@@ -26,13 +25,13 @@ const categories = [
   },
 ];
 
-export const CategoriesShop: React.FC = () => {
+export const CategoriesShop = () => {
   return (
-    <section className="categories wrapper">
-      <div className="categories_content">
+    <section className="categories">
+      <div className="wrapper">
         <h2 className="categories__title">Shop by category</h2>
 
-        <div className="categories__wrapper">
+        <div className="categories__wrapper grid">
           {categories.map(category => (
             <CategoryItem category={category} key={category.title} />
           ))}

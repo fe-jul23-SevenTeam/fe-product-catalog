@@ -1,7 +1,7 @@
 import './HomePage.scss';
+import { CategoriesShop } from './components/CategoriesShop/CategoriesShop';
 import { HotPrices } from './components/HotPrices/HotPrices';
 import { NewBrand } from './components/NewBrand/NewBrand';
-import { ShopCategory } from './components/ShopCategory/ShopCategory';
 import { TitleAndBanner } from './components/TitleAndBanner/TitleAndBanner';
 
 export const HomePage = () => {
@@ -9,7 +9,7 @@ export const HomePage = () => {
     <main>
       {/* <TitleAndBanner /> */}
       <NewBrand />
-      {/* <ShopCategory /> */}
+      <CategoriesShop />
       <HotPrices />
     </main>
   );
