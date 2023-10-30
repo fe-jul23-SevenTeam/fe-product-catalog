@@ -1,12 +1,11 @@
-@import '../styles/utils/mixins';
-@import '../styles/utils/fonts';
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/fonts';
 
 .wrapper {
   margin: 0 auto;
 }
 
 .slider {
-
   &__title {
     color: var(--gray-primary-color);
     margin: 24px 16px;
@@ -54,8 +53,8 @@
       top: 0;
       width: 32px;
       height: 100%;
-      border: 1px solid #B4BDC3;
-      background-color: #fff;
+      border: 1px solid var(--gray-icons-placeholders-color);
+      background-color: var(--white-color);
       background-repeat: no-repeat;
       background-position: center;
       cursor: pointer;
@@ -66,7 +65,7 @@
         left: 0;
 
         &:hover {
-          border: 2px solid #313237;
+          @include borderHover;
         }
       }
 
@@ -74,7 +73,7 @@
         right: 0;
 
         &:hover {
-          border: 2px solid #313237;
+          @include borderHover;
         }
       }
     }
@@ -86,7 +85,7 @@
       width: 14px;
       height: 4px;
       margin: 10px 5px;
-      background-color: #E2E6E9;
+      background-color: var(--gray-elements-color);
       opacity: 1;
       cursor: pointer;
       transition: transform 0.3s ease-in-out;
@@ -96,11 +95,12 @@
       }
 
       &-active {
-        background-color: #0F0F11;
+        background-color: var(--gray-primary-color);
       }
     }
   }
 }
+
 
 @media (max-width: 639px) {
   .swiper {

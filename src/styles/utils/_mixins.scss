@@ -36,3 +36,7 @@
   align-items: center;
   justify-content: center;
 }
+
+@mixin borderHover {
+  border: 2px solid #313237;
+}

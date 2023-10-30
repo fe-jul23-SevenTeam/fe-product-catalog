@@ -1,10 +1,10 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
-import banner from '../assets/iPhone-15-Pro.png';
-import bannerMobile from '../assets/banner-for-mobile.png';
-import arrowLeftBlack from '../assets/icons/arrow-left_icon.svg';
-import arrowRightBlack from '../assets/icons/arrow-right_icon.svg';
+import banner from '../../assets/iPhone-15-Pro.png';
+import bannerMobile from '../../assets/banner-for-mobile.png';
+import arrowLeft from '../../assets/icons/arrow-left_icon.svg';
+import arrowRight from '../../assets/icons/arrow-right_icon.svg';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -13,7 +13,7 @@ import './Slider.scss';
 import { useRef } from 'react';
 
 export const Slider: React.FC = () => {
-  const swiperRef = useRef<Swiper>(null);
+  const swiperRef = useRef<any>(null);
 
   return (
     <section className="slider">
@@ -24,6 +24,10 @@ export const Slider: React.FC = () => {
           modules={[Navigation, Pagination, Autoplay]}
           className="mySwiper"
           speed={800}
+          autoplay={{
+            delay: 1000,
+            disableOnInteraction: false,
+          }}
           loop
           pagination={{ clickable: true }}
           navigation={{
@@ -57,7 +61,7 @@ export const Slider: React.FC = () => {
             type="button"
             aria-label="arrow-left"
           >
-            <img src={arrowLeftBlack} alt="arrow_left_black" />
+            <img src={arrowLeft} alt="arrow_left_black" />
           </button>
 
           <button
@@ -65,7 +69,7 @@ export const Slider: React.FC = () => {
             type="button"
             aria-label="arrow-right"
           >
-            <img src={arrowRightBlack} alt="arrow_right_black" />
+            <img src={arrowRight} alt="arrow_right_black" />
           </button>
         </Swiper>
       </div>
