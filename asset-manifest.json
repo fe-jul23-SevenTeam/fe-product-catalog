@@ -1,21 +1,30 @@
 {
   "files": {
-    "main.css": "/fe-product-catalog/static/css/main.8c61811f.css",
-    "main.js": "/fe-product-catalog/static/js/main.b6285454.js",
+    "main.css": "/fe-product-catalog/static/css/main.7ce89b00.css",
+    "main.js": "/fe-product-catalog/static/js/main.b562d826.js",
     "static/media/Logo-svg.svg": "/fe-product-catalog/static/media/Logo-svg.3eb5a345860ffede710228b5d3ca561c.svg",
+    "static/media/image2.png": "/fe-product-catalog/static/media/image2.4fe68e562050d2f5db39.png",
     "static/media/Mont-Regular.otf": "/fe-product-catalog/static/media/Mont-Regular.1d26d89f7339866d3133.otf",
     "static/media/Mont-SemiBold.otf": "/fe-product-catalog/static/media/Mont-SemiBold.8979d71a3146ca1d761f.otf",
     "static/media/Mont-Bold.otf": "/fe-product-catalog/static/media/Mont-Bold.03c8c2f6127c1da0fc39.otf",
+    "static/media/banner-for-mobile.png": "/fe-product-catalog/static/media/banner-for-mobile.5ab4e0f94787219dc791.png",
+    "static/media/iPhone-15-Pro.png": "/fe-product-catalog/static/media/iPhone-15-Pro.676817fb2a229caf9779.png",
     "static/media/shopping-bag_icon.svg": "/fe-product-catalog/static/media/shopping-bag_icon.f9632dca8fdaed9bb696b99ac28006ba.svg",
     "static/media/favorites_icon.svg": "/fe-product-catalog/static/media/favorites_icon.670cf5136eb8aecd15dcbb439577b93e.svg",
-    "static/media/close_icon.svg": "/fe-product-catalog/static/media/close_icon.3ea864f59fecb8596c4be9c8a455c02a.svg",
+    "static/media/home_icon.svg": "/fe-product-catalog/static/media/home_icon.d4c29e4f137b3a79235a5293536d71a0.svg",
+    "static/media/close_icon.svg": "/fe-product-catalog/static/media/close_icon.84225b0c41609ce59c2bbbdf70ec0958.svg",
     "static/media/menu_icon.svg": "/fe-product-catalog/static/media/menu_icon.744ac0b04d84e4feeeb5288d215af5b2.svg",
+    "static/media/plus_icon.svg": "/fe-product-catalog/static/media/plus_icon.b18b90463c1196dd3682ebcc0647e923.svg",
+    "static/media/arrow-left_icon.svg": "/fe-product-catalog/static/media/arrow-left_icon.8e0d6b081d635225fe03136cce7d510f.svg",
+    "static/media/arrow-right_icon.svg": "/fe-product-catalog/static/media/arrow-right_icon.e028d3889646e0b5e56cf54f47bb701a.svg",
+    "static/media/arrow-up_icon.svg": "/fe-product-catalog/static/media/arrow-up_icon.1ea6958a07717117d3d583ab6fe7dcbd.svg",
+    "static/media/minus_icon.svg": "/fe-product-catalog/static/media/minus_icon.3a58fecb158505013f9851d866f0127c.svg",
     "index.html": "/fe-product-catalog/index.html",
-    "main.8c61811f.css.map": "/fe-product-catalog/static/css/main.8c61811f.css.map",
-    "main.b6285454.js.map": "/fe-product-catalog/static/js/main.b6285454.js.map"
+    "main.7ce89b00.css.map": "/fe-product-catalog/static/css/main.7ce89b00.css.map",
+    "main.b562d826.js.map": "/fe-product-catalog/static/js/main.b562d826.js.map"
   },
   "entrypoints": [
-    "static/css/main.8c61811f.css",
-    "static/js/main.b6285454.js"
+    "static/css/main.7ce89b00.css",
+    "static/js/main.b562d826.js"
   ]
 }
