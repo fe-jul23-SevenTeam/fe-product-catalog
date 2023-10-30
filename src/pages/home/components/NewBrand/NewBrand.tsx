@@ -1,10 +1,11 @@
+import React from 'react';
 import { CardSlider } from '../CardSlider/CardSlider';
 import { ProductCard } from '../../../../components/ProductCard';
 import { ReactComponent as LeftArrow } from '../../../../assets/icons/arrow-left_icon.svg';
 import { ReactComponent as RightArrow } from '../../../../assets/icons/arrow-right_icon.svg';
 import './NewBrand.scss';
 
-export const NewBrand = () => {
+export const NewBrand: React.FC = () => {
   return (
     <section className="newBrand">
       <div className="newBrand__container">

@@ -1,0 +1,38 @@
+@import '../../../../styles/utils/mixins';
+
+.categories {
+  margin-bottom: 56px;
+
+  &__title {
+    color: var(--gray-primary-color);
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 140%;
+    margin-bottom: 24px;
+  }
+
+  &__wrapper {
+    gap: 32px;
+  }
+
+  @include onTablet {
+    margin-bottom: 64px;
+
+    &__title {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 41px;
+      letter-spacing: -0.32px;
+    }
+
+    &__wrapper {
+      gap: 16px;
+    }
+  }
+
+  @include onDesktop {
+    max-width: 1132px;
+    margin: 0 auto;
+    margin-bottom: 80px;
+  }
+}
