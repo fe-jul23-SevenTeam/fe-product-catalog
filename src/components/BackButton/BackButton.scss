@@ -1,0 +1,23 @@
+@import 'src/styles/utils/_mixins.scss';
+
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  color: var(--gray-secondary-color);
+  font-size: 12px;
+  font-weight: 500;
+
+  &__icon {
+    fill: var(--gray-primary-color);
+    width: 16px;
+    height: 16px;
+  }
+
+  @include defaultHover;
+}
