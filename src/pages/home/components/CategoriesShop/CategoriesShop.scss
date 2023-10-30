@@ -18,6 +18,10 @@
   @include onTablet {
     margin-bottom: 64px;
 
+    .wrapper {
+      margin-inline: 32px;
+    }
+
     &__title {
       font-size: 32px;
       font-weight: 800;
@@ -34,5 +38,9 @@
     max-width: 1132px;
     margin: 0 auto;
     margin-bottom: 80px;
+
+    .wrapper {
+      margin-inline: 0;
+    }
   }
 }
