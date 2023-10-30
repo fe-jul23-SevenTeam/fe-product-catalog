@@ -1,0 +1,116 @@
+@import '../../styles/utils/mixins';
+
+.phone {
+  margin: 0 auto;
+  padding: 24px 16px 56px;
+  max-width: 1136px;
+  text-align: left;
+
+  @include onTablet {
+    padding: 24px 24px 64px;
+  }
+
+  @include onDesktop {
+    padding: 24px 32px 81px;
+  }
+
+  &__title {
+    margin-bottom: 32px;
+
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--gray-primary-color);
+
+    @include onTablet {
+      margin-bottom: 40px;
+
+      font-size: 32px;
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 56px;
+
+    @include onTablet {
+      flex-direction: row;
+      align-items: start;
+      justify-content: space-evenly;
+
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    @include onDesktop {
+      gap: 64px;
+      margin-bottom: 80px;
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 56px;
+
+    @include onTablet {
+      margin-bottom: 64px;
+    }
+
+    @include onDesktop {
+      flex-direction: row;
+      gap: 64px;
+      margin-bottom: 80px;
+      align-items: start;
+    }
+  }
+
+  &__about {
+    margin-bottom: 56px;
+
+    @include onTablet {
+      margin-bottom: 64px;
+    }
+
+    @include onDesktop {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.breadcrumbs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+
+  @include onTablet {
+    margin-bottom: 24px;
+  }
+
+  &__home {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  &__arrow {
+    width: 16px;
+    height: 16px;
+  }
+
+  &__category {
+    text-transform: capitalize;
+  }
+
+  &__phones {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--gray-primary-color);
+  }
+}

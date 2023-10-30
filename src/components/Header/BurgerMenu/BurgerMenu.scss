@@ -3,7 +3,7 @@
 
 .menu {
   position: absolute;
-  top: $header-height;
+  top: 49px;
   right: 0;
   bottom: 0;
 
@@ -13,6 +13,8 @@
 
   width: 100vw;
   padding-top: 24px;
+
+  background-color: var(--white-color);
 
   z-index: 5;
 

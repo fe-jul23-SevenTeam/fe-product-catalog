@@ -1,0 +1,79 @@
+@import '../../../styles/utils/mixins';
+
+.photos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 40px;
+
+  @include onTablet {
+    gap: 16px;
+    flex-direction: row-reverse;
+  }
+
+  &--small {
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+
+    @include onTablet {
+      flex-direction: column;
+      justify-content: start;
+
+      width: 35px;
+      height: 287px;
+    }
+
+    @include onDesktop {
+      width: 65px;
+      height: 464px;
+    }
+  }
+}
+
+.photo {
+  &--big {
+    width: 288px;
+    height: 288px;
+
+    object-fit: contain;
+
+    margin-bottom: 22px;
+
+    @include onTablet {
+      margin-bottom: 0;
+    }
+
+    @include onDesktop {
+      width: 464px;
+      height: 464px;
+    }
+  }
+
+  &--small {
+    width: 50px;
+    height: 50px;
+
+    object-fit: contain;
+
+    border: 1px solid var(--gray-elements-color);
+
+    &:hover,
+    &:active {
+      border-color: var(--gray-primary-color);
+    }
+
+    @include onTablet {
+      width: 35px;
+      height: 35px;
+    }
+
+    @include onDesktop {
+      width: 70px;
+      height: 70px;
+
+      margin-bottom: 17px;
+    }
+  }
+}
