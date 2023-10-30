@@ -1,3 +1,4 @@
+import React from 'react';
 import { CategoryItem } from '../CategoryItem/CategoryItem';
 import './CategoriesShop.scss';
 
@@ -25,7 +26,7 @@ const categories = [
   },
 ];
 
-export const CategoriesShop = () => {
+export const CategoriesShop: React.FC = () => {
   return (
     <section className="categories">
       <div className="wrapper">
