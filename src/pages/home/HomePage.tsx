@@ -1,14 +1,13 @@
-import React from 'react';
+import { Slider } from 'pages/home/components/Slider/Slider';
 import './HomePage.scss';
 import { CategoriesShop } from './components/CategoriesShop/CategoriesShop';
 import { HotPrices } from './components/HotPrices/HotPrices';
 import { NewBrand } from './components/NewBrand/NewBrand';
-// import { TitleAndBanner } from './components/TitleAndBanner/TitleAndBanner';
 
 export const HomePage = () => {
   return (
     <main>
-      {/* <TitleAndBanner /> */}
+      <Slider />
       <NewBrand />
       <CategoriesShop />
       <HotPrices />
