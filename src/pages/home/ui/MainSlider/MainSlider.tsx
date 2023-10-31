@@ -1,17 +1,17 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
-import banner from '../../../../assets/iPhone-15-Pro.png';
-import bannerMobile from '../../../../assets/banner-for-mobile.png';
-import arrowLeftBlack from '../../../../assets/icons/arrow-left_icon.svg';
-import arrowRightBlack from '../../../../assets/icons/arrow-right_icon.svg';
+import banner from 'assets/iPhone-15-Pro.png';
+import bannerMobile from 'assets/banner-for-mobile.png';
+import arrowLeftBlack from 'assets/icons/arrow-left_icon.svg';
+import arrowRightBlack from 'assets/icons/arrow-right_icon.svg';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import './Slider.scss';
+import './MainSlider.scss';
 
-export const Slider: React.FC = () => {
+export const MainSlider: React.FC = () => {
   return (
     <section className="slider">
       <h1 className="slider__title">Welcome to Nice Gadgets store!</h1>

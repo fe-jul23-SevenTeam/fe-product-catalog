@@ -1,20 +1,23 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
+import { ProductCard } from 'components/ProductCard';
+import { Product } from 'types/Product';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './CardSlider.scss';
 
 type Props = {
   leftArrowName: string;
-  rigthArrowName: string;
-  children: React.ReactElement<any>;
+  rightArrowName: string;
+  products: Product[];
 };
 
 export const CardSlider: React.FC<Props> = ({
   leftArrowName,
-  rigthArrowName,
-  children,
+  rightArrowName,
+  products,
 }) => {
   return (
     <Swiper
@@ -24,11 +27,11 @@ export const CardSlider: React.FC<Props> = ({
       modules={[Navigation]}
       navigation={{
         prevEl: `.${leftArrowName}`,
-        nextEl: `.${rigthArrowName}`,
+        nextEl: `.${rightArrowName}`,
       }}
       breakpoints={{
         320: {
-          slidesPerView: 3,
+          slidesPerView: 2,
           spaceBetween: 16,
         },
         640: {
@@ -37,8 +40,10 @@ export const CardSlider: React.FC<Props> = ({
         },
       }}
     >
-      {[1, 2, 4, 5, 6, 7].map(() => (
-        <SwiperSlide>{children}</SwiperSlide>
+      {products.slice(0, 10).map(product => (
+        <SwiperSlide>
+          <ProductCard product={product} />
+        </SwiperSlide>
       ))}
     </Swiper>
   );

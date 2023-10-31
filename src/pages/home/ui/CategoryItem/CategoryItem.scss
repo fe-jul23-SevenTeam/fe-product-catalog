@@ -1,12 +1,10 @@
-@import '../../../../styles/utils/mixins';
+@import 'styles/utils/mixins';
 
 .category {
   grid-column: span 4;
-  // margin-bottom: 32px;
 
   &__img {
     margin: 0;
-    // margin-bottom: 24px;
     width: 100%;
   }
 
@@ -22,9 +20,6 @@
     font-size: 14px;
     font-weight: 600;
     line-height: 21px;
-  }
-
-  @include onTablet {
   }
 
   @include onDesktop {
