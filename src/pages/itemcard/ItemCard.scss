@@ -12,9 +12,11 @@
 
   @include onDesktop {
     padding: 24px 32px 81px;
+
   }
 
   &__title {
+    padding-top: 16px;
     margin-bottom: 32px;
 
     font-size: 22px;
@@ -37,14 +39,16 @@
     @include onTablet {
       flex-direction: row;
       align-items: start;
-      justify-content: space-evenly;
+      justify-content: center;
 
       gap: 24px;
       margin-bottom: 64px;
     }
 
     @include onDesktop {
+      justify-content: space-between;
       gap: 64px;
+
       margin-bottom: 80px;
     }
   }
@@ -63,9 +67,11 @@
 
     @include onDesktop {
       flex-direction: row;
+      align-items: start;
+      justify-content: space-between;
+
       gap: 64px;
       margin-bottom: 80px;
-      align-items: start;
     }
   }
 
@@ -77,8 +83,51 @@
     }
 
     @include onDesktop {
+      max-width: 560px;
       margin-bottom: 0;
     }
+  }
+}
+
+.description {
+  &__title {
+    display: block;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    padding-bottom: 16px;
+    margin-bottom: 30px;
+
+    color: var(--gray-primary-color);
+
+    border-bottom: 1px solid #E2E6E9;
+  }
+}
+
+.about {
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  &__subtitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gray-primary-color);
+
+    @include onTablet {
+      font-size: 20px;
+    }
+  }
+
+  &__text {
+    font-size: 14px;
+    font-weight: normal;
+    color: var(--gray-secondary-color);
   }
 }
 
@@ -87,6 +136,9 @@
   flex-direction: row;
   align-items: center;
   gap: 8px;
+
+  color: var(--gray-secondary-color);
+
   margin-bottom: 24px;
 
   @include onTablet {
@@ -106,11 +158,37 @@
 
   &__category {
     text-transform: capitalize;
-  }
-
-  &__phones {
     text-decoration: none;
     font-weight: 500;
+    color: var(--gray-primary-color);
+  }
+}
+
+.tech-specs {
+  min-width: 250px;
+  width: 100%;
+  
+  @include onDesktop {
+    max-width: 400px;
+  }
+}
+
+.categ {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+
+
+  &__title {
+    color: var(--gray-secondary-color);
+  }
+
+  &__value {
     color: var(--gray-primary-color);
   }
 }

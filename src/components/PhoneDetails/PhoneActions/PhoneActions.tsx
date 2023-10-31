@@ -1,83 +1,201 @@
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ReactComponent as FavoritesIcon } from '../../../assets/icons/favorites_icon.svg';
+import classNames from 'classnames';
 
+import { ReactComponent as FavoritesIcon } from '../../../assets/icons/favorites_icon.svg';
+import { ReactComponent as FilledFavoritesIcon } from '../../../assets/icons/favourites-filled_icon.svg';
+
+import { Product, ProductDetails } from '../../../Types/ProductDetails';
+import { getProducts } from '../../../api/productsGeneral';
 import './PhoneAction.scss';
 
-export const PhoneActions: React.FC = () => {
+interface Props {
+  product: ProductDetails;
+  productId: string | undefined;
+  capacityAvailable: string[];
+  colorsAvailable: string[];
+  phoneIdInCart: number[];
+  phoneIdInFavourites: number[];
+  handleRemoveFromCart: (productId: number) => void;
+  handleAddToCart: (productId: number) => void;
+  handleRemoveFromFavourites: (productId: number) => void;
+  handleAddToFavourites: (productId: number) => void;
+  setSelectedImage: (photo: string | null) => void;
+}
+
+export const PhoneActions: React.FC<Props> = ({
+  product,
+  productId,
+  colorsAvailable,
+  capacityAvailable,
+  phoneIdInCart,
+  phoneIdInFavourites,
+  handleRemoveFromCart,
+  handleAddToCart,
+  handleRemoveFromFavourites,
+  handleAddToFavourites,
+  setSelectedImage,
+}) => {
+  const {
+    color,
+    capacity,
+    priceRegular,
+    priceDiscount,
+    screen,
+    resolution,
+    processor,
+    ram,
+  } = product;
+
+  const [selectedColor, setSelectedColor] = useState(color);
+  const [selectedCapacity, setSelectedCapacity] = useState(capacity);
+  const [id, setId] = useState<number>();
+
+  useEffect(() => {
+    const fetchId = async () => {
+      try {
+        const phonesFromServer = await getProducts();
+        const id = phonesFromServer.find(
+          (phone: Product) => phone.itemId === productId,
+        )?.id;
+
+        setId(id);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('Error fetching phones:', error);
+      }
+    };
+
+    fetchId();
+  }, [productId]);
+
+  const handleChangeProductColor = (col: string) => {
+    setSelectedColor(col);
+    setSelectedImage(null);
+  };
+
+  if (!id) {
+    return null;
+  }
+
+  const isPhoneInCart = phoneIdInCart.includes(id);
+  const isPhoneInFavourites = phoneIdInFavourites.includes(id);
+
   return (
     <div className="phone-actions">
-      <div className="phone-actions__title">
-        <h4>Avaliable colors</h4>
-        <span>ID: 12345678</span>
-      </div>
-
-      {/* замепити кольори, додати функціонал */}
       <div className="phone-actions__color">
-        <NavLink to="/">
-          <button className="phone-actions__color-select selected"></button>
-        </NavLink>
-        <NavLink to="/">
-          <button className="phone-actions__color-select"></button>
-        </NavLink>
-        <NavLink to="/">
-          <button className="phone-actions__color-select"></button>
-        </NavLink>
+        <div className="phone-actions__title">
+          <h4>Avaliable colors</h4>
+          <span>ID: 1</span>
+        </div>
+
+        {/* додати до NavLink правильний шлях */}
+        {colorsAvailable &&
+          productId &&
+          colorsAvailable.map(col => (
+            <NavLink
+              to="/"
+              key={col}
+              onClick={() => handleChangeProductColor(col)}
+            >
+              <button
+                className={classNames(`phone-actions__color-select ${col}`, {
+                  selected: selectedColor === col,
+                })}
+              ></button>
+            </NavLink>
+          ))}
       </div>
 
-      {/* замепити capacity, додати функціонал  */}
       <div className="phone-actions__capacity">
         <div className="phone-actions__title">
           <h4>Select capacity</h4>
         </div>
-        <NavLink to="/">
-          <button className="phone-actions__capacity-select">64 GB</button>
-        </NavLink>
-        <NavLink to="/">
-          <button className="phone-actions__capacity-select selected">
-            128 GB
-          </button>
-        </NavLink>
-        <NavLink to="/">
-          <button className="phone-actions__capacity-select">256 GB</button>
-        </NavLink>
+
+        {/* додати до NavLink правильний шлях */}
+        {capacityAvailable &&
+          productId &&
+          capacityAvailable.map(cap => (
+            <NavLink to="/" onClick={() => setSelectedCapacity(cap)} key={cap}>
+              <button
+                className={classNames('phone-actions__capacity-select', {
+                  selected: selectedCapacity === cap,
+                })}
+              >
+                {cap}
+              </button>
+            </NavLink>
+          ))}
       </div>
 
-      {/* якщо є знижка, показати ціну зі знижкою і стару ціну, інакше показати просто ціну */}
-      <div className="phone-actions__price">
-        <span className="phone-actions__price--regular">899 $</span>
-        <span className="phone-actions__price--discount">1299 $</span>
-      </div>
+      {priceDiscount ? (
+        <div className="phone-actions__price">
+          <span className="phone-actions__price--regular">
+            ${priceDiscount}
+          </span>
+          <span className="phone-actions__price--discount">
+            ${priceRegular}
+          </span>
+        </div>
+      ) : (
+        <div className="phone-actions__price">
+          <span className="phone-actions__price--regular">${priceRegular}</span>
+        </div>
+      )}
 
       <div className="phone-actions__buttons">
-        {/* повішати onClick з хендлером який буде додавати продукт в кошик  */}
-        <button className="phone-actions__buttons-cart">Add to cart</button>
+        {isPhoneInCart ? (
+          <button
+            className="phone-actions__buttons-cart"
+            onClick={() => handleRemoveFromCart(id)}
+          >
+            Added
+          </button>
+        ) : (
+          <button
+            className="phone-actions__buttons-cart"
+            onClick={() => handleAddToCart(id)}
+          >
+            Add to cart
+          </button>
+        )}
 
-        {/* повішати onClick з хендлером який буде додавати продукт в улюблені  */}
-        <button className="phone-actions__buttons-like">
-          <FavoritesIcon />
-        </button>
+        {isPhoneInFavourites ? (
+          <button
+            className="phone-actions__buttons-like"
+            onClick={() => handleRemoveFromFavourites(id)}
+          >
+            <FilledFavoritesIcon />
+          </button>
+        ) : (
+          <button
+            className="phone-actions__buttons-like"
+            onClick={() => handleAddToFavourites(id)}
+          >
+            <FavoritesIcon />
+          </button>
+        )}
       </div>
 
-      {/* замепити дані */}
-      <div className="phone-actions__categ categ">
-        <div className="categ__info">
-          <h4 className="categ__info--title">Screen</h4>
-          <span className="categ__info--value">value</span>
+      <div className="phone-actions__additional-info additional-info">
+        <div className="additional-info__info">
+          <h4 className="additional-info__info--title">Screen</h4>
+          <span className="additional-info__info--value">{screen}</span>
         </div>
 
-        <div className="categ__info">
-          <h4 className="categ__info--title">Resolution</h4>
-          <span className="categ__info--value">value</span>
+        <div className="additional-info__info">
+          <h4 className="additional-info__info--title">Resolution</h4>
+          <span className="additional-info__info--value">{resolution}</span>
         </div>
 
-        <div className="categ__info">
-          <h4 className="categ__info--title">Processor</h4>
-          <span className="categ__info--value">value</span>
+        <div className="additional-info__info">
+          <h4 className="additional-info__info--title">Processor</h4>
+          <span className="additional-info__info--value">{processor}</span>
         </div>
 
-        <div className="categ__info">
-          <h4 className="categ__info--title">RAM</h4>
-          <span className="categ__info--value">value</span>
+        <div className="additional-info__info">
+          <h4 className="additional-info__info--title">RAM</h4>
+          <span className="additional-info__info--value">{ram}</span>
         </div>
       </div>
     </div>
