@@ -41,8 +41,8 @@ export const HotPrices: React.FC = () => {
           <Loader />
         ) : (
           <CardSlider
-            leftArrowName="newBrand__arrow-left"
-            rightArrowName="newBrand__arrow-right"
+            leftArrowName="hotPrices__arrow-left"
+            rightArrowName="hotPrices__arrow-right"
             products={hotModels}
           />
         )}
