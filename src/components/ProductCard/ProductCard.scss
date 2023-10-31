@@ -1,26 +1,20 @@
+@import 'styles/utils/mixins';
+
 .card {
   display: flex;
-  width: 272px;
-  height: auto;
   padding: 32px;
   flex-direction: column;
-
   border: 1px solid var(--gray-elements-color);
-
-  &__container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
 
   &__image {
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 196px;
+    justify-content: center;
+    padding-bottom: 8px;
+    height: 130px;
 
     &-img {
-      max-height: 196px;
+      height: 130px;
     }
   }
 
@@ -30,6 +24,11 @@
     font-weight: 500;
     line-height: 21px;
     height: 63px;
+    display: flex;
+    text-align: start;
+    padding-top: 16px;
+    padding-bottom: 8px;
+    margin: 8px 0;
   }
 
   &__price {
@@ -47,9 +46,9 @@
 
   &__divider {
     display: block;
-    width: 208px;
-    height: 1px;
-    background-color: var(--gray-elements-color);
+    width: 100%;
+    border-bottom: 1px solid var(--gray-elements-color);
+    margin: 8px 0;
   }
 
   &__specs {
@@ -99,7 +98,7 @@
       align-items: center;
       flex: 1 0 0;
       background: var(--gray-primary-color);
-      color: var(--gray-white, #fff);
+      color: var( --white-color);
       text-align: center;
       font-size: 14px;
       font-weight: 600;
@@ -122,46 +121,15 @@
     }
   }
 
-  @media (max-width: 1199px) {
-    width: 237px;
-
-    &__container {
-      width: 173px;
-      height: 448px;
-      gap: 8px;
-    }
-
-    &__divider {
-      width: 173px;
-    }
-
-    &__image {
-      width: 173px;
-      height: 202px;
-    }
-  }
-
-  @media (max-width: 639px) {
-    width: 212px;
+  @include onTablet {
+    width: 288px;
     height: auto;
 
-    &__container {
-      width: 148px;
-      height: auto;
-      gap: 8px;
-    }
-
-    &__divider {
-      height: 1px;
-      width: 148px;
-    }
-
     &__image {
-      width: 148px;
-      height: 129px;
+      height: 196px;
 
       &-img {
-        height: 130px;
+        height: 196px;
       }
     }
   }

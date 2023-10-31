@@ -35,6 +35,10 @@ export const CardSlider: React.FC<Props> = ({
           spaceBetween: 16,
         },
         640: {
+          slidesPerView: 3,
+          spaceBetween: 16,
+        },
+        1200: {
           slidesPerView: 4,
           spaceBetween: 16,
         },
