@@ -8,7 +8,7 @@ const phoneTest = {
   phoneId: 'apple-iphone-7-32gb-black',
   itemId: 'apple-iphone-7-32gb-black',
   name: 'Apple iPhone 11 Pro Max 512GB Midnight Green (iMT9G2FS/A)',
-  fullPrice: 400,
+  fullPrice: 999,
   price: 375,
   screen: '4.7 IPS',
   capacity: '32GB',
@@ -36,7 +36,10 @@ export const ProductCard: React.FC = () => {
 
         <h3 className="card__name">{name}</h3>
 
-        <p className="card__price">{`$${price} ${fullPrice}`}</p>
+        <p className="card__price">
+          {`$${price} `}
+          <span className="card__price-old">{`$${fullPrice}`}</span>
+        </p>
 
         <div className="card__divider"></div>
 
