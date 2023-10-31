@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/fe-product-catalog/static/css/main.7ce89b00.css",
-    "main.js": "/fe-product-catalog/static/js/main.b562d826.js",
+    "main.css": "/fe-product-catalog/static/css/main.6c41c4a2.css",
+    "main.js": "/fe-product-catalog/static/js/main.559ac238.js",
     "static/media/Logo-svg.svg": "/fe-product-catalog/static/media/Logo-svg.3eb5a345860ffede710228b5d3ca561c.svg",
-    "static/media/image2.png": "/fe-product-catalog/static/media/image2.4fe68e562050d2f5db39.png",
+    "static/media/image2.png": "/fe-product-catalog/static/media/image2.90e3b5d024ef2416744c.png",
     "static/media/Mont-Regular.otf": "/fe-product-catalog/static/media/Mont-Regular.1d26d89f7339866d3133.otf",
     "static/media/Mont-SemiBold.otf": "/fe-product-catalog/static/media/Mont-SemiBold.8979d71a3146ca1d761f.otf",
     "static/media/Mont-Bold.otf": "/fe-product-catalog/static/media/Mont-Bold.03c8c2f6127c1da0fc39.otf",
@@ -20,11 +20,11 @@
     "static/media/arrow-up_icon.svg": "/fe-product-catalog/static/media/arrow-up_icon.1ea6958a07717117d3d583ab6fe7dcbd.svg",
     "static/media/minus_icon.svg": "/fe-product-catalog/static/media/minus_icon.3a58fecb158505013f9851d866f0127c.svg",
     "index.html": "/fe-product-catalog/index.html",
-    "main.7ce89b00.css.map": "/fe-product-catalog/static/css/main.7ce89b00.css.map",
-    "main.b562d826.js.map": "/fe-product-catalog/static/js/main.b562d826.js.map"
+    "main.6c41c4a2.css.map": "/fe-product-catalog/static/css/main.6c41c4a2.css.map",
+    "main.559ac238.js.map": "/fe-product-catalog/static/js/main.559ac238.js.map"
   },
   "entrypoints": [
-    "static/css/main.7ce89b00.css",
-    "static/js/main.b562d826.js"
+    "static/css/main.6c41c4a2.css",
+    "static/js/main.559ac238.js"
   ]
 }
