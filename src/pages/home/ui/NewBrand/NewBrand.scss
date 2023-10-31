@@ -1,4 +1,4 @@
-.hotPrices {
+.newBrand {
   margin-bottom: 80px;
 
   &__container {
@@ -51,7 +51,7 @@
 .arrow {
   width: 32px;
   height: 32px;
-  border: 1px solid #b4bdc3;
+  border: 1px solid var(--gray-icons-placeholders-color);
   background: none;
   background-repeat: no-repeat;
   background-position: center;
