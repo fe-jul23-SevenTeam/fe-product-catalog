@@ -5,9 +5,9 @@
   width: 100%;
   min-width: 236px;
 
-    @include onTablet {
-      max-width: 400px;
-    }
+  @include onTablet {
+    max-width: 400px;
+  }
 
   &__title {
     display: flex;
@@ -46,7 +46,7 @@
       background-clip: content-box;
 
       cursor: pointer;
-      
+
       transition: border-color $transition-duration;
 
       &:hover {
@@ -151,12 +151,11 @@
       font-weight: 500;
       text-transform: uppercase;
 
-      
       background-color: var(--white-color);
       border: 1px solid var(--gray-icons-placeholders-color);
-      
+
       transition: border-color $transition-duration;
-      
+
       cursor: pointer;
 
       &:hover {

@@ -8,14 +8,13 @@
   align-items: center;
   height: 70vh;
 
-
   background-image: url(../../assets/notFoundFace.png);
-  background-size: 360px ;
+  background-size: 360px;
   background-position: right;
   background-repeat: no-repeat;
 
   @include onTablet {
-    background-size: 600px ;
+    background-size: 600px;
   }
 
   @include onDesktop {
@@ -70,7 +69,8 @@
 }
 
 @keyframes blink-glitch {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {

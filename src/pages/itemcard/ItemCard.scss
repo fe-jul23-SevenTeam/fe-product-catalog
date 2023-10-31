@@ -12,7 +12,6 @@
 
   @include onDesktop {
     padding: 24px 32px 81px;
-
   }
 
   &__title {
@@ -101,7 +100,7 @@
 
     color: var(--gray-primary-color);
 
-    border-bottom: 1px solid #E2E6E9;
+    border-bottom: 1px solid #e2e6e9;
   }
 }
 
@@ -167,7 +166,7 @@
 .tech-specs {
   min-width: 250px;
   width: 100%;
-  
+
   @include onDesktop {
     max-width: 400px;
   }
@@ -182,7 +181,6 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 21px;
-
 
   &__title {
     color: var(--gray-secondary-color);
