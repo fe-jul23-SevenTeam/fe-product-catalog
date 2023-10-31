@@ -10,32 +10,24 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './Slider.scss';
-import { useRef } from 'react';
 
 export const Slider: React.FC = () => {
-  const swiperRef = useRef<any>(null);
-
   return (
     <section className="slider">
       <h1 className="slider__title">Welcome to Nice Gadgets store!</h1>
       <Swiper
-        ref={swiperRef}
         modules={[Navigation, Pagination, Autoplay]}
         className="mySwiper"
         speed={800}
+        autoplay={{
+          delay: 1000,
+          disableOnInteraction: false,
+        }}
         loop
         pagination={{ clickable: true }}
         navigation={{
           nextEl: '.swiper-slide__main-arrow-right',
           prevEl: '.swiper-slide__main-arrow-left',
-        }}
-        on={{
-          init: () => {
-            const swiper = swiperRef.current;
-            if (swiper) {
-              swiper.navigation.init();
-            }
-          },
         }}
       >
         {[1, 2, 3].map(item => (
