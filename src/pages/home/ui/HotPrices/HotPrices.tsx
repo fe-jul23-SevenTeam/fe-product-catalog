@@ -3,7 +3,7 @@ import { ReactComponent as LeftArrow } from 'assets/icons/arrow-left_icon.svg';
 import { ReactComponent as RightArrow } from 'assets/icons/arrow-right_icon.svg';
 import { CardSlider } from '../CardSlider';
 import { Product } from 'types/Product';
-import { getProducts } from 'api/productsGeneral';
+import { getProductsForSlider } from 'api/productsGeneral';
 import { Loader } from 'components/Loader';
 
 import './HotPrices.scss';
@@ -15,7 +15,7 @@ export const HotPrices: React.FC = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    getProducts()
+    getProductsForSlider(15, 'best-price')
       .then(setHotModels)
       .finally(() => setIsLoading(false));
   }, []);

@@ -12,6 +12,7 @@ import { BackButton } from '../../components/BackButton/BackButton';
 import { PhonePhotos } from '../../components/PhoneDetails/PhonePhotos';
 import { PhoneActions } from '../../components/PhoneDetails/PhoneActions';
 import { Loader } from 'components/Loader';
+import { LikeSlider } from './ui/LikeSlider';
 
 export const ItemCard: React.FC = () => {
   const [productInfo, setProductInfo] = useState<ProductDetails>();
@@ -213,10 +214,7 @@ export const ItemCard: React.FC = () => {
           </div>
         </div>
 
-        {/* блок з рекомендаціями */}
-        <div className="phone__recommended">
-          <h1>You may also like</h1>
-        </div>
+        <LikeSlider />
       </div>
     </div>
   );

@@ -36,3 +36,9 @@ export const getProductsByParams = (
 export const getProductsByCategory = (category: string) => {
   return fetchData(`${BASE_URL}/products/length/${category}`);
 };
+
+export const getProductsForSlider = (pageSize: number, sorting: string) => {
+  return fetchData(
+    `${BASE_URL}/products?pageSize=${pageSize}&sortBy=${sorting}`,
+  );
+};
