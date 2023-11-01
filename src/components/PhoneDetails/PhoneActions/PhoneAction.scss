@@ -24,6 +24,8 @@
     }
 
     & span {
+      text-transform: uppercase;
+      font-size: 10px;
       color: var(--gray-icons-placeholders-color);
     }
   }
@@ -50,7 +52,7 @@
       transition: border-color $transition-duration;
 
       &:hover {
-        border-color: var(--gray-primary-color);
+        border-color: var(--gray-icons-placeholders-color);
       }
 
       /* #region all colors for products */
@@ -212,10 +214,21 @@
       transition: $transition-duration;
       cursor: pointer;
 
-      &:hover {
+      &.selected {
         border: 1px solid var(--gray-primary-color);
         background-color: var(--white-color);
-        color: var(--gray-primary-color);
+        color: var(--green-color);
+      }
+
+      @include onTablet {
+        &:hover {
+          border: 1px solid var(--gray-primary-color);
+          background-color: var(--white-color);
+          color: var(--gray-primary-color);
+
+        @include buttonHover;
+
+        }
       }
     }
 
@@ -228,7 +241,20 @@
       border: 1px solid var(--gray-icons-placeholders-color);
       background-color: var(--white-color);
 
+      transition: $transition-duration;
+
       cursor: pointer;
+
+      &.selected {
+        border-color: var(--gray-primary-color);
+      }
+
+      @include onTablet {
+        &:hover {
+          border: 1px solid var(--gray-primary-color);
+
+        }
+      }
     }
   }
 }
