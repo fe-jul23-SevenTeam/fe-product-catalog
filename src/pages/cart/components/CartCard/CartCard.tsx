@@ -1,6 +1,7 @@
 import { ReactComponent as CloseIcon } from '../../../../assets/icons/close_icon.svg';
 import { ReactComponent as MinusIcon } from '../../../../assets/icons/minus_icon.svg';
 import { ReactComponent as PlusIcon } from '../../../../assets/icons/plus_icon.svg';
+import { useShoppingCart } from '../../../../context/ShoppingCartContext';
 
 import './CartCard.scss';
 
@@ -26,6 +27,10 @@ export const CartCard = () => {
 
   const handleRemoveItem = () => localStorage.removeItem(`${id}`);
 
+  const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity } =
+    useShoppingCart();
+  const quantity = getItemQuantity(id);
+
   return (
     <div className="cart-card">
       <div className="cart-card__product-info-container">
@@ -46,14 +51,20 @@ export const CartCard = () => {
 
       <div className="cart-card__actions-container">
         <div className="cart-card__amount">
-          <button className="cart-card__amount-button">
+          <button
+            className="cart-card__amount-button"
+            onClick={() => decreaseCartQuantity(id)}
+          >
             <MinusIcon className="cart-card__amount-button-icon" />
           </button>
 
-          <span className="cart-card__amount-number">{amount}</span>
+          <span className="cart-card__amount-number">{quantity}</span>
 
           <button className="cart-card__amount-button">
-            <PlusIcon className="cart-card__amount-button-icon" />
+            <PlusIcon
+              className="cart-card__amount-button-icon"
+              onClick={() => increaseCartQuantity(id)}
+            />
           </button>
         </div>
         <h5 className="cart-card__price">{`$${price}`}</h5>
