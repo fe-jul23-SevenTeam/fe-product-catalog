@@ -20,7 +20,7 @@ export const FavoritesPage = () => {
 
   const addedItems = JSON.parse(
     localStorage.getItem('favorites-items') || '[]',
-  ); // Parse the added items from localStorage
+  );
 
   useEffect(() => {
     const productsToRender = products.filter(product =>

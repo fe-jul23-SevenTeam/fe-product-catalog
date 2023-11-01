@@ -13,10 +13,10 @@ export const HeaderButtons: React.FC = () => {
   const [isActiveBurger, setIsActiveBurger] = useState(false);
   const shoppingItems = JSON.parse(
     localStorage.getItem('shopping-cart') || '[]',
-  ); // Parse the added items from localStorage
+  );
   const favoritesItems = JSON.parse(
     localStorage.getItem('favorites-items') || '[]',
-  ); // Parse the added items from localStorage
+  );
 
   const quantityProducts = shoppingItems.reduce(
     (acc: number, item: { quantity: number }) => acc + item.quantity,

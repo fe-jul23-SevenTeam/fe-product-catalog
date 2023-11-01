@@ -20,7 +20,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       addToFavorites(product);
     }
 
-    setIsFavorite(!isFavorite); // Toggle the favorite state
+    setIsFavorite(!isFavorite);
   };
 
   return (

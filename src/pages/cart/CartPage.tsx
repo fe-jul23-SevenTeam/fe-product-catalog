@@ -36,10 +36,8 @@ export const CartPage = () => {
       );
 
       if (addedItem) {
-        // Calculate the sum for this product and quantity
         const productSum = current.price * addedItem.quantity;
 
-        // Add this product's sum to the accumulator
         return acc + productSum;
       }
 
