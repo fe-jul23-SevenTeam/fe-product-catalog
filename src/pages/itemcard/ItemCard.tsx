@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ProductDetails } from '../../Types/ProductDetails';
+import { Link, useParams } from 'react-router-dom';
+import { ProductDetails } from '../../types/ProductDetails';
 
 import { ReactComponent as HomeIcon } from '../../assets/icons/home_icon.svg';
 import { ReactComponent as ArrowRightIcon } from '../../assets/icons/arrow-right_icon.svg';
@@ -30,8 +30,7 @@ export const ItemCard: React.FC = () => {
     },
   );
 
-  // const { itemId } = useParams();
-  const itemId = 'apple-ipad-pro-11-2021-256gb-spacegray';
+  const { itemId } = useParams();
 
   useEffect(() => {
     const fetchProduct = async () => {

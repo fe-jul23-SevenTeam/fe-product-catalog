@@ -5,9 +5,24 @@ import classNames from 'classnames';
 import { ReactComponent as FavoritesIcon } from '../../../assets/icons/favorites_icon.svg';
 import { ReactComponent as FilledFavoritesIcon } from '../../../assets/icons/favourites-filled_icon.svg';
 
-import { Product, ProductDetails } from '../../../Types/ProductDetails';
+import { ProductDetails } from '../../../types/ProductDetails';
+import { Product } from '../../../types/Product';
 import { getProducts } from '../../../api/productsGeneral';
 import './PhoneAction.scss';
+import { changeItemId } from 'helpers/functions';
+
+// export const changeItemId = (
+//   itemId: string,
+//   oldProp: string,
+//   newProp: string,
+// ) => {
+//   const result = itemId.split('-');
+//   const index = result.indexOf(oldProp.toLowerCase());
+
+//   result[index] = newProp.toLowerCase();
+
+//   return result.join('-');
+// };
 
 interface Props {
   product: ProductDetails;
@@ -89,12 +104,15 @@ export const PhoneActions: React.FC<Props> = ({
           <span>ID: 1</span>
         </div>
 
-        {/* додати до NavLink правильний шлях */}
         {colorsAvailable &&
           productId &&
           colorsAvailable.map(col => (
             <NavLink
-              to="/"
+              to={`/product-info/${changeItemId(
+                productId,
+                selectedColor,
+                col,
+              )}`}
               key={col}
               onClick={() => handleChangeProductColor(col)}
             >
@@ -112,11 +130,18 @@ export const PhoneActions: React.FC<Props> = ({
           <h4>Select capacity</h4>
         </div>
 
-        {/* додати до NavLink правильний шлях */}
         {capacityAvailable &&
           productId &&
           capacityAvailable.map(cap => (
-            <NavLink to="/" onClick={() => setSelectedCapacity(cap)} key={cap}>
+            <NavLink
+              to={`/product-info/${changeItemId(
+                productId,
+                selectedCapacity,
+                cap,
+              )}`}
+              onClick={() => setSelectedCapacity(cap)}
+              key={cap}
+            >
               <button
                 className={classNames('phone-actions__capacity-select', {
                   selected: selectedCapacity === cap,
