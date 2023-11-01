@@ -11,6 +11,21 @@ import { BurgerMenu } from '../BurgerMenu';
 
 export const HeaderButtons: React.FC = () => {
   const [isActiveBurger, setIsActiveBurger] = useState(false);
+  const shoppingItems = JSON.parse(
+    localStorage.getItem('shopping-cart') || '[]',
+  ); // Parse the added items from localStorage
+  const favoritesItems = JSON.parse(
+    localStorage.getItem('favorites-items') || '[]',
+  ); // Parse the added items from localStorage
+
+  const quantityProducts = shoppingItems.reduce(
+    (acc: number, item: { quantity: number }) => acc + item.quantity,
+    0,
+  );
+  const quantityFavorites = favoritesItems.reduce(
+    (acc: number, item: { quantity: number }) => acc + item.quantity,
+    0,
+  );
 
   return (
     <div className="buttons">
@@ -41,6 +56,7 @@ export const HeaderButtons: React.FC = () => {
         }
       >
         <FavoritesIcon className="icon icon--favorites" />
+        {quantityFavorites}
       </NavLink>
 
       <NavLink
@@ -50,6 +66,7 @@ export const HeaderButtons: React.FC = () => {
         }
       >
         <ShoppingBagIcon className="icon icon--shopping-bag" />
+        {quantityProducts}
       </NavLink>
     </div>
   );

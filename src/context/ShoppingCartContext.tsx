@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import { Product } from '../Types/Product';
 
 type ShoppingCartProviderProps = {
   children: ReactNode;
@@ -17,7 +18,9 @@ type ShoppingCartContext = {
   removeFromCart: (id: number) => void;
   cartQuantity: number;
   cartItems: CartItem[];
-  addToCart: (product: CartItem) => void;
+  addToFavorites: (product: Product) => void;
+  addToCart: (product: Product) => void;
+  removeFromFavorites: (id: number) => void;
 };
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext);
@@ -32,8 +35,47 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     [],
   );
 
-  const addToCart = (product: CartItem) => {
-    setCartItems([...cartItems, product]);
+  const [favoritesItems, setFavoritesItems] = useLocalStorage<CartItem[]>(
+    'favorites-items',
+    [],
+  );
+
+  const addToCart = (product: Product) => {
+    const existingCartItem = cartItems.find(item => item.id === product.id);
+
+    if (existingCartItem) {
+      // If the product is already in the cart, increase the quantity.
+      setCartItems(
+        cartItems.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
+        ),
+      );
+    } else {
+      // If the product is not in the cart, add it with a quantity of 1.
+      setCartItems([...cartItems, { id: product.id, quantity: 1 }]);
+    }
+  };
+
+  const addToFavorites = (product: Product) => {
+    const existingCartItem = favoritesItems.find(
+      item => item.id === product.id,
+    );
+
+    if (existingCartItem) {
+      // If the product is already in the cart, increase the quantity.
+      setFavoritesItems(
+        favoritesItems.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
+        ),
+      );
+    } else {
+      // If the product is not in the cart, add it with a quantity of 1.
+      setFavoritesItems([...favoritesItems, { id: product.id, quantity: 1 }]);
+    }
   };
 
   const cartQuantity = cartItems.reduce(
@@ -85,6 +127,12 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     });
   }
 
+  function removeFromFavorites(id: number) {
+    setFavoritesItems((currItems: any[]) => {
+      return currItems.filter((item: { id: number }) => item.id !== id);
+    });
+  }
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -95,6 +143,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         cartItems,
         cartQuantity,
         addToCart,
+        addToFavorites,
+        removeFromFavorites,
       }}
     >
       {children}

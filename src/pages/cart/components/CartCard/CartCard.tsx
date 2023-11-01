@@ -1,34 +1,26 @@
+import React from 'react';
+
 import { ReactComponent as CloseIcon } from '../../../../assets/icons/close_icon.svg';
 import { ReactComponent as MinusIcon } from '../../../../assets/icons/minus_icon.svg';
 import { ReactComponent as PlusIcon } from '../../../../assets/icons/plus_icon.svg';
 import { useShoppingCart } from '../../../../context/ShoppingCartContext';
+import { Product } from '../../../../Types/Product';
 
 import './CartCard.scss';
 
-const cardData = {
-  id: 1,
-  // category: 'phones',
-  itemId: 'apple-iphone-7-32gb-black',
-  name: 'Apple iPhone 14 Pro 128GB Silver (MQ023)',
-  // fullPrice: 400,
-  price: 375,
-  // screen: '4.7\' IPS',
-  // capacity: '32GB',
-  // color: 'black',
-  // ram: '2GB',
-  // year: 2016,
-  image:
-    'https://be-product-catalog-fhdi.onrender.com/images/img/phones/apple-iphone-7/black/00.webp',
-  amount: 2,
+type Props = {
+  product: Product;
 };
 
-export const CartCard = () => {
-  const { id, image, name, amount, price } = cardData;
+export const CartCard: React.FC<Props> = ({ product }) => {
+  const { id, image, name, price } = product;
 
-  const handleRemoveItem = () => localStorage.removeItem(`${id}`);
-
-  const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity } =
-    useShoppingCart();
+  const {
+    getItemQuantity,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    removeFromCart,
+  } = useShoppingCart();
   const quantity = getItemQuantity(id);
 
   return (
@@ -36,7 +28,7 @@ export const CartCard = () => {
       <div className="cart-card__product-info-container">
         <button
           type="button"
-          onClick={handleRemoveItem}
+          onClick={() => removeFromCart(id)}
           className="cart-card__remove-button"
         >
           <CloseIcon className="cart-card__remove-icon" />

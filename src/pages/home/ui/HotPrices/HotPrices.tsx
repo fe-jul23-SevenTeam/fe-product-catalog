@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ReactComponent as LeftArrow } from 'assets/icons/arrow-left_icon.svg';
 import { ReactComponent as RightArrow } from 'assets/icons/arrow-right_icon.svg';
 import { CardSlider } from '../CardSlider';
-import { Product } from 'types/Product';
+import { Product } from '../../../../Types/Product';
 import { getProducts } from 'api/productsGeneral';
 import { Loader } from 'components/Loader';
 

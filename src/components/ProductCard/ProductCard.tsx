@@ -1,7 +1,7 @@
 import './ProductCard.scss';
 import { ReactComponent as FavoritesIcon } from 'assets/icons/favorites_icon.svg';
-import React from 'react';
-import { Product } from 'types/Product';
+import React, { useState } from 'react';
+import { Product } from '../../Types/Product';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
 
 type Props = {
@@ -9,8 +9,19 @@ type Props = {
 };
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const { increaseCartQuantity } = useShoppingCart();
+  const [isFavorite, setIsFavorite] = useState(false);
+  const { addToCart, addToFavorites, removeFromFavorites } = useShoppingCart();
   const { name, price, screen, capacity, ram, image, fullPrice, id } = product;
+
+  const handleClick = () => {
+    if (!isFavorite) {
+      removeFromFavorites(id);
+    } else {
+      addToFavorites(product);
+    }
+
+    setIsFavorite(!isFavorite); // Toggle the favorite state
+  };
 
   return (
     <div className="card">
@@ -48,11 +59,11 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         <div className="card__buttons">
           <button
             className="card__buttons-card"
-            onClick={() => increaseCartQuantity(id)}
+            onClick={() => addToCart(product)}
           >
             Add to cart
           </button>
-          <button className="card__buttons-favorites">
+          <button className="card__buttons-favorites" onClick={handleClick}>
             <FavoritesIcon className="card__buttons-favorites-icon" />
           </button>
         </div>
