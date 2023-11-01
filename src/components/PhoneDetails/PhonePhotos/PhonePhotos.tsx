@@ -1,37 +1,38 @@
+import classNames from 'classnames';
 import './PhonePhotos.scss';
 
-export const PhonePhotos: React.FC = () => {
-  return (
-    // дістати фото зі серверу, зробити функціонал вибору
-    <div className="photos">
-      <img
-        className="photo--big"
-        src={require('../../../assets/img/image2.png')}
-        alt="photo"
-      />
+interface Props {
+  images: string[];
+  setSelectedImage: (url: string) => void;
+  selectedImage: string | null | undefined;
+  productName: string | undefined;
+}
 
-      <div className="photos--small">
+export const PhonePhotos: React.FC<Props> = ({
+  setSelectedImage,
+  selectedImage,
+  images,
+  productName,
+}) => (
+  <div className="photos">
+    <img
+      className="photo--big"
+      src={selectedImage ? `${selectedImage}` : `${images?.[0]}`}
+      alt={`${productName} photo`}
+    />
+
+    <div className="photos--small">
+      {images?.map(image => (
         <img
-          className="photo--small"
-          src={require('../../../assets/img/image8-1.png')}
+          key={image}
+          className={classNames('photo--small', {
+            active: selectedImage === image,
+          })}
+          src={`${image}`}
+          onClick={() => setSelectedImage(image)}
+          alt={`${productName} photo`}
         />
-        <img
-          className="photo--small"
-          src={require('../../../assets/img/image8-1.png')}
-        />
-        <img
-          className="photo--small"
-          src={require('../../../assets/img/image8-1.png')}
-        />
-        <img
-          className="photo--small"
-          src={require('../../../assets/img/image8-1.png')}
-        />
-        <img
-          className="photo--small"
-          src={require('../../../assets/img/image8-1.png')}
-        />
-      </div>
+      ))}
     </div>
-  );
-};
+  </div>
+);

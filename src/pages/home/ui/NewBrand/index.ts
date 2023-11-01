@@ -1,0 +1,1 @@
+export { NewBrand } from './NewBrand';

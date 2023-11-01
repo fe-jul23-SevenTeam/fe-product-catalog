@@ -1,9 +1,9 @@
 @import '../../../styles/utils/mixins';
+@import '../../../styles/utils/vars';
 
 .photos {
-  display: flex;
+  @include displayFlexCenter;
   flex-direction: column;
-  align-items: center;
 
   margin-bottom: 40px;
 
@@ -43,6 +43,12 @@
 
     @include onTablet {
       margin-bottom: 0;
+      transition: transform $transition-duration;
+
+      &:hover {
+        transform: scale(1.1);
+        transition: transform $transition-duration;
+      }
     }
 
     @include onDesktop {
@@ -58,9 +64,13 @@
     object-fit: contain;
 
     border: 1px solid var(--gray-elements-color);
+    transition: border-color $transition-duration;
 
-    &:hover,
-    &:active {
+    &:hover {
+      border-color: var(--gray-primary-color);
+    }
+
+    &.active {
       border-color: var(--gray-primary-color);
     }
 

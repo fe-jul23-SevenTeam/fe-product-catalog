@@ -18,8 +18,7 @@ export const getProductById = (phoneId: number) =>
   fetchData(`${BASE_URL}/products/${phoneId}`);
 
 export const getProductInfoById = (itemId: string) =>
-  fetchData(`${BASE_URL}/products-info/find/${itemId}`);
-
+  fetchData(`${BASE_URL}/products-info/${itemId}`);
 export const getProductImage = (pathname: string) =>
   fetchData(`${BASE_URL}/images/${pathname}`);
 

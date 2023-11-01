@@ -1,42 +1,20 @@
-@import '../../styles/utils/grid';
+@import 'styles/utils/mixins';
 
 .card {
   display: flex;
-  width: 272px;
-  height: auto;
   padding: 32px;
   flex-direction: column;
-  align-items: flex-start;
-  flex-shrink: 0;
   border: 1px solid var(--gray-elements-color);
-
-  grid-column: span 4;
-  
-  @include onTablet {
-    grid-column: span 4;
-  }
-
-  @include onDesktop {
-    grid-column: span 5;
-  }
-
-  &__container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 208px;
-    height: 442px;
-    gap: 8px;
-  }
 
   &__image {
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 196px;
+    justify-content: center;
+    padding-bottom: 8px;
+    height: 130px;
 
     &-img {
-      max-height: 196px;
+      height: 130px;
     }
   }
 
@@ -45,6 +23,12 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 21px;
+    height: 63px;
+    display: flex;
+    text-align: start;
+    padding-top: 16px;
+    padding-bottom: 8px;
+    margin: 8px 0;
   }
 
   &__price {
@@ -52,13 +36,19 @@
     font-size: 22px;
     font-weight: 800;
     line-height: 140%;
+
+    &-old {
+      color: var(--gray-secondary-color);
+      text-decoration-line: line-through;
+      font-weight: 600;
+    }
   }
 
   &__divider {
     display: block;
-    width: 208px;
-    height: 1px;
-    background-color: var(--gray-elements-color);
+    width: 100%;
+    border-bottom: 1px solid var(--gray-elements-color);
+    margin: 8px 0;
   }
 
   &__specs {
@@ -108,14 +98,14 @@
       align-items: center;
       flex: 1 0 0;
       background: var(--gray-primary-color);
-      color: var(--gray-white, #fff);
+      color: var( --white-color);
       text-align: center;
       font-size: 14px;
       font-weight: 600;
       line-height: 21px;
     }
 
-    &-favourites {
+    &-favorites {
       display: block;
       width: 40px;
       height: 40px;
@@ -131,46 +121,15 @@
     }
   }
 
-  @media (max-width: 1199px) {
-    width: 237px;
-
-    &__container {
-      width: 173px;
-      height: 448px;
-      gap: 8px;
-    }
-
-    &__divider {
-      width: 173px;
-    }
-
-    &__image {
-      width: 173px;
-      height: 202px;
-    }
-  }
-
-  @media (max-width: 639px) {
-    width: 212px;
+  @include onTablet {
+    width: 288px;
     height: auto;
 
-    &__container {
-      width: 148px;
-      height: auto;
-      gap: 8px;
-    }
-
-    &__divider {
-      height: 1px;
-      width: 148px;
-    }
-
     &__image {
-      width: 148px;
-      height: 129px;
+      height: 196px;
 
       &-img {
-        height: 130px;
+        height: 196px;
       }
     }
   }
