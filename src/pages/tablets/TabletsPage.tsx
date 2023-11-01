@@ -19,7 +19,7 @@ import './TabletsPage.scss';
 
 import icon from '../../assets/icons/home_icon.svg';
 import icon_arrow from '../../assets/icons/arrow-right_icon.svg';
-import { RingLoader } from 'react-spinners';
+import { Loader } from 'components/Loader';
 
 export const TabletsPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -98,14 +98,14 @@ export const TabletsPage: React.FC = () => {
       />
 
       {loader ? (
-        <div className="phones__loader">
-          <RingLoader color="#36d7b7" />
-        </div>
+        <Loader />
       ) : (
         <>
           <div className="phones__content grid">
             {tablets.map(tablet => (
-              <ProductCard product={tablet} key={tablet.id} />
+              <div className="catalog__card-container">
+                <ProductCard product={tablet} key={tablet.id} />
+              </div>
             ))}
           </div>
 

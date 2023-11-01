@@ -3,8 +3,8 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 import banner from 'assets/iPhone-15-Pro.png';
 import bannerMobile from 'assets/banner-for-mobile.png';
-import arrowLeftBlack from 'assets/icons/arrow-left_icon.svg';
-import arrowRightBlack from 'assets/icons/arrow-right_icon.svg';
+import { ReactComponent as ArrowLeft } from 'assets/icons/arrow-left_icon.svg';
+import { ReactComponent as ArrowRight } from 'assets/icons/arrow-right_icon.svg';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -48,7 +48,7 @@ export const MainSlider: React.FC = () => {
           type="button"
           aria-label="arrow-left"
         >
-          <img src={arrowLeftBlack} alt="arrow_left_black" />
+          <ArrowLeft className="swiper-slide__main-arrow-icon" />
         </button>
 
         <button
@@ -56,7 +56,7 @@ export const MainSlider: React.FC = () => {
           type="button"
           aria-label="arrow-right"
         >
-          <img src={arrowRightBlack} alt="arrow_right_black" />
+          <ArrowRight className="swiper-slide__main-arrow-icon" />
         </button>
       </Swiper>
     </section>

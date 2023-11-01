@@ -103,7 +103,9 @@ export const PhonesPage: React.FC = () => {
         <>
           <div className="phones__content grid">
             {phones.map(phone => (
-              <ProductCard product={phone} key={phone.id} />
+              <div className="catalog__card-container">
+                <ProductCard product={phone} key={phone.id} />
+              </div>
             ))}
           </div>
 
