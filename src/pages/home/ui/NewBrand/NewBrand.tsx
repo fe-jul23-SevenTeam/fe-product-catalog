@@ -5,7 +5,7 @@ import { ReactComponent as RightArrow } from 'assets/icons/arrow-right_icon.svg'
 import { getProductsForSlider } from 'api/productsGeneral';
 
 import './NewBrand.scss';
-import { Product } from 'types/Product';
+import { Product } from '../../../../types/Product';
 import { Loader } from 'components/Loader';
 
 export const NewBrand: React.FC = () => {

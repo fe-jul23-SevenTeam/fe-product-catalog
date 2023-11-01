@@ -2,7 +2,7 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { ProductCard } from 'components/ProductCard';
-import { Product } from 'types/Product';
+import { Product } from '../../../../types/Product';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
