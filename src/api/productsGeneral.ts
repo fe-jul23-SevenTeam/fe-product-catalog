@@ -22,8 +22,15 @@ export const getProductInfoById = (itemId: string) =>
 export const getProductImage = (pathname: string) =>
   fetchData(`${BASE_URL}/images/${pathname}`);
 
-export const getProductsByParams = (page: number, pageSize: string, sorting: string, category: string) => {
-  return fetchData(`${BASE_URL}/products?page=${page}&pageSize=${pageSize}&sortBy=${sorting}&category=${category}`);
+export const getProductsByParams = (
+  page: number,
+  pageSize: string,
+  sorting: string,
+  category: string,
+) => {
+  return fetchData(
+    `${BASE_URL}/products?page=${page}&pageSize=${pageSize}&sortBy=${sorting}&category=${category}`,
+  );
 };
 
 export const getProductsByCategory = (category: string) => {

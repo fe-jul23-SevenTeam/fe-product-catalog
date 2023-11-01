@@ -2,17 +2,21 @@ import { ItemsPerPage } from '../../../../types/enumPageSize';
 import { SortingOption } from '../../../../types/enumSortOption';
 import './SortedProducts.scss';
 
-
 interface Props {
-    sorting: string,
-    pageSize: string,
-    handleSortingChange: (event: React.ChangeEvent<HTMLSelectElement>) => void,
-    handleItemsPerPageChange: (event: React.ChangeEvent<HTMLSelectElement>) => void,
+  sorting: string;
+  pageSize: string;
+  handleSortingChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  handleItemsPerPageChange: (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => void;
 }
 
-
-
-export const SortedProducts: React.FC<Props> = ({ sorting, pageSize, handleItemsPerPageChange, handleSortingChange }) => {
+export const SortedProducts: React.FC<Props> = ({
+  sorting,
+  pageSize,
+  handleItemsPerPageChange,
+  handleSortingChange,
+}) => {
   return (
     <div className="sorted">
       <label htmlFor="sorting" className="sorted__categories">

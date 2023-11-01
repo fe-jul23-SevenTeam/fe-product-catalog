@@ -31,7 +31,9 @@
     font-weight: 500;
     line-height: 21px;
 
-    transition: box-shadow 0.3s, color 0.3s;
+    transition:
+      box-shadow 0.3s,
+      color 0.3s;
   }
 
   &__type:hover {
