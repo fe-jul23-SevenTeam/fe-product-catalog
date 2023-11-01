@@ -2,22 +2,28 @@ import './ProductCard.scss';
 import { ReactComponent as FavoritesIcon } from 'assets/icons/favorites_icon.svg';
 import React from 'react';
 import { Product } from 'types/Product';
+import { Link } from 'react-router-dom';
 
 type Props = {
   product: Product;
 };
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const { name, price, screen, capacity, ram, image, fullPrice } = product;
+  const { name, price, screen, capacity, ram, image, fullPrice, itemId } =
+    product;
 
   return (
     <div className="card">
       <div className="card__container">
-        <div className="card__image">
-          <img className="card__image-img" src={image} alt={name} />
-        </div>
+        <Link to={`/product-info/${itemId}`}>
+          <div className="card__image">
+            <img className="card__image-img" src={image} alt={name} />
+          </div>
+        </Link>
 
-        <h3 className="card__name">{name}</h3>
+        <Link to={`/product-info/${itemId}`}>
+          <h3 className="card__name">{name}</h3>
+        </Link>
 
         <p className="card__price">
           {`$${price} `}
@@ -33,7 +39,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           </div>
 
           <div className="card__specs__line">
-            <p className="card__specs__line-name">Capasity</p>
+            <p className="card__specs__line-name">Capacity</p>
             <p className="card__specs__line-value">{capacity}</p>
           </div>
 
