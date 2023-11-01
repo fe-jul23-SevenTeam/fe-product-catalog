@@ -25,36 +25,37 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           <h3 className="card__name">{name}</h3>
         </Link>
 
-        <p className="card__price">
-          {`$${price} `}
-          <span className="card__price-old">{`$${fullPrice}`}</span>
-        </p>
+      <h3 className="card__name">{name}</h3>
 
-        <div className="card__divider"></div>
+      <p className="card__price">
+        {`$${price} `}
+        <span className="card__price-old">{`$${fullPrice}`}</span>
+      </p>
 
-        <div className="card__specs">
-          <div className="card__specs__line">
-            <p className="card__specs__line-name">Screen</p>
-            <p className="card__specs__line-value">{screen}</p>
-          </div>
+      <div className="card__divider"></div>
 
-          <div className="card__specs__line">
-            <p className="card__specs__line-name">Capacity</p>
-            <p className="card__specs__line-value">{capacity}</p>
-          </div>
-
-          <div className="card__specs__line">
-            <p className="card__specs__line-name">RAM</p>
-            <p className="card__specs__line-value">{ram}</p>
-          </div>
+      <div className="card__specs">
+        <div className="card__specs__line">
+          <p className="card__specs__line-name">Screen</p>
+          <p className="card__specs__line-value">{screen}</p>
         </div>
 
-        <div className="card__buttons">
-          <button className="card__buttons-card">Add to cart</button>
-          <button className="card__buttons-favorites">
-            <FavoritesIcon className="card__buttons-favorites-icon" />
-          </button>
+        <div className="card__specs__line">
+          <p className="card__specs__line-name">Capasity</p>
+          <p className="card__specs__line-value">{capacity}</p>
         </div>
+
+        <div className="card__specs__line">
+          <p className="card__specs__line-name">RAM</p>
+          <p className="card__specs__line-value">{ram}</p>
+        </div>
+      </div>
+
+      <div className="card__buttons">
+        <button className="card__buttons-card">Add to cart</button>
+        <button className="card__buttons-favorites">
+          <FavoritesIcon className="card__buttons-favorites-icon" />
+        </button>
       </div>
     </div>
   );
