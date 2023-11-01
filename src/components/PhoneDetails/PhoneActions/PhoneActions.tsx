@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { ReactComponent as FavoritesIcon } from '../../../assets/icons/favorites_icon.svg';
 import { ReactComponent as FilledFavoritesIcon } from '../../../assets/icons/favourites-filled_icon.svg';
 
-import { Product, ProductDetails } from '../../../Types/ProductDetails';
+import { Product, ProductDetails } from '../../../types/ProductDetails';
 import { getProducts } from '../../../api/productsGeneral';
 import './PhoneAction.scss';
 

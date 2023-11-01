@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ProductDetails } from '../../Types/ProductDetails';
+import { ProductDetails } from '../../types/ProductDetails';
 
 import { ReactComponent as HomeIcon } from '../../assets/icons/home_icon.svg';
 import { ReactComponent as ArrowRightIcon } from '../../assets/icons/arrow-right_icon.svg';

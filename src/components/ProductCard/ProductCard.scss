@@ -98,11 +98,14 @@
       align-items: center;
       flex: 1 0 0;
       background: var(--gray-primary-color);
-      color: var( --white-color);
+      color: var(--white-color);
       text-align: center;
       font-size: 14px;
       font-weight: 600;
       line-height: 21px;
+      border: none;
+
+      @include buttonHover;
     }
 
     &-favorites {

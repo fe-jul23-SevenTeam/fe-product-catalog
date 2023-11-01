@@ -110,7 +110,9 @@ export const AccessoriesPage = () => {
         <>
           <div className="phones__content grid">
             {accessories.map(accessory => (
-              <ProductCard product={accessory} key={accessory.id} />
+              <div className="catalog__card-container">
+                <ProductCard product={accessory} key={accessory.id} />
+              </div>
             ))}
           </div>
 
