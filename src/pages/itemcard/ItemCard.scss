@@ -151,6 +151,7 @@
   }
 
   &__arrow {
+    display: block;
     width: 16px;
     height: 16px;
   }
@@ -160,6 +161,12 @@
     text-decoration: none;
     font-weight: 500;
     color: var(--gray-primary-color);
+  }
+
+  &__name {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }
 
@@ -183,10 +190,15 @@
   line-height: 21px;
 
   &__title {
+    font-weight: 500;
     color: var(--gray-secondary-color);
   }
 
   &__value {
+    padding-left: 10px;
     color: var(--gray-primary-color);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }

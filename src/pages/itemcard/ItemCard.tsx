@@ -11,10 +11,12 @@ import { getProductInfoById } from '../../api/productsGeneral';
 import { BackButton } from '../../components/BackButton/BackButton';
 import { PhonePhotos } from '../../components/PhoneDetails/PhonePhotos';
 import { PhoneActions } from '../../components/PhoneDetails/PhoneActions';
+import { Loader } from 'components/Loader';
 
 export const ItemCard: React.FC = () => {
   const [productInfo, setProductInfo] = useState<ProductDetails>();
   const [selectedImage, setSelectedImage] = useState<string | null>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [phoneIdsInCart, setPhoneIdsInCart] = useState<number[]>(() => {
     const storedIds = localStorage.getItem('phoneIdsInCart10');
@@ -35,6 +37,8 @@ export const ItemCard: React.FC = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
+        setIsLoading(true);
+
         if (itemId) {
           const productFromServer = await getProductInfoById(itemId);
           setProductInfo(productFromServer);
@@ -42,6 +46,8 @@ export const ItemCard: React.FC = () => {
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error('Error fetching phone:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -79,14 +85,18 @@ export const ItemCard: React.FC = () => {
           <HomeIcon />
         </Link>
 
-        <ArrowRightIcon className="breadcrumbs__arrow" />
+        <div className="breadcrumbs__arrow">
+          <ArrowRightIcon />
+        </div>
 
-        <Link className="breadcrumbs__category" to={productInfo.category}>
+        <Link className="breadcrumbs__category" to={`/${productInfo.category}`}>
           {productInfo.category}
         </Link>
 
-        <ArrowRightIcon className="breadcrumbs__arrow" />
-        <p>{productInfo.name}</p>
+        <div className="breadcrumbs__arrow">
+          <ArrowRightIcon />
+        </div>
+        <p className="breadcrumbs__name">{productInfo.name}</p>
       </div>
 
       <BackButton />
@@ -95,25 +105,31 @@ export const ItemCard: React.FC = () => {
 
       <div className="phone__container">
         <div className="phone__details">
-          <PhonePhotos
-            productName={productInfo.name}
-            images={productInfo.images}
-            setSelectedImage={setSelectedImage}
-            selectedImage={selectedImage}
-          />
-          <PhoneActions
-            product={productInfo}
-            productId={itemId}
-            colorsAvailable={productInfo.colorsAvailable}
-            capacityAvailable={productInfo.capacityAvailable}
-            phoneIdInCart={phoneIdsInCart}
-            phoneIdInFavourites={phoneIdsInFavourites}
-            handleRemoveFromCart={handleRemoveFromCart}
-            handleAddToCart={handleAddToCart}
-            handleRemoveFromFavourites={handleRemoveFromFavourite}
-            handleAddToFavourites={handleAddToFavourites}
-            setSelectedImage={setSelectedImage}
-          />
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <>
+              <PhonePhotos
+                productName={productInfo.name}
+                images={productInfo.images}
+                setSelectedImage={setSelectedImage}
+                selectedImage={selectedImage}
+              />
+              <PhoneActions
+                product={productInfo}
+                productId={itemId}
+                colorsAvailable={productInfo.colorsAvailable}
+                capacityAvailable={productInfo.capacityAvailable}
+                phoneIdInCart={phoneIdsInCart}
+                phoneIdInFavourites={phoneIdsInFavourites}
+                handleRemoveFromCart={handleRemoveFromCart}
+                handleAddToCart={handleAddToCart}
+                handleRemoveFromFavourites={handleRemoveFromFavourite}
+                handleAddToFavourites={handleAddToFavourites}
+                setSelectedImage={setSelectedImage}
+              />
+            </>
+          )}
         </div>
 
         <div className="phone__description description">
@@ -137,45 +153,63 @@ export const ItemCard: React.FC = () => {
           <div className="phone__tech-specs tech-specs">
             <h2 className="description__title">Tech specs</h2>
 
-            <div className="tech-specs__categ categ">
-              <div className="categ__title">Screen</div>
-              <div className="categ__value">{productInfo.screen}</div>
-            </div>
+            {productInfo.screen && (
+              <div className="tech-specs__categ categ">
+                <h4 className="categ__title">Screen</h4>
+                <span className="categ__value">{productInfo.screen}</span>
+              </div>
+            )}
 
-            <div className="tech-specs__categ categ">
-              <div className="categ__title">Resolution</div>
-              <div className="categ__value">{productInfo.resolution}</div>
-            </div>
+            {productInfo.resolution && (
+              <div className="tech-specs__categ categ">
+                <h4 className="categ__title">Resolution</h4>
+                <span className="categ__value">{productInfo.resolution}</span>
+              </div>
+            )}
 
-            <div className="tech-specs__categ categ">
-              <div className="categ__title">Processor</div>
-              <div className="categ__value">{productInfo.processor}</div>
-            </div>
+            {productInfo.processor && (
+              <div className="tech-specs__categ categ">
+                <h4 className="categ__title">Processor</h4>
+                <span className="categ__value">{productInfo.processor}</span>
+              </div>
+            )}
 
-            <div className="tech-specs__categ categ">
-              <div className="categ__title">RAM</div>
-              <div className="categ__value">{productInfo.ram}</div>
-            </div>
+            {productInfo.ram && (
+              <div className="tech-specs__categ categ">
+                <h4 className="categ__title">RAM</h4>
+                <span className="categ__value">{productInfo.ram}</span>
+              </div>
+            )}
 
-            <div className="tech-specs__categ categ">
-              <div className="categ__title">Built in memory</div>
-              <div className="categ__value">{productInfo.capacity}</div>
-            </div>
+            {productInfo.capacity && (
+              <div className="tech-specs__categ categ">
+                <h4 className="categ__title">Built in memory</h4>
+                <span className="categ__value">{productInfo.capacity}</span>
+              </div>
+            )}
 
-            <div className="tech-specs__categ categ">
-              <div className="categ__title">Camera</div>
-              <div className="categ__value">{productInfo.camera}</div>
-            </div>
+            {productInfo.camera && (
+              <div className="tech-specs__categ categ">
+                <h4 className="categ__title">Camera</h4>
+                <span className="categ__value">{productInfo.camera}</span>
+              </div>
+            )}
 
-            <div className="tech-specs__categ categ">
-              <div className="categ__title">Zoom</div>
-              <div className="categ__value">{productInfo.zoom}</div>
-            </div>
+            {productInfo.zoom && (
+              <div className="tech-specs__categ categ">
+                <h4 className="categ__title">Zoom</h4>
+                <span className="categ__value">{productInfo.zoom}</span>
+              </div>
+            )}
 
-            <div className="tech-specs__categ categ">
-              <div className="categ__title">Cell</div>
-              <div className="categ__value">{productInfo.cell}</div>
-            </div>
+            {productInfo.cell && (
+              <div className="tech-specs__categ categ">
+                <h4 className="categ__title">Cell</h4>
+                <span className="categ__value">
+                  {productInfo.cell.join(', ')}
+                </span>
+              </div>
+            )}
           </div>
         </div>
 

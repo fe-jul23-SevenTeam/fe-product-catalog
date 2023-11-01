@@ -56,6 +56,7 @@ export const PhoneActions: React.FC<Props> = ({
     capacity,
     priceRegular,
     priceDiscount,
+    category,
     screen,
     resolution,
     processor,
@@ -101,7 +102,7 @@ export const PhoneActions: React.FC<Props> = ({
       <div className="phone-actions__color">
         <div className="phone-actions__title">
           <h4>Avaliable colors</h4>
-          <span>ID: 1</span>
+          <span>{category}</span>
         </div>
 
         {colorsAvailable &&
@@ -171,7 +172,7 @@ export const PhoneActions: React.FC<Props> = ({
       <div className="phone-actions__buttons">
         {isPhoneInCart ? (
           <button
-            className="phone-actions__buttons-cart"
+            className="phone-actions__buttons-cart selected"
             onClick={() => handleRemoveFromCart(id)}
           >
             Added
@@ -187,7 +188,7 @@ export const PhoneActions: React.FC<Props> = ({
 
         {isPhoneInFavourites ? (
           <button
-            className="phone-actions__buttons-like"
+            className="phone-actions__buttons-like selected"
             onClick={() => handleRemoveFromFavourites(id)}
           >
             <FilledFavoritesIcon />
