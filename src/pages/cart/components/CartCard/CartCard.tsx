@@ -4,7 +4,7 @@ import { ReactComponent as CloseIcon } from '../../../../assets/icons/close_icon
 import { ReactComponent as MinusIcon } from '../../../../assets/icons/minus_icon.svg';
 import { ReactComponent as PlusIcon } from '../../../../assets/icons/plus_icon.svg';
 import { useShoppingCart } from '../../../../context/ShoppingCartContext';
-import { Product } from '../../../../Types/Product';
+import { Product } from '../../../../types/Product';
 
 import './CartCard.scss';
 

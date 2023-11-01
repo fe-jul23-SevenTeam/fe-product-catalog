@@ -1,8 +1,9 @@
 import './ProductCard.scss';
 import { ReactComponent as FavoritesIcon } from 'assets/icons/favorites_icon.svg';
 import React, { useState } from 'react';
-import { Product } from '../../Types/Product';
+import { Product } from '../../types/Product';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
+import { Link } from 'react-router-dom';
 
 type Props = {
   product: Product;
@@ -11,7 +12,8 @@ type Props = {
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const { addToCart, addToFavorites, removeFromFavorites } = useShoppingCart();
-  const { name, price, screen, capacity, ram, image, fullPrice, id } = product;
+  const { name, price, screen, capacity, ram, image, fullPrice, id, itemId } =
+    product;
 
   const handleClick = () => {
     if (!isFavorite) {
@@ -26,11 +28,15 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <div className="card">
       <div className="card__container">
-        <div className="card__image">
-          <img className="card__image-img" src={image} alt={name} />
-        </div>
+        <Link to={`/product-info/${itemId}`}>
+          <div className="card__image">
+            <img className="card__image-img" src={image} alt={name} />
+          </div>
+        </Link>
 
-        <h3 className="card__name">{name}</h3>
+        <Link to={`/product-info/${itemId}`}>
+          <h3 className="card__name">{name}</h3>
+        </Link>
 
         <p className="card__price">
           {`$${price} `}
@@ -46,7 +52,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           </div>
 
           <div className="card__specs__line">
-            <p className="card__specs__line-name">Capasity</p>
+            <p className="card__specs__line-name">Capacity</p>
             <p className="card__specs__line-value">{capacity}</p>
           </div>
 

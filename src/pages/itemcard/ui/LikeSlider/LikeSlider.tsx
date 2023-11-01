@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { CardSlider } from '../CardSlider';
+import { CardSlider } from 'pages/home/ui/CardSlider';
 import { ReactComponent as LeftArrow } from 'assets/icons/arrow-left_icon.svg';
 import { ReactComponent as RightArrow } from 'assets/icons/arrow-right_icon.svg';
 import { getProductsForSlider } from 'api/productsGeneral';
 
-import './NewBrand.scss';
-import { Product } from '../../../../types/Product';
+import './LikeSlider.scss';
+import { Product } from 'types/Product';
 import { Loader } from 'components/Loader';
 
-export const NewBrand: React.FC = () => {
+export const LikeSlider: React.FC = () => {
   const [newModels, setNewModels] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,17 +21,17 @@ export const NewBrand: React.FC = () => {
   }, []);
 
   return (
-    <section className="newBrand">
-      <div className="newBrand__container">
-        <div className="newBrand__top">
-          <h2 className="newBrand__title">Brand new models</h2>
+    <section className="likeSlide">
+      <div className="likeSlide__container">
+        <div className="likeSlide__top">
+          <h2 className="likeSlide__title">You may also like</h2>
 
-          <div className="newBrand__arrows">
-            <div className="newBrand__arrow-left arrow">
+          <div className="likeSlide__arrows">
+            <div className="likeSlide__arrow-left arrow">
               <LeftArrow />
             </div>
 
-            <div className="newBrand__arrow-right arrow">
+            <div className="likeSlide__arrow-right arrow">
               <RightArrow />
             </div>
           </div>
@@ -41,8 +41,8 @@ export const NewBrand: React.FC = () => {
           <Loader />
         ) : (
           <CardSlider
-            leftArrowName="newBrand__arrow-left"
-            rightArrowName="newBrand__arrow-right"
+            leftArrowName="likeSlide__arrow-left"
+            rightArrowName="likeSlide__arrow-right"
             products={newModels}
           />
         )}

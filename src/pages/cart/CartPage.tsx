@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { BackButton } from '../../components/BackButton/BackButton';
 import { CartCard } from './components/CartCard';
 import { Checkout } from './components/Checkout';
-import { Product } from '../../Types/Product';
+import { Product } from '../../types/Product';
 
 import './Cart.scss';
 import { getProducts } from '../../api/productsGeneral';

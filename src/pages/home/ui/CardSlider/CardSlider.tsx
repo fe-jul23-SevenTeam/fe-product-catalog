@@ -2,7 +2,7 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { ProductCard } from 'components/ProductCard';
-import { Product } from '../../../../Types/Product';
+import { Product } from '../../../../types/Product';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -35,12 +35,16 @@ export const CardSlider: React.FC<Props> = ({
           spaceBetween: 16,
         },
         640: {
+          slidesPerView: 3,
+          spaceBetween: 16,
+        },
+        1200: {
           slidesPerView: 4,
           spaceBetween: 16,
         },
       }}
     >
-      {products.slice(0, 10).map(product => (
+      {products.map(product => (
         <SwiperSlide>
           <ProductCard product={product} />
         </SwiperSlide>

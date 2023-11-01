@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BackButton } from '../../components/BackButton/BackButton';
-import { Product } from '../../Types/Product';
+import { Product } from '../../types/Product';
 import { getProducts } from '../../api/productsGeneral';
 import { Loader } from '../../components/Loader';
 import { ProductCard } from '../../components/ProductCard';
