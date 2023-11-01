@@ -22,12 +22,12 @@ export const HotPrices = () => {
           </div>
         </div>
 
-        <CardSlider
+        {/* <CardSlider
           leftArrowName="hotPrices__arrow-left"
           rigthArrowName="hotPrices__arrow-right"
         >
           <ProductCard />
-        </CardSlider>
+        </CardSlider> */}
       </div>
     </section>
   );

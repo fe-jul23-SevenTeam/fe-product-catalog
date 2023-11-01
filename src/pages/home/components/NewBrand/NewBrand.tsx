@@ -22,12 +22,12 @@ export const NewBrand = () => {
           </div>
         </div>
 
-        <CardSlider
+        {/* <CardSlider
           leftArrowName="newBrand__arrow-left"
           rigthArrowName="newBrand__arrow-right"
         >
           <ProductCard />
-        </CardSlider>
+        </CardSlider> */}
       </div>
     </section>
   );

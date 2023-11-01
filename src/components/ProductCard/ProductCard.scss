@@ -1,3 +1,5 @@
+@import '../../styles/utils/grid';
+
 .card {
   display: flex;
   width: 272px;
@@ -7,6 +9,16 @@
   align-items: flex-start;
   flex-shrink: 0;
   border: 1px solid var(--gray-elements-color);
+
+  grid-column: span 4;
+  
+  @include onTablet {
+    grid-column: span 4;
+  }
+
+  @include onDesktop {
+    grid-column: span 5;
+  }
 
   &__container {
     display: flex;
