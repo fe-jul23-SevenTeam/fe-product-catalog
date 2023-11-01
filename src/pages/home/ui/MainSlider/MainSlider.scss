@@ -1,5 +1,6 @@
 @import 'styles/utils/mixins';
 @import 'styles/utils/fonts';
+@import '../../../../styles/utils/vars';
 
 .slider {
   margin-bottom: 56px;
@@ -83,22 +84,23 @@
       background-position: center;
       cursor: pointer;
       z-index: 99;
-      transition: border-color 0.5s;
+
+      @include onDesktop {
+        &:hover :nth-child(n) {
+          fill: var(--gray-primary-color);
+        }
+      }
+
+      &-icon {
+        transition: fill $transition-duration;
+      }
 
       &-left {
         left: 0;
-
-        &:hover {
-          border: 2px solid #313237;
-        }
       }
 
       &-right {
         right: 0;
-
-        &:hover {
-          border: 2px solid #313237;
-        }
       }
     }
   }

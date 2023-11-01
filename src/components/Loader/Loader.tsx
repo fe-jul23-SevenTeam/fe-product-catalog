@@ -1,7 +1,9 @@
+import { RingLoader } from 'react-spinners';
+
 import './Loader.scss';
 
 export const Loader = () => (
-  <div className="Loader" data-cy="loader">
-    <div className="Loader__content" />
+  <div className="loader">
+    <RingLoader className="loader__ring" />
   </div>
 );
