@@ -22,7 +22,7 @@
   }
 
   &:hover {
-    box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.10);
+    box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
 
     .card__image {
       transform: scale(1.03);
@@ -128,7 +128,6 @@
       }
     }
 
-    
     &-favorites {
       transition: opacity $transition-duration;
       display: block;
