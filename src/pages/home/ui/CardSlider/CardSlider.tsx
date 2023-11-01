@@ -44,7 +44,7 @@ export const CardSlider: React.FC<Props> = ({
         },
       }}
     >
-      {products.slice(0, 10).map(product => (
+      {products.map(product => (
         <SwiperSlide>
           <ProductCard product={product} />
         </SwiperSlide>
