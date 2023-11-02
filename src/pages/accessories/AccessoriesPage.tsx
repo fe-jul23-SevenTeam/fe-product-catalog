@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import ReactPaginate from 'react-paginate';
+import { useEffect, useState } from 'react';
+
 import { useSearchParams } from 'react-router-dom';
 import { Products } from '../../types/typeProducts';
 import { SortingOption } from '../../types/enumSortOption';
@@ -16,14 +16,15 @@ import {
 
 import { SortedProducts } from '../phones/components/SortedProducts/SortedProducts';
 import { ProductCard } from '../../components/ProductCard';
-import { RingLoader } from 'react-spinners';
+import { PathnameCategory } from 'components/PathnameCategory';
 
-import icon from '../../assets/icons/home_icon.svg';
-import icon_arrow from '../../assets/icons/arrow-right_icon.svg';
+import { Pagination } from 'components/Pagination/Pagination';
 import './AccessoriesPage.scss';
+import { ACCESSORIES_CATEGORY, DEFAULT_PAGE_NUMBER } from 'helpers/constants';
+import { CatalogSkeleton } from 'components/CatalogSkeleton';
 
 export const AccessoriesPage = () => {
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [countProducts, setCountProducts] = useState(0);
 
@@ -32,23 +33,28 @@ export const AccessoriesPage = () => {
   const [sorting, setSorting] = useState<SortingOption>(SortingOption.Newest);
   const [pageSize, setPageSize] = useState<ItemsPerPage>(ItemsPerPage.Four);
 
-  const category = 'accessories';
-
   const { currentPage, totalPages, goToPage } = usePagination(
     countProducts,
     parseInt(pageSize),
   );
 
   useEffect(() => {
-    setSearchWith({ sortBy: sorting, pageSize: pageSize, category: category });
+    setSearchWith({
+      sortBy: sorting,
+      pageSize: pageSize,
+      category: ACCESSORIES_CATEGORY,
+      page: String(currentPage),
+    });
 
-    getProductsByCategory(category).then(products => {
+    getProductsByCategory(ACCESSORIES_CATEGORY).then(products => {
       setCountProducts(products.length);
     });
   }, []);
 
   useEffect(() => {
-    getProductsByParams(currentPage, pageSize, sorting, category)
+    setLoader(true);
+
+    getProductsByParams(currentPage, pageSize, sorting, ACCESSORIES_CATEGORY)
       .then(setAccessories)
       .finally(() => {
         setLoader(false);
@@ -61,36 +67,25 @@ export const AccessoriesPage = () => {
     setSearchParams(search);
   }
 
-  const handleSortingChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSorting(event.target.value as SortingOption);
+  const handleSortingChange = (option: SortingOption) => {
+    setSorting(option as SortingOption);
+    goToPage(DEFAULT_PAGE_NUMBER);
 
-    setSearchWith({ sortBy: event.target.value || null });
+    setSearchWith({
+      sortBy: option || null,
+      page: String(DEFAULT_PAGE_NUMBER),
+    });
   };
 
-  const handleItemsPerPageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
-    setPageSize(event.target.value as ItemsPerPage);
+  const handleItemsPerPageChange = (option: ItemsPerPage) => {
+    setPageSize(option as ItemsPerPage);
 
-    setSearchWith({ pageSize: event.target.value || null });
+    setSearchWith({ pageSize: option || null });
   };
 
   return (
     <section className="accessories wrapper">
-      <div className="accessories__pathname">
-        <img
-          className="accessories__pathname-icon"
-          src={icon}
-          alt="Home icon"
-        />
-        <img
-          className="accessories__pathname-icon"
-          src={icon_arrow}
-          alt="Arrow icon"
-        />
-
-        <p className="accessories__pathname-title">{category}</p>
-      </div>
+      <PathnameCategory category={ACCESSORIES_CATEGORY} />
 
       <h1 className="accessories__wrapper-title">Accessories</h1>
       <p>{countProducts} models</p>
@@ -103,33 +98,26 @@ export const AccessoriesPage = () => {
       />
 
       {loader ? (
-        <div className="phones__loader">
-          <RingLoader color="#36d7b7" />
-        </div>
+        <CatalogSkeleton />
       ) : (
-        <>
-          <div className="phones__content grid">
-            {accessories.map(accessory => (
-              <div className="catalog__card-container">
-                <ProductCard product={accessory} key={accessory.id} />
-              </div>
-            ))}
-          </div>
-
-          <div className="phones__pagination">
-            <ReactPaginate
-              pageCount={totalPages}
-              pageRangeDisplayed={5}
-              marginPagesDisplayed={2}
-              onPageChange={data => {
-                goToPage(data.selected + 1);
-              }}
-              containerClassName={'pagination'}
-              activeClassName={'active'}
-            />
-          </div>
-        </>
+        <div className="accessories__content grid">
+          {accessories.map(accessory => (
+            <div className="catalog__card-container">
+              <ProductCard product={accessory} key={accessory.id} />
+            </div>
+          ))}
+        </div>
       )}
+
+      <div className="accessories__pagination">
+        <Pagination
+          totalPages={totalPages}
+          onPageChange={(page: number) => {
+            goToPage(page);
+          }}
+          currentPage={currentPage}
+        />
+      </div>
     </section>
   );
 };

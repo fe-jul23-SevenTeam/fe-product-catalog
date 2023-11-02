@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import cn from 'classnames';
 import { ReactComponent as FavoritesIcon } from '../../../assets/icons/favorites_icon.svg';
 import { ReactComponent as ShoppingBagIcon } from '../../../assets/icons/shopping-bag_icon.svg';
@@ -8,18 +8,17 @@ import { ReactComponent as CloseIcon } from '../../../assets/icons/close_icon.sv
 
 import './HeaderButtons.scss';
 import { BurgerMenu } from '../BurgerMenu';
+
 import DarkMode from 'DarkMode/DarkMode';
+
+import { useShoppingCart } from '../../../context/ShoppingCartContext';
+
 
 export const HeaderButtons: React.FC = () => {
   const [isActiveBurger, setIsActiveBurger] = useState(false);
-  const shoppingItems = JSON.parse(
-    localStorage.getItem('shopping-cart') || '[]',
-  );
-  const favoritesItems = JSON.parse(
-    localStorage.getItem('favorites-items') || '[]',
-  );
+  const { cartItems, favoritesItems } = useShoppingCart();
 
-  const quantityProducts = shoppingItems.reduce(
+  const quantityProducts = cartItems.reduce(
     (acc: number, item: { quantity: number }) => acc + item.quantity,
     0,
   );
@@ -58,7 +57,7 @@ export const HeaderButtons: React.FC = () => {
         }
       >
         <FavoritesIcon className="icon icon--favorites" />
-        {quantityFavorites}
+        <div className="icon__quantity">{quantityFavorites}</div>
       </NavLink>
 
       <NavLink
@@ -68,7 +67,7 @@ export const HeaderButtons: React.FC = () => {
         }
       >
         <ShoppingBagIcon className="icon icon--shopping-bag" />
-        {quantityProducts}
+        <div className="icon__quantity">{quantityProducts}</div>
       </NavLink>
     </div>
   );

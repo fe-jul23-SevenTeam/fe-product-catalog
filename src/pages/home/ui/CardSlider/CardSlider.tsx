@@ -29,6 +29,7 @@ export const CardSlider: React.FC<Props> = ({
         prevEl: `.${leftArrowName}`,
         nextEl: `.${rightArrowName}`,
       }}
+      loop
       breakpoints={{
         320: {
           slidesPerView: 2,

@@ -4,9 +4,10 @@ import { ReactComponent as LeftArrow } from 'assets/icons/arrow-left_icon.svg';
 import { ReactComponent as RightArrow } from 'assets/icons/arrow-right_icon.svg';
 import { getProductsForSlider } from 'api/productsGeneral';
 
-import './LikeSlider.scss';
 import { Product } from 'types/Product';
-import { Loader } from 'components/Loader';
+import { CardSliderSkeleton } from 'components/CardSliderSkeleton';
+
+import './LikeSlider.scss';
 
 export const LikeSlider: React.FC = () => {
   const [recommended, setRecommended] = useState<Product[]>([]);
@@ -38,13 +39,19 @@ export const LikeSlider: React.FC = () => {
         </div>
 
         {isLoading ? (
-          <Loader />
+          <CardSliderSkeleton />
         ) : (
-          <CardSlider
-            leftArrowName="likeSlide__arrow-left"
-            rightArrowName="likeSlide__arrow-right"
-            products={recommended}
-          />
+          <div
+            onClick={() => {
+              window.location.reload();
+            }}
+          >
+            <CardSlider
+              leftArrowName="likeSlide__arrow-left"
+              rightArrowName="likeSlide__arrow-right"
+              products={recommended}
+            />
+          </div>
         )}
       </div>
     </section>

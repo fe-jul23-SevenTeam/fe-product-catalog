@@ -7,6 +7,7 @@
 
 .icon-wrapper {
   display: none;
+  position: relative;
 
   justify-content: center;
   align-items: center;
@@ -27,7 +28,6 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
-    align-items: center;
 
     @include onTablet {
       display: none;
@@ -47,5 +47,22 @@
 
   &--menu.is-active {
     display: none;
+  }
+
+  &__quantity {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    transform: translate(50%, 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white-color);
+    font-size: 9px;
+    font-weight: 600;
+    background-color: var(--red-color);
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
   }
 }

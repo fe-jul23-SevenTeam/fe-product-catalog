@@ -1,0 +1,32 @@
+@import 'styles/utils/mixins';
+
+.favourites {
+  margin-block: 40px;
+
+  &__title-container {
+    grid-column: 1 / -1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include onTablet {
+      gap: 16px;
+    }
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--gray-primary-color);
+
+    @include onTablet {
+      font-size: 48px;
+    }
+  }
+
+  &__products {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}

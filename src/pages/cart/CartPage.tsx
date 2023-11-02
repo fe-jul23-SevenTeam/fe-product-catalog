@@ -7,31 +7,27 @@ import { Product } from '../../types/Product';
 
 import './Cart.scss';
 import { getProducts } from '../../api/productsGeneral';
-import { Loader } from '../../components/Loader';
+import { useShoppingCart } from '../../context/ShoppingCartContext';
+import { OrderModal } from './components/OrderModal';
 
 export const CartPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [updatedProducts, setUpdatedProducts] = useState<Product[]>([]);
   const [productsTotal, setProductsTotal] = useState({ quantity: 0, sum: 0 });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { cartItems } = useShoppingCart();
 
   useEffect(() => {
-    setIsLoading(true);
-
-    getProducts()
-      .then(setProducts)
-      .finally(() => setIsLoading(false));
+    getProducts().then(setProducts);
   }, []);
-
-  const addedItems = JSON.parse(localStorage.getItem('shopping-cart') || '[]'); // Parse the added items from localStorage
 
   useEffect(() => {
     const productsToRender = products.filter(product =>
-      addedItems.some((item: { id: number }) => item.id === product.id),
+      cartItems.some((item: { id: number }) => item.id === product.id),
     );
 
     const sum = productsToRender.reduce((acc, current) => {
-      const addedItem = addedItems.find(
+      const addedItem = cartItems.find(
         (item: { id: number }) => item.id === current.id,
       );
 
@@ -44,32 +40,32 @@ export const CartPage = () => {
       return acc;
     }, 0);
 
-    const quantity = addedItems.reduce(
+    const quantity = cartItems.reduce(
       (acc: number, item: { quantity: number }) => acc + item.quantity,
       0,
     );
 
     setProductsTotal({ sum: sum, quantity: quantity });
     setUpdatedProducts(productsToRender);
-  }, [addedItems, products]);
+  }, [cartItems, products]);
 
   return (
     <div className="cart cart--margin-block grid wrapper">
+      <OrderModal isOpen={isModalOpen} close={() => setIsModalOpen(false)} />
       <div className="cart__title-container">
         <BackButton />
         <h1 className="cart__title">Cart</h1>
       </div>
       <section className="cart__products">
-        {isLoading ? (
-          <Loader />
-        ) : (
-          updatedProducts?.map((product: Product) => (
-            <CartCard key={product.id} product={product} />
-          ))
-        )}
+        {updatedProducts?.map((product: Product) => (
+          <CartCard key={product.id} product={product} />
+        ))}
       </section>
       <section className="cart__checkout">
-        <Checkout productsTotal={productsTotal} />
+        <Checkout
+          openModal={() => setIsModalOpen(true)}
+          productsTotal={productsTotal}
+        />
       </section>
     </div>
   );

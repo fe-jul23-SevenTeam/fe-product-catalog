@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BackButton } from '../../components/BackButton/BackButton';
 import { Product } from '../../types/Product';
 import { getProducts } from '../../api/productsGeneral';
-import { Loader } from '../../components/Loader';
 import { ProductCard } from '../../components/ProductCard';
+import { useShoppingCart } from '../../context/ShoppingCartContext';
+
+import './FavouritesPage.scss';
+import { CatalogSkeleton } from 'components/CatalogSkeleton';
 
 export const FavoritesPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [updatedProducts, setUpdatedProducts] = useState<Product[]>([]);
+  const { favoritesItems } = useShoppingCart();
 
   useEffect(() => {
     setIsLoading(true);
@@ -18,31 +22,31 @@ export const FavoritesPage = () => {
       .finally(() => setIsLoading(false));
   }, []);
 
-  const addedItems = JSON.parse(
-    localStorage.getItem('favorites-items') || '[]',
-  );
-
   useEffect(() => {
     const productsToRender = products.filter(product =>
-      addedItems.some((item: { id: number }) => item.id === product.id),
+      favoritesItems.some((item: { id: number }) => item.id === product.id),
     );
 
     setUpdatedProducts(productsToRender);
-  }, [addedItems, products]);
+  }, [favoritesItems, products]);
 
   return (
-    <div className="cart cart--margin-block grid wrapper">
-      <div className="cart__title-container">
+    <div className="favourites favourites--margin-block grid wrapper">
+      <div className="favourites__title-container">
         <BackButton />
-        <h1 className="cart__title">FavoritesPage</h1>
+        <h1 className="favourites__title">FavoritesPage</h1>
       </div>
-      <section className="cart__products">
+      <section className="favourites__products">
         {isLoading ? (
-          <Loader />
+          <CatalogSkeleton />
         ) : (
-          updatedProducts.map((product: Product) => (
-            <ProductCard product={product} />
-          ))
+          <div className="grid">
+            {updatedProducts.map((product: Product) => (
+              <div className="catalog__card-container">
+                <ProductCard product={product} />
+              </div>
+            ))}
+          </div>
         )}
       </section>
     </div>

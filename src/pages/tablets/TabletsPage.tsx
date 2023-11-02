@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ReactPaginate from 'react-paginate';
 import { useSearchParams } from 'react-router-dom';
 import { Products } from '../../types/typeProducts';
 import { SortingOption } from '../../types/enumSortOption';
@@ -15,23 +14,21 @@ import {
 } from '../phones/components/searchHelpers';
 import { SortedProducts } from '../phones/components/SortedProducts/SortedProducts';
 import { ProductCard } from '../../components/ProductCard';
+import { PathnameCategory } from 'components/PathnameCategory';
+import { Pagination } from 'components/Pagination/Pagination';
 import './TabletsPage.scss';
-
-import icon from '../../assets/icons/home_icon.svg';
-import icon_arrow from '../../assets/icons/arrow-right_icon.svg';
-import { Loader } from 'components/Loader';
+import { DEFAULT_PAGE_NUMBER, TABLETS_CATEGORY } from 'helpers/constants';
+import { CatalogSkeleton } from 'components/CatalogSkeleton';
 
 export const TabletsPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [countProducts, setCountProducts] = useState(0);
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
 
   const [tablets, setTablets] = useState<Products[]>([]);
 
   const [sorting, setSorting] = useState<SortingOption>(SortingOption.Newest);
   const [pageSize, setPageSize] = useState<ItemsPerPage>(ItemsPerPage.Four);
-
-  const category = 'tablets';
 
   const { currentPage, totalPages, goToPage } = usePagination(
     countProducts,
@@ -39,15 +36,21 @@ export const TabletsPage: React.FC = () => {
   );
 
   useEffect(() => {
-    setSearchWith({ sortBy: sorting, pageSize: pageSize, category: category });
+    setSearchWith({
+      sortBy: sorting,
+      pageSize: pageSize,
+      category: TABLETS_CATEGORY,
+    });
 
-    getProductsByCategory(category).then(products => {
+    getProductsByCategory(TABLETS_CATEGORY).then(products => {
       setCountProducts(products.length);
     });
   }, []);
 
   useEffect(() => {
-    getProductsByParams(currentPage, pageSize, sorting, category)
+    setLoader(true);
+
+    getProductsByParams(currentPage, pageSize, sorting, TABLETS_CATEGORY)
       .then(setTablets)
       .finally(() => {
         setLoader(false);
@@ -60,32 +63,25 @@ export const TabletsPage: React.FC = () => {
     setSearchParams(search);
   }
 
-  const handleSortingChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSorting(event.target.value as SortingOption);
+  const handleSortingChange = (option: SortingOption) => {
+    setSorting(option as SortingOption);
+    goToPage(DEFAULT_PAGE_NUMBER);
 
-    setSearchWith({ sortBy: event.target.value || null });
+    setSearchWith({
+      sortBy: option || null,
+      page: String(DEFAULT_PAGE_NUMBER),
+    });
   };
 
-  const handleItemsPerPageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
-    setPageSize(event.target.value as ItemsPerPage);
+  const handleItemsPerPageChange = (option: ItemsPerPage) => {
+    setPageSize(option as ItemsPerPage);
 
-    setSearchWith({ pageSize: event.target.value || null });
+    setSearchWith({ pageSize: option || null });
   };
 
   return (
     <section className="tablets wrapper">
-      <div className="tablets__pathname">
-        <img className="tablets__pathname-icon" src={icon} alt="Home icon" />
-        <img
-          className="tablets__pathname-icon"
-          src={icon_arrow}
-          alt="Arrow icon"
-        />
-
-        <p className="tablets__pathname-title">{category}</p>
-      </div>
+      <PathnameCategory category={TABLETS_CATEGORY} />
 
       <h1 className="tablets__wrapper-title">Tablets</h1>
       <p>{countProducts} models</p>
@@ -98,31 +94,26 @@ export const TabletsPage: React.FC = () => {
       />
 
       {loader ? (
-        <Loader />
+        <CatalogSkeleton />
       ) : (
-        <>
-          <div className="phones__content grid">
-            {tablets.map(tablet => (
-              <div className="catalog__card-container">
-                <ProductCard product={tablet} key={tablet.id} />
-              </div>
-            ))}
-          </div>
-
-          <div className="phones__pagination">
-            <ReactPaginate
-              pageCount={totalPages}
-              pageRangeDisplayed={5}
-              marginPagesDisplayed={2}
-              onPageChange={data => {
-                goToPage(data.selected + 1);
-              }}
-              containerClassName={'pagination'}
-              activeClassName={'active'}
-            />
-          </div>
-        </>
+        <div className="tablets__content grid">
+          {tablets.map(tablet => (
+            <div className="catalog__card-container">
+              <ProductCard product={tablet} key={tablet.id} />
+            </div>
+          ))}
+        </div>
       )}
+
+      <div className="tablets__pagination">
+        <Pagination
+          totalPages={totalPages}
+          onPageChange={(page: number) => {
+            goToPage(page);
+          }}
+          currentPage={currentPage}
+        />
+      </div>
     </section>
   );
 };
