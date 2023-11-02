@@ -1,6 +1,6 @@
 import './ProductCard.scss';
 import { ReactComponent as FavoritesIcon } from 'assets/icons/favorites_icon.svg';
-import React, { useState } from 'react';
+import React from 'react';
 import { Product } from '../../types/Product';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
 import { Link } from 'react-router-dom';
@@ -10,20 +10,9 @@ type Props = {
 };
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
-  const { addToCart, addToFavorites, removeFromFavorites } = useShoppingCart();
+  const { addToCart, addToFavorites } = useShoppingCart();
   const { name, price, screen, capacity, ram, image, fullPrice, id, itemId } =
     product;
-
-  const handleClick = () => {
-    if (!isFavorite) {
-      removeFromFavorites(id);
-    } else {
-      addToFavorites(product);
-    }
-
-    setIsFavorite(!isFavorite);
-  };
 
   return (
     <div className="card">
@@ -69,7 +58,10 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           >
             Add to cart
           </button>
-          <button className="card__buttons-favorites" onClick={handleClick}>
+          <button
+            className="card__buttons-favorites"
+            onClick={() => addToFavorites(product)}
+          >
             <FavoritesIcon className="card__buttons-favorites-icon" />
           </button>
         </div>

@@ -5,7 +5,7 @@ import { ReactComponent as HomeIcon } from '../../assets/icons/home_icon.svg';
 import { ReactComponent as ArrowRightIcon } from '../../assets/icons/arrow-right_icon.svg';
 
 interface Props {
-    category: string;
+  category: string;
 }
 
 export const PathnameCategory: React.FC<Props> = ({ category }) => (

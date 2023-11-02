@@ -23,40 +23,48 @@ export const CartCard: React.FC<Props> = ({ product }) => {
   } = useShoppingCart();
   const quantity = getItemQuantity(id);
 
+  const handleRemoveFromCart = () => {
+    removeFromCart(id);
+  };
+
   return (
     <div className="cart-card">
-      <button
-        type="button"
-        onClick={() => removeFromCart(id)}
-        className="cart-card__remove-button"
-      >
-        <CloseIcon className="cart-card__remove-icon" />
-      </button>
-
-      <div className="cart-card__img-container">
-        <img src={image} alt={name} className="cart-card__img" />
-      </div>
-
-      <h4 className="cart-card__title">{name}</h4>
-
-      <div className="cart-card__amount">
+      <div className="cart-card__product-info-container">
         <button
-          className="cart-card__amount-button"
-          onClick={() => decreaseCartQuantity(id)}
+          type="button"
+          onClick={handleRemoveFromCart}
+          className="cart-card__remove-button"
         >
-          <MinusIcon className="cart-card__amount-button-icon" />
+          <CloseIcon className="cart-card__remove-icon" />
         </button>
 
-        <span className="cart-card__amount-number">{quantity}</span>
+        <div className="cart-card__img-container">
+          <img src={image} alt={name} className="cart-card__img" />
+        </div>
 
-        <button className="cart-card__amount-button">
-          <PlusIcon
-            className="cart-card__amount-button-icon"
-            onClick={() => increaseCartQuantity(id)}
-          />
-        </button>
+        <h4 className="cart-card__title">{name}</h4>
+
+        <div className="cart-card__actions-container">
+          <div className="cart-card__amount">
+            <button
+              className="cart-card__amount-button"
+              onClick={() => decreaseCartQuantity(id)}
+            >
+              <MinusIcon className="cart-card__amount-button-icon" />
+            </button>
+
+            <span className="cart-card__amount-number">{quantity}</span>
+
+            <button className="cart-card__amount-button">
+              <PlusIcon
+                className="cart-card__amount-button-icon"
+                onClick={() => increaseCartQuantity(id)}
+              />
+            </button>
+          </div>
+          <h5 className="cart-card__price">{`$${price}`}</h5>
+        </div>
       </div>
-      <h5 className="cart-card__price">{`$${price}`}</h5>
     </div>
   );
 };

@@ -42,9 +42,11 @@ export const SortedProducts: React.FC<Props> = ({
         </button>
 
         {isOpenSorting && (
-          <ul className={cn('sorted__selector--list', {
-            'sorted__selector--list__open': isOpenSorting,
-          })}>
+          <ul
+            className={cn('sorted__selector--list', {
+              'sorted__selector--list__open': isOpenSorting,
+            })}
+          >
             {Object.values(SortingOption).map(option => (
               <li
                 key={option}
@@ -79,9 +81,11 @@ export const SortedProducts: React.FC<Props> = ({
         </button>
 
         {isOpenPageSize && (
-          <ul className={cn('sorted__selector--list', {
-            'sorted__selector--list__open': isOpenPageSize,
-          })}>
+          <ul
+            className={cn('sorted__selector--list', {
+              'sorted__selector--list__open': isOpenPageSize,
+            })}
+          >
             {Object.values(ItemsPerPage).map(option => (
               <li
                 key={option}
