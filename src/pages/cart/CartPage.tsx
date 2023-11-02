@@ -7,22 +7,18 @@ import { Product } from '../../types/Product';
 
 import './Cart.scss';
 import { getProducts } from '../../api/productsGeneral';
-import { Loader } from '../../components/Loader';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
+import { OrderModal } from './components/OrderModal';
 
 export const CartPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [updatedProducts, setUpdatedProducts] = useState<Product[]>([]);
   const [productsTotal, setProductsTotal] = useState({ quantity: 0, sum: 0 });
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { cartItems } = useShoppingCart();
 
   useEffect(() => {
-    setIsLoading(true);
-
-    getProducts()
-      .then(setProducts)
-      .finally(() => setIsLoading(false));
+    getProducts().then(setProducts);
   }, []);
 
   useEffect(() => {
@@ -55,21 +51,21 @@ export const CartPage = () => {
 
   return (
     <div className="cart cart--margin-block grid wrapper">
+      <OrderModal isOpen={isModalOpen} close={() => setIsModalOpen(false)} />
       <div className="cart__title-container">
         <BackButton />
         <h1 className="cart__title">Cart</h1>
       </div>
       <section className="cart__products">
-        {isLoading ? (
-          <Loader />
-        ) : (
-          updatedProducts?.map((product: Product) => (
-            <CartCard key={product.id} product={product} />
-          ))
-        )}
+        {updatedProducts?.map((product: Product) => (
+          <CartCard key={product.id} product={product} />
+        ))}
       </section>
       <section className="cart__checkout">
-        <Checkout productsTotal={productsTotal} />
+        <Checkout
+          openModal={() => setIsModalOpen(true)}
+          productsTotal={productsTotal}
+        />
       </section>
     </div>
   );

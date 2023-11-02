@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import './Checkout.scss';
 
 type ProductsTotal = {
@@ -5,11 +6,12 @@ type ProductsTotal = {
   sum: number;
 };
 
-export const Checkout = ({
-  productsTotal,
-}: {
+type Props = {
   productsTotal: ProductsTotal;
-}) => {
+  openModal: () => void;
+};
+
+export const Checkout: FC<Props> = ({ productsTotal, openModal }) => {
   const { quantity, sum } = productsTotal;
 
   return (
@@ -18,7 +20,7 @@ export const Checkout = ({
         <h2 className="checkout__title">{`$${sum}`}</h2>
         <h4 className="checkout__subtitle">{`Total for ${quantity} items`}</h4>
       </div>
-      <button type="button" className="checkout__button">
+      <button onClick={openModal} type="button" className="checkout__button">
         Checkout
       </button>
     </section>

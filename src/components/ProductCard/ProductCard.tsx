@@ -13,8 +13,7 @@ type Props = {
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const { addToCart, addToFavorites, checkInCart, checkInFav, removeFromCart } =
     useShoppingCart();
-  const { name, price, screen, capacity, ram, image, fullPrice, itemId, id } =
-    product;
+  const { name, price, screen, capacity, ram, image, fullPrice, itemId, id } = product;
 
   const isInFav = checkInFav(id);
   const isInCart = checkInCart(id);

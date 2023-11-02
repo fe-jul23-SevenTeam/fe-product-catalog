@@ -1,15 +1,40 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
-import banner from 'assets/iPhone-15-Pro.png';
-import bannerMobile from 'assets/banner-for-mobile.png';
 import { ReactComponent as ArrowLeft } from 'assets/icons/arrow-left_icon.svg';
 import { ReactComponent as ArrowRight } from 'assets/icons/arrow-right_icon.svg';
+
+// Images
+
+import iphone from 'assets/slides/iphone.png';
+import iphoneMobile from 'assets/slides/iphoneMobile.png';
+import appleWatch from 'assets/slides/appleWatch.png';
+import appleWatchMobile from 'assets/slides/appleWatchMobile.png';
+import ipad from 'assets/slides/ipad.png';
+import ipadMobile from 'assets/slides/ipadMobile.png';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './MainSlider.scss';
+
+const slides = [
+  {
+    image: iphone,
+    imageMobile: iphoneMobile,
+    alt: 'Iphone 15 new model',
+  },
+  {
+    image: appleWatch,
+    imageMobile: appleWatchMobile,
+    alt: 'Apple watch new model',
+  },
+  {
+    image: ipad,
+    imageMobile: ipadMobile,
+    alt: 'Ipad new model',
+  },
+];
 
 export const MainSlider: React.FC = () => {
   return (
@@ -30,15 +55,19 @@ export const MainSlider: React.FC = () => {
           prevEl: '.swiper-slide__main-arrow-left',
         }}
       >
-        {[1, 2, 3].map(item => (
-          <SwiperSlide key={item}>
+        {slides.map(slideInfo => (
+          <SwiperSlide key={slideInfo.alt}>
             <div className="swiper-slide__img-box">
-              <img className="swiper-slide__img" src={banner} alt="banner" />
+              <img
+                className="swiper-slide__img"
+                src={slideInfo.image}
+                alt={slideInfo.alt}
+              />
 
               <img
                 className="swiper-slide__img-mobile"
-                src={bannerMobile}
-                alt="banner"
+                src={slideInfo.imageMobile}
+                alt={slideInfo.alt}
               />
             </div>
           </SwiperSlide>
