@@ -8,12 +8,14 @@ import { Product } from '../../types/Product';
 import './Cart.scss';
 import { getProducts } from '../../api/productsGeneral';
 import { Loader } from '../../components/Loader';
+import { useShoppingCart } from '../../context/ShoppingCartContext';
 
 export const CartPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [updatedProducts, setUpdatedProducts] = useState<Product[]>([]);
   const [productsTotal, setProductsTotal] = useState({ quantity: 0, sum: 0 });
+  const { cartItems } = useShoppingCart();
 
   useEffect(() => {
     setIsLoading(true);
@@ -23,15 +25,13 @@ export const CartPage = () => {
       .finally(() => setIsLoading(false));
   }, []);
 
-  const addedItems = JSON.parse(localStorage.getItem('shopping-cart') || '[]'); // Parse the added items from localStorage
-
   useEffect(() => {
     const productsToRender = products.filter(product =>
-      addedItems.some((item: { id: number }) => item.id === product.id),
+      cartItems.some((item: { id: number }) => item.id === product.id),
     );
 
     const sum = productsToRender.reduce((acc, current) => {
-      const addedItem = addedItems.find(
+      const addedItem = cartItems.find(
         (item: { id: number }) => item.id === current.id,
       );
 
@@ -44,14 +44,14 @@ export const CartPage = () => {
       return acc;
     }, 0);
 
-    const quantity = addedItems.reduce(
+    const quantity = cartItems.reduce(
       (acc: number, item: { quantity: number }) => acc + item.quantity,
       0,
     );
 
     setProductsTotal({ sum: sum, quantity: quantity });
     setUpdatedProducts(productsToRender);
-  }, [addedItems, products]);
+  }, [cartItems, products]);
 
   return (
     <div className="cart cart--margin-block grid wrapper">

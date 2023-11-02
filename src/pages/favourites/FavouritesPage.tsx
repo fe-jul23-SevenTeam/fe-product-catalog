@@ -4,11 +4,13 @@ import { Product } from '../../types/Product';
 import { getProducts } from '../../api/productsGeneral';
 import { Loader } from '../../components/Loader';
 import { ProductCard } from '../../components/ProductCard';
+import { useShoppingCart } from '../../context/ShoppingCartContext';
 
 export const FavoritesPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [updatedProducts, setUpdatedProducts] = useState<Product[]>([]);
+  const { favoritesItems } = useShoppingCart();
 
   useEffect(() => {
     setIsLoading(true);
@@ -18,17 +20,13 @@ export const FavoritesPage = () => {
       .finally(() => setIsLoading(false));
   }, []);
 
-  const addedItems = JSON.parse(
-    localStorage.getItem('favorites-items') || '[]',
-  );
-
   useEffect(() => {
     const productsToRender = products.filter(product =>
-      addedItems.some((item: { id: number }) => item.id === product.id),
+      favoritesItems.some((item: { id: number }) => item.id === product.id),
     );
 
     setUpdatedProducts(productsToRender);
-  }, [addedItems, products]);
+  }, [favoritesItems, products]);
 
   return (
     <div className="cart cart--margin-block grid wrapper">

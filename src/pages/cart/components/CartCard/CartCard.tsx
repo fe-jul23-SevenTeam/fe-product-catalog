@@ -23,12 +23,16 @@ export const CartCard: React.FC<Props> = ({ product }) => {
   } = useShoppingCart();
   const quantity = getItemQuantity(id);
 
+  const handleRemoveFromCart = () => {
+    removeFromCart(id);
+  };
+
   return (
     <div className="cart-card">
       <div className="cart-card__product-info-container">
         <button
           type="button"
-          onClick={() => removeFromCart(id)}
+          onClick={handleRemoveFromCart}
           className="cart-card__remove-button"
         >
           <CloseIcon className="cart-card__remove-icon" />
