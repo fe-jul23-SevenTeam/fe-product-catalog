@@ -6,40 +6,18 @@
   padding: 16px;
   border: 1px solid var(--gray-elements, #e2e6e9);
 
-  display: flex;
-  justify-content: space-between;
+  display: grid;
   align-items: center;
-  flex-wrap: wrap;
+  grid-template-columns: repeat(6, 1fr);
   gap: 16px;
 
   @include onTablet {
-    gap: 24px;
+    grid-template-columns: repeat(12, 1fr);
     padding: 24px;
   }
 
-  &__product-info-container,
-  &__actions-container {
-    flex: 1;
-    gap: 16px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &__product-info-container {
-    @include onTablet {
-      max-width: 500px;
-    }
-  }
-
-  &__actions-container {
-    @include onTablet {
-      max-width: 300px;
-    }
-  }
-
   &__remove-button {
+    grid-column: span 1;
     background: transparent;
     border: none;
     width: 16px;
@@ -52,29 +30,43 @@
     @include defaultHover;
   }
 
-  &__img-container {
-    width: 80px;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-  }
-
   &__img {
     height: 100%;
+
+    &-container {
+      grid-column: span 2;
+
+      width: 80px;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+    }
   }
 
   &__title {
+    grid-column: span 3;
+
+    @include onTablet {
+      grid-column: span 4;
+    }
+
     font-size: 14px;
     font-weight: 200;
     color: var(--gray-primary-color);
     min-width: 100px;
-
-    flex-shrink: 1;
   }
 
   &__amount {
-    @include displayFlexCenter;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     gap: 13px;
+
+    grid-column: span 3;
+
+    @include onTablet {
+      grid-column: 9 / 11;
+    }
 
     &-button {
       transition: opacity $transition-duration;
@@ -108,6 +100,13 @@
   }
 
   &__price {
+    margin-left: auto;
+    grid-column: span 3 / -1;
+
+    @include onTablet {
+      grid-column: span 2;
+    }
+
     color: var(--gray-primary-color);
     font-size: 22px;
     font-weight: 600;
