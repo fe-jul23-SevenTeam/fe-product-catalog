@@ -27,12 +27,12 @@ export const HotPrices: React.FC = () => {
           <h2 className="hotPrices__title">Hot Prices</h2>
 
           <div className="hotPrices__arrows">
-            <div className="hotPrices__arrow-left arrow">
-              <LeftArrow />
+            <div className="hotPrices__arrow-left hotPrices__arrows-icons">
+              <LeftArrow className="hotPrices__arrows-icons-arrow" />
             </div>
 
-            <div className="hotPrices__arrow-right arrow">
-              <RightArrow />
+            <div className="hotPrices__arrow-right hotPrices__arrows-icons">
+              <RightArrow className="hotPrices__arrows-icons-arrow" />
             </div>
           </div>
         </div>

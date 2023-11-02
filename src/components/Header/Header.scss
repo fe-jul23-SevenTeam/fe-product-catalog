@@ -6,7 +6,7 @@
   flex-direction: row;
   justify-content: space-between;
 
-  border-bottom: solid 1px var(--gray-elements-color);
+  box-shadow: 0px 1px 0px 0px var(--header-box-shadow-color);
 
   &__left {
     display: flex;

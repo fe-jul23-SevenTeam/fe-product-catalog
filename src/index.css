@@ -7,4 +7,60 @@
   --white-color: #fff;
   --green-color: #27ae60;
   --red-color: #eb5757;
+  /* card */
+  --body-background-color: #fff;
+  --card-background-color: #fff;
+  --card-main-text-color: #313237;
+  --card-secondary-text-color: #89939a;
+  --card-divider-color: #E2E6E9;
+  --card-add-button: #313237;
+  --card-text-in-button: #fff;
+  --card-border-color: #e2e6e9;
+  --card-border-hover-color: #e2e6e9;
+  /* icons */
+  --icon-favorite: #313237;
+  --icon-favorite-background: #fff;
+  --icon-border: #b4bdc3;
+  --icon-border-hover: #313237;
+  --icon-background-hover: #fff;
+  /* text-color */
+  --text-main-color: #313237;
+  --text-secondary-color: #89939a;
+  --header-box-shadow-color: #E2E6E9;
+
+}
+
+[data-theme='dark'] {
+  --gray-primary-color: #905BFF;
+  --gray-secondary-color: #89939a;
+  --gray-icons-placeholders-color: #b4bdc3;
+  --gray-elements-color: #e2e6e9;
+  --gray-background-color: #fafbfc;
+  --white-color: #fff;
+  --green-color: #27ae60;
+  --red-color: #eb5757;
+  /* card */
+  --body-background-color: #0F1121;
+  --card-background-color: #161827;
+  --card-main-text-color: #F1F2F9;
+  --card-secondary-text-color: #75767F;
+  --card-divider-color: #3B3E4A;
+  --card-add-button: #905BFF;
+  --card-text-in-button: #F1F2F9;
+  --card-border-color: #161827;
+  --card-border-hover-color: #323542;
+  /* icons */
+  --icon-favorite: #F1F2F9;
+  --icon-favorite-background: #323542;
+  --icon-border: #323542;
+  --icon-border-hover: #4A4D58;
+  --icon-background-hover: #4A4D58;
+  /* text-color */
+  --text-main-color: #F1F2F9;
+  --text-secondary-color: #75767F;
+  --header-box-shadow-color: #323542;
+}
+
+* {
+  transition: all 0.3s ease-in-out;
 }

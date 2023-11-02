@@ -5,8 +5,9 @@
   display: flex;
   padding: 32px;
   flex-direction: column;
-  border: 1px solid var(--gray-elements-color);
-  transition: box-shadow $transition-duration;
+  border: 1px solid var(--card-border-color);
+  background-color: var(--card-background-color);
+  transition: all $transition-duration;
 
   &__image {
     display: flex;
@@ -22,6 +23,7 @@
   }
 
   &:hover {
+    border-color: var(--card-border-hover-color);
     box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
 
     .card__image {
@@ -34,7 +36,7 @@
   }
 
   &__name {
-    color: var(--gray-primary-color);
+    color: var(--card-main-text-color);
     font-size: 14px;
     font-weight: 500;
     line-height: 21px;
@@ -48,13 +50,13 @@
   }
 
   &__price {
-    color: var(--gray-primary-color);
+    color: var(--card-main-text-color);
     font-size: 22px;
     font-weight: 800;
     line-height: 140%;
 
     &-old {
-      color: var(--gray-secondary-color);
+      color: var(--card-secondary-text-color);
       text-decoration-line: line-through;
       font-weight: 600;
     }
@@ -63,7 +65,7 @@
   &__divider {
     display: block;
     width: 100%;
-    border-bottom: 1px solid var(--gray-elements-color);
+    border-bottom: 1px solid var(--card-divider-color);
     margin: 8px 0;
   }
 
@@ -82,7 +84,7 @@
       align-self: stretch;
 
       &-name {
-        color: var(--gray-secondary-color);
+        color: var(--card-secondary-text-color);
         font-size: 12px;
         font-style: normal;
         font-weight: 500;
@@ -90,7 +92,7 @@
       }
 
       &-value {
-        color: var(--gray-primary-color);
+        color: var(--card-main-text-color);
         text-align: right;
         font-size: 12px;
         font-style: normal;
@@ -113,8 +115,8 @@
       justify-content: center;
       align-items: center;
       flex: 1 0 0;
-      background: var(--gray-primary-color);
-      color: var(--white-color);
+      background: var(--card-add-button);
+      color: var(--card-text-in-button);
       text-align: center;
       font-size: 14px;
       font-weight: 600;
@@ -124,7 +126,7 @@
       @include buttonHover;
 
       &:active {
-        background: var(--gray-secondary-color);
+        opacity: 0.9;
       }
     }
 
@@ -133,18 +135,18 @@
       display: block;
       width: 40px;
       height: 40px;
-      border: 1px solid var(--gray-icons-placeholders-color);
-      background: transparent;
-      opacity: 0.6;
+      border: 1px solid var(--icon-border);
+      background-color: var( --icon-favorite-background);
 
       &-icon {
-        fill: var(--gray-primary-color);
+        fill: var(--icon-favorite);
         width: 16px;
         height: 16px;
       }
 
       &:hover {
-        opacity: 1;
+        border-color: var(--icon-border-hover);
+        background-color: var( --icon-background-hover);
       }
     }
   }

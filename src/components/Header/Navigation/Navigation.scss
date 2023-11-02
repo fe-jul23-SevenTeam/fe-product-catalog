@@ -34,15 +34,15 @@
 
     line-height: 48px;
 
-    color: var(--gray-secondary-color);
+    color: var(--text-secondary-color);
 
     &:hover {
-      color: var(--gray-primary-color);
+      color: var(--text-main-color);
     }
 
     &.is-active {
-      color: var(--gray-primary-color);
-      border-bottom: 3px solid var(--gray-primary-color);
+      color: var(--text-main-color);
+      border-bottom: 3px solid var(--text-main-color);
     }
 
     @include onDesktop {

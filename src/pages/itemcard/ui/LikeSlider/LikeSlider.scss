@@ -1,3 +1,5 @@
+@import 'styles/utils/mixins';
+
 .likeSlide {
   margin-bottom: 80px;
 
@@ -23,6 +25,26 @@
   &__arrows {
     display: flex;
     gap: 16px;
+
+    &-icons {
+      @include displayFlexCenter;
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--icon-border);
+      background-color: var(--icon-favorite-background);
+      cursor: pointer;
+
+      &-arrow {
+        fill: var(--icon-favorite);
+        width: 16px;
+        height: 16px;
+      }
+
+      &:hover {
+        border-color: var(--icon-border-hover);
+        background-color: var( --icon-background-hover);
+      }
+    }
   }
 
   @media (max-width: 1199px) {
@@ -46,17 +68,4 @@
       letter-spacing: normal;
     }
   }
-}
-
-.arrow {
-  width: 32px;
-  height: 32px;
-  border: 1px solid var(--gray-icons-placeholders-color);
-  background: none;
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
