@@ -20,7 +20,7 @@ export const MainSlider: React.FC = () => {
         className="mySwiper"
         speed={800}
         autoplay={{
-          delay: 1000,
+          delay: 3000,
           disableOnInteraction: false,
         }}
         loop

@@ -52,7 +52,7 @@ export const HeaderButtons: React.FC = () => {
         }
       >
         <FavoritesIcon className="icon icon--favorites" />
-        {quantityFavorites}
+        <div className="icon__quantity">{quantityFavorites}</div>
       </NavLink>
 
       <NavLink
@@ -62,7 +62,7 @@ export const HeaderButtons: React.FC = () => {
         }
       >
         <ShoppingBagIcon className="icon icon--shopping-bag" />
-        {quantityProducts}
+        <div className="icon__quantity">{quantityProducts}</div>
       </NavLink>
     </div>
   );

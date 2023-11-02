@@ -17,10 +17,12 @@ type ShoppingCartContext = {
   decreaseCartQuantity: (id: number) => void;
   removeFromCart: (id: number) => void;
   cartQuantity: number;
-  cartItems: CartItem[]; // Use CartItem type here
+  cartItems: CartItem[];
   favoritesItems: CartItem[];
-  addToFavorites: (product: Product) => void;
-  addToCart: (product: Product) => void;
+  addToFavorites: (id: number) => void;
+  addToCart: (id: number) => void;
+  checkInCart: (id: number) => boolean;
+  checkInFav: (id: number) => boolean;
 };
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext);
@@ -40,27 +42,31 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     [],
   );
 
-  const addToCart = (product: Product) => {
-    const existingCartItem = cartItems.find(
-      (item: CartItem) => item.id === product.id,
-    );
+  const checkInCart = (id: number) => {
+    return cartItems.some(item => item.id === id);
+  };
+
+  const checkInFav = (id: number) => {
+    return favoritesItems.some(item => item.id === id);
+  };
+
+  const addToCart = (id: number) => {
+    const existingCartItem = cartItems.find((item: CartItem) => item.id === id);
 
     if (existingCartItem) {
       setCartItems(
         cartItems.map((item: CartItem) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item,
+          item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
         ),
       );
     } else {
-      setCartItems([...cartItems, { id: product.id, quantity: 1 }]);
+      setCartItems([...cartItems, { id: id, quantity: 1 }]);
     }
   };
 
-  const addToFavorites = (product: Product) => {
+  const addToFavorites = (id: number) => {
     const existingCartItem = favoritesItems.find(
-      (item: CartItem) => item.id === product.id,
+      (item: CartItem) => item.id === id,
     );
 
     if (existingCartItem) {
@@ -70,7 +76,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     } else {
       setFavoritesItems((favoritesItems: CartItem[]) => [
         ...favoritesItems,
-        { id: product.id, quantity: 1 },
+        { id: id, quantity: 1 },
       ]);
     }
   };
@@ -134,6 +140,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         favoritesItems,
         addToCart,
         addToFavorites,
+        checkInCart,
+        checkInFav,
       }}
     >
       {children}
