@@ -10,6 +10,7 @@ import { PageNotFound } from './pages/notfound/PageNotFound';
 import { FavoritesPage } from './pages/favourites/FavouritesPage';
 import { CartPage } from './pages/cart/CartPage';
 import { ItemCard } from './pages/itemcard/ItemCard';
+import { Contacts } from 'pages/contacts';
 
 export const Root = () => (
   <Router>
@@ -22,6 +23,7 @@ export const Root = () => (
         <Route path="accessories" element={<AccessoriesPage />} />
         <Route path="favorites" element={<FavoritesPage />} />
         <Route path="cart" element={<CartPage />} />
+        <Route path="contacts" element={<Contacts />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Route>

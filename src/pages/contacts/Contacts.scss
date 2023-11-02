@@ -1,0 +1,167 @@
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/vars';
+
+.contacts {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px;
+
+  @include onTablet {
+    padding: 24px;
+  }
+
+  @include onDesktop {
+    padding: 24px 32px;
+  }
+
+  &__container {
+    padding-top: 16px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+
+    @media (min-width: 830px) {
+      flex-direction: row;
+      align-items: start;
+      justify-content: space-between;
+    }
+
+    &--content {
+      @media (min-width: 830px) {
+        max-width: 300px;
+      }
+    }
+  }
+}
+
+.section-head {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gray-primary-color);
+
+  @include onTablet {
+    font-size: 30px;
+  }
+}
+
+.section-text {
+  font-size: 12px;
+  color: var(--gray-primary-color);
+
+  @include onTablet {
+    font-size: 16px;
+    padding-top: 20px;
+  }
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @include onTablet {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @include onDesktop {
+    justify-content: space-evenly;
+  }
+
+  &__card {
+    max-width: 400px;
+    background-color: var(--white-color);
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 16px;
+    box-shadow: rgba(95, 95, 95, 0.1) 2px 9px 30px 5px;
+    border-radius: 15px;
+
+    cursor: pointer;
+
+    transition: transform $transition-duration;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &__img-box {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+
+  &__person-img {
+    transition: transform $transition-duration;
+
+    width: 100%;
+    height: auto;
+  }
+
+  &__content-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__person-name {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--gray-primary-color);
+  }
+
+  &__person-info {
+    font-size: 12px;
+    color: var(--gray-secondary-color);
+    padding-top: 3px;
+  }
+}
+
+.social-media {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &__icon {
+    width: 20px;
+    display: flex;
+    transition: $transition-duration;
+
+    &:hover {
+      fill: #1095c1;
+    }
+  }
+}
+
+.team__person-name {
+  --b: 0.1em;
+  --c: #1095c1;
+
+  color: #0000;
+  padding-block: var(--b);
+  background:
+    linear-gradient(var(--c) 50%, #000 0) 0% calc(100% - var(--_p, 0%)) / 100%
+      200%,
+    linear-gradient(var(--c) 0 0) 0% var(--_p, 0%) / var(--_p, 0%) var(--b)
+      no-repeat;
+  -webkit-background-clip: text, padding-box;
+  background-clip: text, padding-box;
+  transition:
+    0.3s var(--_s, 0s) linear,
+    background-size 0.3s calc(0.3s - var(--_s, 0s));
+}
+.team__card:hover .team__person-name {
+  --_p: 100%;
+  --_s: 0.3s;
+}
+
+.team__card:hover .team__person-img {
+  transform: scale(1.1);
+}

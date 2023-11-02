@@ -15,7 +15,7 @@ export const LikeSlider: React.FC = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    getProductsForSlider(15, 'newest')
+    getProductsForSlider(15, 'recommended')
       .then(setNewModels)
       .finally(() => setIsLoading(false));
   }, []);
@@ -42,7 +42,7 @@ export const LikeSlider: React.FC = () => {
         ) : (
           <div
             onClick={() => {
-              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+              window.location.reload();
             }}
           >
             <CardSlider
