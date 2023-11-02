@@ -7,6 +7,7 @@ import { getProductsForSlider } from 'api/productsGeneral';
 import { Loader } from 'components/Loader';
 
 import './HotPrices.scss';
+import { CardSliderSkeleton } from 'components/CardSliderSkeleton';
 
 export const HotPrices: React.FC = () => {
   const [hotModels, setHotModels] = useState<Product[]>([]);
@@ -38,7 +39,7 @@ export const HotPrices: React.FC = () => {
         </div>
 
         {isLoading ? (
-          <Loader />
+          <CardSliderSkeleton />
         ) : (
           <CardSlider
             leftArrowName="hotPrices__arrow-left"

@@ -11,19 +11,6 @@ import { getProducts } from '../../../api/productsGeneral';
 import './PhoneAction.scss';
 import { changeItemId } from 'helpers/functions';
 
-// export const changeItemId = (
-//   itemId: string,
-//   oldProp: string,
-//   newProp: string,
-// ) => {
-//   const result = itemId.split('-');
-//   const index = result.indexOf(oldProp.toLowerCase());
-
-//   result[index] = newProp.toLowerCase();
-
-//   return result.join('-');
-// };
-
 interface Props {
   product: ProductDetails;
   productId: string | undefined;

@@ -43,27 +43,27 @@ export const CartCard: React.FC<Props> = ({ product }) => {
         </div>
 
         <h4 className="cart-card__title">{name}</h4>
-      </div>
 
-      <div className="cart-card__actions-container">
-        <div className="cart-card__amount">
-          <button
-            className="cart-card__amount-button"
-            onClick={() => decreaseCartQuantity(id)}
-          >
-            <MinusIcon className="cart-card__amount-button-icon" />
-          </button>
+        <div className="cart-card__actions-container">
+          <div className="cart-card__amount">
+            <button
+              className="cart-card__amount-button"
+              onClick={() => decreaseCartQuantity(id)}
+            >
+              <MinusIcon className="cart-card__amount-button-icon" />
+            </button>
 
-          <span className="cart-card__amount-number">{quantity}</span>
+            <span className="cart-card__amount-number">{quantity}</span>
 
-          <button className="cart-card__amount-button">
-            <PlusIcon
-              className="cart-card__amount-button-icon"
-              onClick={() => increaseCartQuantity(id)}
-            />
-          </button>
+            <button className="cart-card__amount-button">
+              <PlusIcon
+                className="cart-card__amount-button-icon"
+                onClick={() => increaseCartQuantity(id)}
+              />
+            </button>
+          </div>
+          <h5 className="cart-card__price">{`$${price}`}</h5>
         </div>
-        <h5 className="cart-card__price">{`$${price}`}</h5>
       </div>
     </div>
   );

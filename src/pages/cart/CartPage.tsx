@@ -67,6 +67,13 @@ export const CartPage = () => {
             <CartCard key={product.id} product={product} />
           ))
         )}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          updatedProducts?.map((product: Product) => (
+            <CartCard key={product.id} product={product} />
+          ))
+        )}
       </section>
       <section className="cart__checkout">
         <Checkout productsTotal={productsTotal} />

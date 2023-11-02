@@ -46,7 +46,7 @@ export const ItemCard: React.FC = () => {
         }
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.error('Error fetching phone:', error);
+        console.error('Error fetching prod:', error);
       } finally {
         setIsLoading(false);
       }
@@ -80,7 +80,7 @@ export const ItemCard: React.FC = () => {
   };
 
   return (
-    <div className="phone">
+    <div className="prod">
       <div className="breadcrumbs">
         <Link className="breadcrumbs__home" to="/">
           <HomeIcon />
@@ -102,10 +102,10 @@ export const ItemCard: React.FC = () => {
 
       <BackButton />
 
-      <h1 className="phone__title">{productInfo.name}</h1>
+      <h1 className="prod__title">{productInfo.name}</h1>
 
-      <div className="phone__container">
-        <div className="phone__details">
+      <div className="prod__container">
+        <div className="prod__details">
           {isLoading ? (
             <Loader />
           ) : (
@@ -116,25 +116,26 @@ export const ItemCard: React.FC = () => {
                 setSelectedImage={setSelectedImage}
                 selectedImage={selectedImage}
               />
-              <PhoneActions
-                product={productInfo}
-                productId={itemId}
-                colorsAvailable={productInfo.colorsAvailable}
-                capacityAvailable={productInfo.capacityAvailable}
-                phoneIdInCart={phoneIdsInCart}
-                phoneIdInFavourites={phoneIdsInFavourites}
-                handleRemoveFromCart={handleRemoveFromCart}
-                handleAddToCart={handleAddToCart}
-                handleRemoveFromFavourites={handleRemoveFromFavourite}
-                handleAddToFavourites={handleAddToFavourites}
-                setSelectedImage={setSelectedImage}
-              />
             </>
           )}
+
+          <PhoneActions
+            product={productInfo}
+            productId={itemId}
+            colorsAvailable={productInfo.colorsAvailable}
+            capacityAvailable={productInfo.capacityAvailable}
+            phoneIdInCart={phoneIdsInCart}
+            phoneIdInFavourites={phoneIdsInFavourites}
+            handleRemoveFromCart={handleRemoveFromCart}
+            handleAddToCart={handleAddToCart}
+            handleRemoveFromFavourites={handleRemoveFromFavourite}
+            handleAddToFavourites={handleAddToFavourites}
+            setSelectedImage={setSelectedImage}
+          />
         </div>
 
-        <div className="phone__description description">
-          <div className="phone__about about">
+        <div className="prod__description description">
+          <div className="prod__about about">
             <h2 className="description__title">About</h2>
 
             {productInfo.description.map(desc => (
@@ -151,7 +152,7 @@ export const ItemCard: React.FC = () => {
             ))}
           </div>
 
-          <div className="phone__tech-specs tech-specs">
+          <div className="prod__tech-specs tech-specs">
             <h2 className="description__title">Tech specs</h2>
 
             {productInfo.screen && (
