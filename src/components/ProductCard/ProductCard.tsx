@@ -1,5 +1,6 @@
 import './ProductCard.scss';
 import { ReactComponent as FavoritesIcon } from 'assets/icons/favorites_icon.svg';
+import { ReactComponent as FilledFavoritesIcon } from 'assets/icons/favourites-filled_icon.svg';
 import React from 'react';
 import { Product } from '../../types/Product';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
@@ -10,9 +11,12 @@ type Props = {
 };
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const { addToCart, addToFavorites } = useShoppingCart();
-  const { name, price, screen, capacity, ram, image, fullPrice, itemId } =
-    product;
+  const { addToCart, addToFavorites, checkInCart, checkInFav, removeFromCart } =
+    useShoppingCart();
+  const { name, price, screen, capacity, ram, image, fullPrice, itemId, id } = product;
+
+  const isInFav = checkInFav(id);
+  const isInCart = checkInCart(id);
 
   return (
     <div className="card">
@@ -52,18 +56,36 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         </div>
 
         <div className="card__buttons">
-          <button
-            className="card__buttons-card"
-            onClick={() => addToCart(product)}
-          >
-            Add to cart
-          </button>
-          <button
-            className="card__buttons-favorites"
-            onClick={() => addToFavorites(product)}
-          >
-            <FavoritesIcon className="card__buttons-favorites-icon" />
-          </button>
+          {isInCart ? (
+            <button
+              className="phone-actions__buttons-cart selected"
+              onClick={() => removeFromCart(id)}
+            >
+              Added
+            </button>
+          ) : (
+            <button
+              className="phone-actions__buttons-cart"
+              onClick={() => addToCart(id)}
+            >
+              Add to cart
+            </button>
+          )}
+          {isInFav ? (
+            <button
+              className="phone-actions__buttons-like selected"
+              onClick={() => addToFavorites(id)}
+            >
+              <FilledFavoritesIcon />
+            </button>
+          ) : (
+            <button
+              className="phone-actions__buttons-like"
+              onClick={() => addToFavorites(id)}
+            >
+              <FavoritesIcon />
+            </button>
+          )}
         </div>
       </div>
     </div>
