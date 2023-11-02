@@ -136,7 +136,7 @@
       width: 40px;
       height: 40px;
       border: 1px solid var(--icon-border);
-      background-color: var( --icon-favorite-background);
+      background-color: var(--icon-favorite-background);
 
       &-icon {
         fill: var(--icon-favorite);
@@ -146,7 +146,7 @@
 
       &:hover {
         border-color: var(--icon-border-hover);
-        background-color: var( --icon-background-hover);
+        background-color: var(--icon-background-hover);
       }
     }
   }
