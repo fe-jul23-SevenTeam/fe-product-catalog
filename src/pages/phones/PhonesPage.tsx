@@ -16,7 +16,7 @@ import { Products } from '../../types/typeProducts';
 import { PathnameCategory } from 'components/PathnameCategory';
 import { Pagination } from 'components/Pagination/Pagination';
 import { DEFAULT_PAGE_NUMBER, PHONES_CATEGORY } from 'helpers/constants';
-import { CatalogSkeleton } from './components/CatalogSkeleton';
+import { CatalogSkeleton } from '../../components/CatalogSkeleton';
 
 export const PhonesPage: React.FC = () => {
   const [loader, setLoader] = useState(false);

@@ -14,11 +14,11 @@ import {
 } from '../phones/components/searchHelpers';
 import { SortedProducts } from '../phones/components/SortedProducts/SortedProducts';
 import { ProductCard } from '../../components/ProductCard';
-import { Loader } from 'components/Loader';
 import { PathnameCategory } from 'components/PathnameCategory';
 import { Pagination } from 'components/Pagination/Pagination';
 import './TabletsPage.scss';
 import { DEFAULT_PAGE_NUMBER, TABLETS_CATEGORY } from 'helpers/constants';
+import { CatalogSkeleton } from 'components/CatalogSkeleton';
 
 export const TabletsPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -94,9 +94,7 @@ export const TabletsPage: React.FC = () => {
       />
 
       {loader ? (
-        <div className="tablets__loader">
-          <Loader />
-        </div>
+        <CatalogSkeleton />
       ) : (
         <div className="tablets__content grid">
           {tablets.map(tablet => (

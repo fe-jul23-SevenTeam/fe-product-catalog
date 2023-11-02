@@ -18,10 +18,10 @@ import { SortedProducts } from '../phones/components/SortedProducts/SortedProduc
 import { ProductCard } from '../../components/ProductCard';
 import { PathnameCategory } from 'components/PathnameCategory';
 
-import { Loader } from 'components/Loader';
 import { Pagination } from 'components/Pagination/Pagination';
 import './AccessoriesPage.scss';
 import { ACCESSORIES_CATEGORY, DEFAULT_PAGE_NUMBER } from 'helpers/constants';
+import { CatalogSkeleton } from 'components/CatalogSkeleton';
 
 export const AccessoriesPage = () => {
   const [loader, setLoader] = useState(false);
@@ -98,9 +98,7 @@ export const AccessoriesPage = () => {
       />
 
       {loader ? (
-        <div className="accessories__loader">
-          <Loader />
-        </div>
+        <CatalogSkeleton />
       ) : (
         <div className="accessories__content grid">
           {accessories.map(accessory => (
