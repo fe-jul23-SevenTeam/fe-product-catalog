@@ -39,7 +39,12 @@ export const AccessoriesPage = () => {
   );
 
   useEffect(() => {
-    setSearchWith({ sortBy: sorting, pageSize: pageSize, category: ACCESSORIES_CATEGORY, page: String(currentPage) });
+    setSearchWith({
+      sortBy: sorting,
+      pageSize: pageSize,
+      category: ACCESSORIES_CATEGORY,
+      page: String(currentPage),
+    });
 
     getProductsByCategory(ACCESSORIES_CATEGORY).then(products => {
       setCountProducts(products.length);
@@ -66,7 +71,10 @@ export const AccessoriesPage = () => {
     setSorting(option as SortingOption);
     goToPage(DEFAULT_PAGE_NUMBER);
 
-    setSearchWith({ sortBy: option || null, page: String(DEFAULT_PAGE_NUMBER)});
+    setSearchWith({
+      sortBy: option || null,
+      page: String(DEFAULT_PAGE_NUMBER),
+    });
   };
 
   const handleItemsPerPageChange = (option: ItemsPerPage) => {
@@ -94,17 +102,17 @@ export const AccessoriesPage = () => {
           <Loader />
         </div>
       ) : (
-          <div className="accessories__content grid">
-            {accessories.map(accessory => (
-              <div className="catalog__card-container">
-                <ProductCard product={accessory} key={accessory.id} />
-              </div>
-            ))}
-          </div>
+        <div className="accessories__content grid">
+          {accessories.map(accessory => (
+            <div className="catalog__card-container">
+              <ProductCard product={accessory} key={accessory.id} />
+            </div>
+          ))}
+        </div>
       )}
 
       <div className="accessories__pagination">
-      <Pagination
+        <Pagination
           totalPages={totalPages}
           onPageChange={(page: number) => {
             goToPage(page);

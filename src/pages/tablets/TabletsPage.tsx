@@ -30,14 +30,17 @@ export const TabletsPage: React.FC = () => {
   const [sorting, setSorting] = useState<SortingOption>(SortingOption.Newest);
   const [pageSize, setPageSize] = useState<ItemsPerPage>(ItemsPerPage.Four);
 
-
   const { currentPage, totalPages, goToPage } = usePagination(
     countProducts,
     parseInt(pageSize),
   );
 
   useEffect(() => {
-    setSearchWith({ sortBy: sorting, pageSize: pageSize, category: TABLETS_CATEGORY });
+    setSearchWith({
+      sortBy: sorting,
+      pageSize: pageSize,
+      category: TABLETS_CATEGORY,
+    });
 
     getProductsByCategory(TABLETS_CATEGORY).then(products => {
       setCountProducts(products.length);
@@ -64,7 +67,10 @@ export const TabletsPage: React.FC = () => {
     setSorting(option as SortingOption);
     goToPage(DEFAULT_PAGE_NUMBER);
 
-    setSearchWith({ sortBy: option || null, page: String(DEFAULT_PAGE_NUMBER) });
+    setSearchWith({
+      sortBy: option || null,
+      page: String(DEFAULT_PAGE_NUMBER),
+    });
   };
 
   const handleItemsPerPageChange = (option: ItemsPerPage) => {
@@ -102,7 +108,7 @@ export const TabletsPage: React.FC = () => {
       )}
 
       <div className="tablets__pagination">
-      <Pagination
+        <Pagination
           totalPages={totalPages}
           onPageChange={(page: number) => {
             goToPage(page);

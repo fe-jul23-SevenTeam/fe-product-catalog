@@ -226,8 +226,7 @@
           background-color: var(--white-color);
           color: var(--gray-primary-color);
 
-        @include buttonHover;
-
+          @include buttonHover;
         }
       }
     }
@@ -252,7 +251,6 @@
       @include onTablet {
         &:hover {
           border: 1px solid var(--gray-primary-color);
-
         }
       }
     }

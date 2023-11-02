@@ -37,10 +37,10 @@
         color 0.3s;
 
       &__text {
-        color:  #625d5d;
+        color: #625d5d;
         font-size: 14px;
         font-weight: 700;
-        line-height: 21px; 
+        line-height: 21px;
       }
 
       &__img {
@@ -67,13 +67,15 @@
       left: 0;
       display: block;
 
-      opacity: 0; 
-      transform: translateY(-10px); 
-      transition: opacity 1s, transform 1s; 
+      opacity: 0;
+      transform: translateY(-10px);
+      transition:
+        opacity 1s,
+        transform 1s;
 
       &__open {
-        max-height: 200px; 
-        opacity: 1; 
+        max-height: 200px;
+        opacity: 1;
       }
 
       &__options {
