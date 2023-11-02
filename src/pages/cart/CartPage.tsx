@@ -51,7 +51,7 @@ export const CartPage = () => {
 
     setProductsTotal({ sum: sum, quantity: quantity });
     setUpdatedProducts(productsToRender);
-  }, [addedItems, products]);
+  }, [products]);
 
   return (
     <div className="cart cart--margin-block grid wrapper">
