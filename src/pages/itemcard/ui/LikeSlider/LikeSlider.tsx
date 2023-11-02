@@ -40,11 +40,17 @@ export const LikeSlider: React.FC = () => {
         {isLoading ? (
           <Loader />
         ) : (
-          <CardSlider
-            leftArrowName="likeSlide__arrow-left"
-            rightArrowName="likeSlide__arrow-right"
-            products={newModels}
-          />
+          <div
+            onClick={() => {
+              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+            }}
+          >
+            <CardSlider
+              leftArrowName="likeSlide__arrow-left"
+              rightArrowName="likeSlide__arrow-right"
+              products={newModels}
+            />
+          </div>
         )}
       </div>
     </section>
