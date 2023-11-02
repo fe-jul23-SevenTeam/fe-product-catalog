@@ -13,6 +13,49 @@ import ValentynImg from 'assets/personal-photo/Valentyn.png';
 import VitaliiImg from 'assets/personal-photo/Vitalii.png';
 import AndriiImg from 'assets/personal-photo/Andrii.png';
 
+const teamMembers = [
+  {
+    name: 'Bilyk Valentyn',
+    imageSrc: ValentynImg,
+    linkedinLink: 'https://www.linkedin.com/in/valentyn-bilyk/',
+    githubLink: 'https://github.com/Valentyn-Bilyk',
+    emailLink: 'mailto:valentynbilyk.dev@gmail.com',
+    telegramLink: 'https://t.me/valentyn_bilyk',
+  },
+  {
+    name: 'Kravchuk Rostyslav',
+    imageSrc: RostyslavImg,
+    linkedinLink: 'https://www.linkedin.com/in/rostyslav-kravchuk-8b5355261/',
+    githubLink: 'https://github.com/rostyslav48',
+    emailLink: 'mailto:rostyslavkravchukDev@gmail.com',
+    telegramLink: 'https://t.me/rostyslav_kravchuk',
+  },
+  {
+    name: 'Nakonechnyi Andrii',
+    imageSrc: AndriiImg,
+    linkedinLink: 'https://www.linkedin.com/in/andrii-nakonechnyi-180005198/',
+    githubLink: 'https://github.com/annak1104',
+    emailLink: 'mailto:andriinakonechnyi.work@gmail.com',
+    telegramLink: 'https://t.me/AndriiNakonechnyi11',
+  },
+  {
+    name: 'Roik Viktoriia',
+    imageSrc: ViktoriaImg,
+    linkedinLink: 'https://www.linkedin.com/in/viktoriia-roik/',
+    githubLink: 'https://github.com/viktoria-roik',
+    emailLink: 'mailto:viktoriia.roik.dev@gmail.com',
+    telegramLink: 'https://t.me/vroik',
+  },
+  {
+    name: 'Serhiichuk Vitalii',
+    imageSrc: VitaliiImg,
+    linkedinLink: 'https://www.linkedin.com/in/vitalii-serhiichuk-3b29a8247/',
+    githubLink: 'https://github.com/vserhiichuk',
+    emailLink: 'mailto:vitalii.serhiichuk.dev@gmail.com',
+    telegramLink: 'https://t.me/defing129',
+  },
+];
+
 export const Contacts: React.FC = () => {
   return (
     <div className="contacts">
@@ -34,199 +77,53 @@ export const Contacts: React.FC = () => {
         </div>
 
         <div className="contacts__container--team team">
-          <div className="team__card">
-            <div className="team__img-box">
-              <img
-                className="team__person-img"
-                src={ValentynImg}
-                alt="TeamMate Valentyn"
-              />
-            </div>
-            <div className="team__content-box">
-              <div className="team__content-box__text">
-                <p className="team__person-name">Bilyk Valentyn</p>
-                <p className="team__person-info">Full-Stack developer</p>
+          {teamMembers.map(member => (
+            <div className="team__card" key={member.name}>
+              <div className="team__img-box">
+                <img
+                  className="team__person-img"
+                  src={member.imageSrc}
+                  alt={`TeamMate ${member.name}`}
+                />
               </div>
-              <div className="team__social-media social-media">
-                <Link
-                  to="https://www.linkedin.com/in/valentyn-bilyk/"
-                  className="social-media__link"
-                  target="_blank"
-                >
-                  <LinkedInIcon className="social-media__icon" />
-                </Link>
-                <Link
-                  to="https://github.com/Valentyn-Bilyk"
-                  className="social-media__link"
-                  target="_blank"
-                >
-                  <GithubIcon className="social-media__icon" />
-                </Link>
-                <Link to="/" className="social-media__link">
-                  <EmailIcon className="social-media__icon" />
-                </Link>
-                <Link to="/" className="social-media__link">
-                  <TelegramIcon className="social-media__icon" />
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="team__card">
-            <div className="team__img-box">
-              <img
-                className="team__person-img"
-                src={RostyslavImg}
-                alt="TeamMate Rostyslav"
-              />
-            </div>
-            <div className="team__content-box">
-              <div className="team__content-box__text">
-                <p className="team__person-name">Kravchuk Rostyslav</p>
-                <p className="team__person-info">Full-Stack developer</p>
-              </div>
-
-              <div className="team__social-media social-media">
-                <Link
-                  to="https://www.linkedin.com/in/rostyslav-kravchuk-8b5355261/"
-                  className="social-media__link"
-                  target="_blank"
-                >
-                  <LinkedInIcon className="social-media__icon" />
-                </Link>
-                <Link
-                  to="https://github.com/rostyslav48"
-                  className="social-media__link"
-                  target="_blank"
-                >
-                  <GithubIcon className="social-media__icon" />
-                </Link>
-                <Link to="/" className="social-media__link">
-                  <EmailIcon className="social-media__icon" />
-                </Link>
-                <Link to="/" className="social-media__link">
-                  <TelegramIcon className="social-media__icon" />
-                </Link>
+              <div className="team__content-box">
+                <div className="team__content-box__text">
+                  <p className="team__person-name">{member.name}</p>
+                  <p className="team__person-info">Full-Stack developer</p>
+                </div>
+                <div className="team__social-media social-media">
+                  <Link
+                    to={member.linkedinLink}
+                    className="social-media__link"
+                    target="_blank"
+                  >
+                    <LinkedInIcon className="social-media__icon" />
+                  </Link>
+                  <Link
+                    to={member.githubLink}
+                    className="social-media__link"
+                    target="_blank"
+                  >
+                    <GithubIcon className="social-media__icon" />
+                  </Link>
+                  <Link
+                    to={member.emailLink}
+                    className="social-media__link"
+                    target="_blank"
+                  >
+                    <EmailIcon className="social-media__icon" />
+                  </Link>
+                  <Link
+                    to={member.telegramLink}
+                    className="social-media__link"
+                    target="_blank"
+                  >
+                    <TelegramIcon className="social-media__icon" />
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="team__card">
-            <div className="team__img-box">
-              <img
-                className="team__person-img"
-                src={AndriiImg}
-                alt="TeamMate Andrii"
-              />
-            </div>
-            <div className="team__content-box">
-              <div className="team__content-box__text">
-                <p className="team__person-name">Nakonechnyi Andrii</p>
-                <p className="team__person-info">Full-Stack developer</p>
-              </div>
-
-              <div className="team__social-media social-media">
-                <Link
-                  to="https://www.linkedin.com/in/andrii-nakonechnyi-180005198/"
-                  className="social-media__link"
-                  target="_blank"
-                >
-                  <LinkedInIcon className="social-media__icon" />
-                </Link>
-                <Link
-                  to="https://github.com/annak1104"
-                  className="social-media__link"
-                  target="_blank"
-                >
-                  <GithubIcon className="social-media__icon" />
-                </Link>
-                <Link to="/" className="social-media__link">
-                  <EmailIcon className="social-media__icon" />
-                </Link>
-                <Link to="/" className="social-media__link">
-                  <TelegramIcon className="social-media__icon" />
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="team__card">
-            <div className="team__img-box">
-              <img
-                className="team__person-img"
-                src={ViktoriaImg}
-                alt="TeamMate Viktoriia"
-              />
-            </div>
-            <div className="team__content-box">
-              <div className="team__content-box__text">
-                <p className="team__person-name">Roik Viktoriia</p>
-                <p className="team__person-info">Full-Stack developer</p>
-              </div>
-
-              <div className="team__social-media social-media">
-                <Link
-                  to="https://www.linkedin.com/in/viktoriia-roik/"
-                  className="social-media__link"
-                  target="_blank"
-                >
-                  <LinkedInIcon className="social-media__icon" />
-                </Link>
-                <Link
-                  to="https://github.com/viktoria-roik"
-                  className="social-media__link"
-                  target="_blank"
-                >
-                  <GithubIcon className="social-media__icon" />
-                </Link>
-                <Link to="/" className="social-media__link">
-                  <EmailIcon className="social-media__icon" />
-                </Link>
-                <Link
-                  to="https://t.me/vroik"
-                  className="social-media__link"
-                  target="_blank"
-                >
-                  <TelegramIcon className="social-media__icon" />
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="team__card">
-            <div className="team__img-box">
-              <img
-                className="team__person-img"
-                src={VitaliiImg}
-                alt="TeamMate Vitalii"
-              />
-            </div>
-            <div className="team__content-box">
-              <div className="team__content-box__text">
-                <p className="team__person-name">Serhiichuk Vitalii</p>
-                <p className="team__person-info">Full-Stack developer</p>
-              </div>
-
-              <div className="team__social-media social-media">
-                <Link
-                  to="https://www.linkedin.com/in/vitalii-serhiichuk-3b29a8247/"
-                  className="social-media__link"
-                  target="_blank"
-                >
-                  <LinkedInIcon className="social-media__icon" />
-                </Link>
-                <Link
-                  to="https://github.com/vserhiichuk"
-                  className="social-media__link"
-                  target="_blank"
-                >
-                  <GithubIcon className="social-media__icon" />
-                </Link>
-                <Link to="/" className="social-media__link">
-                  <EmailIcon className="social-media__icon" />
-                </Link>
-                <Link to="/" className="social-media__link">
-                  <TelegramIcon className="social-media__icon" />
-                </Link>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
