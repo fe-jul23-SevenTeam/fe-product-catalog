@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ReactPaginate from 'react-paginate';
 import './PhonesPage.scss';
-
-import icon from '../../assets/icons/home_icon.svg';
-import icon_arrow from '../../assets/icons/arrow-right_icon.svg';
 
 import { ProductCard } from '../../components/ProductCard';
 import { useSearchParams } from 'react-router-dom';
@@ -17,7 +13,10 @@ import { usePagination } from '../../helpers/customHooks/usePagination';
 import { SortingOption } from '../../types/enumSortOption';
 import { ItemsPerPage } from '../../types/enumPageSize';
 import { Products } from '../../types/typeProducts';
-import { RingLoader } from 'react-spinners';
+import { PathnameCategory } from 'components/PathnameCategory';
+import { Loader } from 'components/Loader';
+import { Pagination } from 'components/Pagination/Pagination';
+import { DEFAULT_PAGE_NUMBER, PHONES_CATEGORY } from 'helpers/constants';
 
 export const PhonesPage: React.FC = () => {
   const [loader, setLoader] = useState(false);
@@ -29,23 +28,23 @@ export const PhonesPage: React.FC = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const category = 'phones';
-
   const { currentPage, totalPages, goToPage } = usePagination(
     countProducts,
     parseInt(pageSize),
   );
 
   useEffect(() => {
-    setSearchWith({ sortBy: sorting, pageSize: pageSize, category: category });
+    setSearchWith({ sortBy: sorting, pageSize: pageSize, category: PHONES_CATEGORY, page: String(currentPage) });
 
-    getProductsByCategory(category).then(products => {
+    getProductsByCategory(PHONES_CATEGORY).then(products => {
       setCountProducts(products.length);
     });
   }, []);
 
   useEffect(() => {
-    getProductsByParams(currentPage, pageSize, sorting, category)
+    setLoader(true);
+
+    getProductsByParams(currentPage, pageSize, sorting, PHONES_CATEGORY)
       .then(setPhones)
       .finally(() => {
         setLoader(false);
@@ -58,32 +57,28 @@ export const PhonesPage: React.FC = () => {
     setSearchParams(search);
   }
 
-  const handleSortingChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSorting(event.target.value as SortingOption);
+  const handleSortingChange = (option: SortingOption) => {
+    setSorting(option as SortingOption);
+    goToPage(DEFAULT_PAGE_NUMBER);
 
-    setSearchWith({ sortBy: event.target.value || null });
+    setSearchWith({ sortBy: option || null, page: String(DEFAULT_PAGE_NUMBER) });
   };
 
-  const handleItemsPerPageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
-    setPageSize(event.target.value as ItemsPerPage);
+  const handleItemsPerPageChange = (option: ItemsPerPage) => {
+    setPageSize(option as ItemsPerPage);
 
-    setSearchWith({ pageSize: event.target.value || null });
+    setSearchWith({ pageSize: option || null });
+  };
+
+  const handlePageChange = (page: number) => {
+    goToPage(page);
+  
+    setSearchWith({ page: String(page) || '1' });
   };
 
   return (
     <section className="phones wrapper">
-      <div className="phones__pathname">
-        <img className="phones__pathname-icon" src={icon} alt="Home icon" />
-        <img
-          className="phones__pathname-icon"
-          src={icon_arrow}
-          alt="Arrow icon"
-        />
-
-        <p className="phones__pathname-title">{category}</p>
-      </div>
+      <PathnameCategory category={PHONES_CATEGORY} />
 
       <h1 className="phones__wrapper-title">Mobile phones</h1>
       <p>{countProducts} models</p>
@@ -97,32 +92,27 @@ export const PhonesPage: React.FC = () => {
 
       {loader ? (
         <div className="phones__loader">
-          <RingLoader color="#36d7b7" />
+          <Loader />
         </div>
       ) : (
-        <>
-          <div className="phones__content grid">
-            {phones.map(phone => (
-              <div className="catalog__card-container">
-                <ProductCard product={phone} key={phone.id} />
-              </div>
-            ))}
-          </div>
-
-          <div className="phones__pagination">
-            <ReactPaginate
-              pageCount={totalPages}
-              pageRangeDisplayed={5}
-              marginPagesDisplayed={2}
-              onPageChange={data => {
-                goToPage(data.selected + 1);
-              }}
-              containerClassName={'pagination'}
-              activeClassName={'active'}
-            />
-          </div>
-        </>
+        <div className="phones__content grid">
+          {phones.map(phone => (
+            <div className="catalog__card-container">
+              <ProductCard product={phone} key={phone.id} />
+            </div>
+          ))}
+        </div>
       )}
+
+      <div className="phones__pagination">
+        <Pagination
+          totalPages={totalPages}
+          onPageChange={(page: number) => {
+            handlePageChange(page);
+          }}
+          currentPage={currentPage}
+        />
+      </div>
     </section>
   );
 };

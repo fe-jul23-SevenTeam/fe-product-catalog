@@ -1,0 +1,93 @@
+@import 'styles/utils/mixins';
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  
+    li {
+      display: inline;
+    }
+  
+    .page-item {
+      margin-right: 4px;
+
+      @include onTablet {
+        margin-right: 5px;
+      }
+
+      @include onTablet {
+        margin-right: 7px;
+      }
+    }
+
+    .page-item:last-child {
+        margin-right: 0;
+    }
+  
+    button {
+      text-decoration: none;
+      color: #ababab;
+      font-weight: bold;
+      padding: 3px 5px;
+      border: none;
+      border-radius: 5px;
+      border: 1px solid #333;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+
+      @include onMiniTalet {
+        padding: 10px 15px
+      }
+
+      @include onTablet {
+        padding: 10px 15px
+      }
+
+      @include onTablet {
+        padding: 10px 15px
+      }
+  
+      &:hover {
+        background-color: #00b0b3;
+        color: #fff;
+        transform: scale(1.2);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+    }
+  
+    .active {
+      button {
+        background-color: #333;
+        color: #fff;
+      }
+    }
+  
+    .disabled {
+      button {
+        background-color: #a8a8a8;
+        color: #fff;
+        cursor: not-allowed;
+      }
+    }
+  
+    .previous, .next {
+      button {
+        padding: 10px 15px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+      }
+    }
+  
+    .previous:hover, .next:hover {
+      button {
+        background-color: #333;
+        transform: scale(1.05);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }

@@ -1,22 +1,7 @@
 @import 'styles/utils/mixins';
 
 .phones {
-  &__pathname {
-    display: flex;
-    flex-direction: row;
-
-    margin-top: 30px;
-
-    &-icon {
-      margin-right: 5px;
-    }
-
-    &-title {
-      color: #89939a;
-      font-size: 12px;
-      font-weight: 600;
-    }
-  }
+  margin-top: 30px;
 
   &__wrapper-title {
     margin-top: 30px;
@@ -29,14 +14,6 @@
     align-items: center;
   }
 
-  &__pagination {
-    margin-bottom: 30px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   &__loader {
     margin-top: 80px;
 
@@ -44,53 +21,12 @@
     justify-content: center;
     align-items: center;
   }
-}
 
-.pagination {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-}
+  &__pagination {
+    margin-bottom: 30px;
 
-.pagination a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  padding: 8px 12px;
-  margin: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
-  cursor: pointer;
-}
-
-.pagination .active a {
-  background-color: #36d7b7;
-  color: #fff;
-}
-
-.pagination .previous,
-.pagination .next {
-  font-weight: bold;
-}
-
-.pagination .disabled {
-  color: #ccc;
-  cursor: not-allowed;
-}
-
-.pagination .previous a,
-.pagination .next a {
-  padding: 8px 12px;
-  background-color: #36d7b7;
-  color: #fff;
-  border: 1px solid #36d7b7;
-  border-radius: 4px;
-  text-align: center;
-}
-
-.pagination a:hover {
-  background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
