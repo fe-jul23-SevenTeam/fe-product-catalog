@@ -14,9 +14,9 @@ import { SortingOption } from '../../types/enumSortOption';
 import { ItemsPerPage } from '../../types/enumPageSize';
 import { Products } from '../../types/typeProducts';
 import { PathnameCategory } from 'components/PathnameCategory';
-import { Loader } from 'components/Loader';
 import { Pagination } from 'components/Pagination/Pagination';
 import { DEFAULT_PAGE_NUMBER, PHONES_CATEGORY } from 'helpers/constants';
+import { CatalogSkeleton } from './components/CatalogSkeleton';
 
 export const PhonesPage: React.FC = () => {
   const [loader, setLoader] = useState(false);
@@ -34,7 +34,12 @@ export const PhonesPage: React.FC = () => {
   );
 
   useEffect(() => {
-    setSearchWith({ sortBy: sorting, pageSize: pageSize, category: PHONES_CATEGORY, page: String(currentPage) });
+    setSearchWith({
+      sortBy: sorting,
+      pageSize: pageSize,
+      category: PHONES_CATEGORY,
+      page: String(currentPage),
+    });
 
     getProductsByCategory(PHONES_CATEGORY).then(products => {
       setCountProducts(products.length);
@@ -61,7 +66,10 @@ export const PhonesPage: React.FC = () => {
     setSorting(option as SortingOption);
     goToPage(DEFAULT_PAGE_NUMBER);
 
-    setSearchWith({ sortBy: option || null, page: String(DEFAULT_PAGE_NUMBER) });
+    setSearchWith({
+      sortBy: option || null,
+      page: String(DEFAULT_PAGE_NUMBER),
+    });
   };
 
   const handleItemsPerPageChange = (option: ItemsPerPage) => {
@@ -72,7 +80,7 @@ export const PhonesPage: React.FC = () => {
 
   const handlePageChange = (page: number) => {
     goToPage(page);
-  
+
     setSearchWith({ page: String(page) || '1' });
   };
 
@@ -91,9 +99,7 @@ export const PhonesPage: React.FC = () => {
       />
 
       {loader ? (
-        <div className="phones__loader">
-          <Loader />
-        </div>
+        <CatalogSkeleton />
       ) : (
         <div className="phones__content grid">
           {phones.map(phone => (

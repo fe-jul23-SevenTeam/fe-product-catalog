@@ -1,0 +1,16 @@
+@import 'styles/utils/mixins';
+
+.catalog-skeleton {
+  max-height: 80vh;
+  overflow: hidden;
+
+  &__container {
+    width: 100%;
+    max-width: 288px;
+    height: 440px;
+
+    @include onTablet {
+      height: 505px;
+    }
+  }
+}
