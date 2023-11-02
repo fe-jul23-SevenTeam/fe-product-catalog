@@ -29,6 +29,7 @@ export const CardSlider: React.FC<Props> = ({
         prevEl: `.${leftArrowName}`,
         nextEl: `.${rightArrowName}`,
       }}
+      loop
       breakpoints={{
         320: {
           slidesPerView: 2,
@@ -45,7 +46,7 @@ export const CardSlider: React.FC<Props> = ({
       }}
     >
       {products.map(product => (
-        <SwiperSlide>
+        <SwiperSlide key={product.id}>
           <ProductCard product={product} />
         </SwiperSlide>
       ))}
