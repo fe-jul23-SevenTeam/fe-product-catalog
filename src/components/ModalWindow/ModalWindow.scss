@@ -1,0 +1,99 @@
+@import 'styles/utils/mixins';
+@import 'styles/utils/vars';
+
+@keyframes scaleAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(-200px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-alignment {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.modal-window {
+  animation: scaleAppear 0.4s ease-in;
+
+  position: relative;
+
+  width: 80vw;
+  max-width: 1000px;
+
+  height: 80vh;
+  max-height: 600px;
+
+  box-sizing: border-box;
+  padding: 20px;
+
+  @include onTablet {
+    padding: 40px;
+  }
+
+  background-color: var(--white-color);
+  border: solid 1px var(--gray-secondary-color);
+
+  &__logo-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    @include onTablet {
+      top: 27px;
+      left: 30px;
+    }
+  }
+
+  &__close-button {
+    background-color: var(--gray-primary-color);
+
+    width: 30px;
+    height: 30px;
+    box-sizing: border-box;
+
+    padding: 5px;
+    border: none;
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    @include onTablet {
+      top: 20px;
+      right: 20px;
+    }
+
+    @include onDesktop {
+      &:hover {
+        border: 1px solid var(--gray-primary-color);
+        background-color: var(--white-color);
+        color: var(--gray-primary-color);
+
+        & :first-child {
+          fill: var(--gray-primary-color);
+        }
+
+        @include buttonHover;
+      }
+    }
+  }
+
+  &__close-icon {
+    fill: var(--white-color);
+    width: 20px;
+    height: 20px;
+  }
+}

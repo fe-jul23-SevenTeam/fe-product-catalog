@@ -11,7 +11,7 @@ type Props = {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const { addToCart, addToFavorites } = useShoppingCart();
-  const { name, price, screen, capacity, ram, image, fullPrice, id, itemId } =
+  const { name, price, screen, capacity, ram, image, fullPrice, itemId } =
     product;
 
   return (
