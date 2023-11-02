@@ -1,5 +1,11 @@
 @import './vars';
 
+@mixin onMiniTalet {
+  @media (min-width: 310px) {
+    @content;
+  }
+}
+
 @mixin onTablet {
   @media (min-width: $tablet-width) {
     @content;
