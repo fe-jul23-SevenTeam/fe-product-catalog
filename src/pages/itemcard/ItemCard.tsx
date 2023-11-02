@@ -141,16 +141,14 @@ export const ItemCard: React.FC = () => {
             <h2 className="description__title">About</h2>
 
             {productInfo.description.map(desc => (
-              <>
-                <div className="about__info" key={desc.title}>
-                  <h3 className="about__subtitle">{desc.title}</h3>
-                  {desc.text.map(p => (
-                    <p className="about__text" key={p}>
-                      {p}
-                    </p>
-                  ))}
-                </div>
-              </>
+              <div className="about__info" key={desc.title}>
+                <h3 className="about__subtitle">{desc.title}</h3>
+                {desc.text.map(p => (
+                  <p className="about__text" key={p}>
+                    {p}
+                  </p>
+                ))}
+              </div>
             ))}
           </div>
 

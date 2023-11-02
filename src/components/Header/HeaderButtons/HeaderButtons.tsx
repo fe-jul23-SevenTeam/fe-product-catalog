@@ -8,7 +8,11 @@ import { ReactComponent as CloseIcon } from '../../../assets/icons/close_icon.sv
 
 import './HeaderButtons.scss';
 import { BurgerMenu } from '../BurgerMenu';
+
+import DarkMode from 'DarkMode/DarkMode';
+
 import { useShoppingCart } from '../../../context/ShoppingCartContext';
+
 
 export const HeaderButtons: React.FC = () => {
   const [isActiveBurger, setIsActiveBurger] = useState(false);
@@ -25,6 +29,7 @@ export const HeaderButtons: React.FC = () => {
 
   return (
     <div className="buttons">
+      <DarkMode />
       {/* тут буде іконка бургер меню і компонент меню */}
       <div
         className="icon-wrapper icon-wrapper--menu"

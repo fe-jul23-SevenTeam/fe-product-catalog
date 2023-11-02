@@ -14,7 +14,7 @@
 
   width: $header-height;
 
-  border-left: solid 1px var(--gray-elements-color);
+  box-shadow: -1px 0px 0px 0px var(--header-box-shadow-color);
 
   @include onTablet {
     display: flex;
@@ -35,7 +35,7 @@
   }
 
   &.is-active {
-    border-bottom: 3px solid var(--gray-primary-color);
+    border-bottom: 3px solid var(--text-main-color);
   }
 }
 
@@ -43,6 +43,7 @@
   display: block;
   width: 16px;
   height: 16px;
+  fill: var(--icon-favorite);
 
   &--menu.is-active {
     display: none;
