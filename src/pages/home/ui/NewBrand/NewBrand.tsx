@@ -7,6 +7,7 @@ import { getProductsForSlider } from 'api/productsGeneral';
 import './NewBrand.scss';
 import { Product } from '../../../../types/Product';
 import { Loader } from 'components/Loader';
+import { CardSliderSkeleton } from 'components/CardSliderSkeleton';
 
 export const NewBrand: React.FC = () => {
   const [newModels, setNewModels] = useState<Product[]>([]);
@@ -38,7 +39,7 @@ export const NewBrand: React.FC = () => {
         </div>
 
         {isLoading ? (
-          <Loader />
+          <CardSliderSkeleton />
         ) : (
           <CardSlider
             leftArrowName="newBrand__arrow-left"
