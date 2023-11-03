@@ -42,7 +42,7 @@ export const FavoritesPage = () => {
         ) : (
           <div className="grid">
             {updatedProducts.map((product: Product) => (
-              <div className="catalog__card-container">
+              <div key={product.id} className="catalog__card-container">
                 <ProductCard product={product} />
               </div>
             ))}

@@ -14,8 +14,15 @@ import { ItemsPerPage } from '../../types/enumPageSize';
 import { Products } from '../../types/typeProducts';
 import { PathnameCategory } from 'components/PathnameCategory';
 import { Pagination } from 'components/Pagination/Pagination';
-import { DEFAULT_PAGE_NUMBER, PHONES_CATEGORY, TABLETS_CATEGORY } from 'helpers/constants';
-import { SearchParams, getSearchWith } from 'pages/phones/components/searchHelpers';
+import {
+  DEFAULT_PAGE_NUMBER,
+  PHONES_CATEGORY,
+  TABLETS_CATEGORY,
+} from 'helpers/constants';
+import {
+  SearchParams,
+  getSearchWith,
+} from 'pages/phones/components/searchHelpers';
 import { SortedProducts } from 'pages/phones/components/SortedProducts/SortedProducts';
 import { CatalogSkeleton } from 'components/CatalogSkeleton';
 
@@ -38,7 +45,7 @@ export const TabletsPage: React.FC = () => {
   const pageItems = searchParams.get('pageSize') || ItemsPerPage.Four;
   const page = searchParams.get('page') || pageCurrent;
 
- useEffect(() => {
+  useEffect(() => {
     setSearchWith({
       sortBy: sortBy,
       pageSize: pageItems,
@@ -118,8 +125,8 @@ export const TabletsPage: React.FC = () => {
       ) : (
         <div className="tablets__content grid">
           {tablets.map(tablet => (
-            <div className="catalog__card-container">
-              <ProductCard product={tablet} key={tablet.id} />
+            <div key={tablet.id} className="catalog__card-container">
+              <ProductCard product={tablet} />
             </div>
           ))}
         </div>

@@ -1,18 +1,22 @@
+@import 'styles/utils/vars';
+@import 'styles/utils/mixins';
+
 .dark_mode {
-  display: flex;
-  align-items: center;
+  @include displayFlexCenter;
+  position: relative;
+  width: $header-height;
+
+  @include onDesktop {
+    width: $header-desktop-height;
+  }
+  height: 100%;
+  box-shadow: -1px 0px 0px 0px var(--header-box-shadow-color);
 }
 
 .dark_mode_label {
-  width: 40px;
-  height: 40px;
-  position: relative;
-  display: block;
-  align-items: center;
-  justify-content: center;
-  border-radius: 200px;
-  cursor: pointer;
-  transition: 0.3s;
+  @include displayFlexCenter;
+
+  width: 100%;
 }
 
 .dark_mode_input {
@@ -22,20 +26,18 @@
 }
 
 .dark_mode_label svg {
+  height: 20px;
+  width: 20px;
   position: absolute;
-  width: 30px;
-  top: 5px;
   z-index: 100;
 }
 
 .dark_mode_label svg.sun {
-  left: 5px;
   fill: #313237;
   transition: 0.3s;
 }
 
 .dark_mode_label svg.moon {
-  left: 5px;
   fill: #7e7e7e;
   transition: 0.3s;
 }

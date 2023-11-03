@@ -4,7 +4,6 @@ import { ReactComponent as RightArrow } from 'assets/icons/arrow-right_icon.svg'
 import { CardSlider } from '../CardSlider';
 import { Product } from 'types/Product';
 import { getProductsForSlider } from 'api/productsGeneral';
-import { Loader } from 'components/Loader';
 
 import './HotPrices.scss';
 import { CardSliderSkeleton } from 'components/CardSliderSkeleton';
