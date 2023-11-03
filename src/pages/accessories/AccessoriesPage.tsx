@@ -1,45 +1,52 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import './AccessoriesPage.scss';
 
+import { ProductCard } from '../../components/ProductCard';
 import { useSearchParams } from 'react-router-dom';
-import { Products } from '../../types/typeProducts';
-import { SortingOption } from '../../types/enumSortOption';
-import { ItemsPerPage } from '../../types/enumPageSize';
-import { usePagination } from '../../helpers/customHooks/usePagination';
+
 import {
   getProductsByCategory,
   getProductsByParams,
 } from '../../api/productsGeneral';
-import {
-  SearchParams,
-  getSearchWith,
-} from '../phones/components/searchHelpers';
-
-import { SortedProducts } from '../phones/components/SortedProducts/SortedProducts';
-import { ProductCard } from '../../components/ProductCard';
+import { usePagination } from '../../helpers/customHooks/usePagination';
+import { SortingOption } from '../../types/enumSortOption';
+import { ItemsPerPage } from '../../types/enumPageSize';
+import { Products } from '../../types/typeProducts';
 import { PathnameCategory } from 'components/PathnameCategory';
-
-import { Loader } from 'components/Loader';
 import { Pagination } from 'components/Pagination/Pagination';
-import './AccessoriesPage.scss';
 import { ACCESSORIES_CATEGORY, DEFAULT_PAGE_NUMBER } from 'helpers/constants';
+import { CatalogSkeleton } from 'pages/phones/components/CatalogSkeleton';
+import { SearchParams, getSearchWith } from 'pages/phones/components/searchHelpers';
+import { SortedProducts } from 'pages/phones/components/SortedProducts/SortedProducts';
 
-export const AccessoriesPage = () => {
+export const AccessoriesPage: React.FC = () => {
   const [loader, setLoader] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
   const [countProducts, setCountProducts] = useState(0);
-
   const [accessories, setAccessories] = useState<Products[]>([]);
 
   const [sorting, setSorting] = useState<SortingOption>(SortingOption.Newest);
   const [pageSize, setPageSize] = useState<ItemsPerPage>(ItemsPerPage.Four);
 
-  const { currentPage, totalPages, goToPage } = usePagination(
+  const [searchParams, setSearchParams] = useSearchParams();
+
+
+
+  const { pageCurrent, totalPages, goToPage } = usePagination(
     countProducts,
     parseInt(pageSize),
   );
 
-  useEffect(() => {
-    setSearchWith({ sortBy: sorting, pageSize: pageSize, category: ACCESSORIES_CATEGORY, page: String(currentPage) });
+  const sortBy = searchParams.get('sortBy') || SortingOption.Newest;
+  const pageItems = searchParams.get('pageSize') || ItemsPerPage.Four;
+  const page = searchParams.get('page') || pageCurrent;
+
+ useEffect(() => {
+    setSearchWith({
+      sortBy: sortBy,
+      pageSize: pageItems,
+      category: ACCESSORIES_CATEGORY,
+      page: String(page),
+    });
 
     getProductsByCategory(ACCESSORIES_CATEGORY).then(products => {
       setCountProducts(products.length);
@@ -47,14 +54,20 @@ export const AccessoriesPage = () => {
   }, []);
 
   useEffect(() => {
+    setSorting(sortBy as SortingOption);
+    setPageSize(pageItems as ItemsPerPage);
+    goToPage(Number(page));
+  }, [sortBy, pageItems, page]);
+
+  useEffect(() => {
     setLoader(true);
 
-    getProductsByParams(currentPage, pageSize, sorting, ACCESSORIES_CATEGORY)
+    getProductsByParams(Number(page), pageItems, sortBy, ACCESSORIES_CATEGORY)
       .then(setAccessories)
       .finally(() => {
         setLoader(false);
       });
-  }, [currentPage, pageSize, sorting]);
+  }, [pageCurrent, pageSize, sorting]);
 
   function setSearchWith(params: SearchParams) {
     const search = getSearchWith(params, searchParams);
@@ -66,20 +79,33 @@ export const AccessoriesPage = () => {
     setSorting(option as SortingOption);
     goToPage(DEFAULT_PAGE_NUMBER);
 
-    setSearchWith({ sortBy: option || null, page: String(DEFAULT_PAGE_NUMBER)});
+    setSearchWith({
+      sortBy: option || null,
+      page: String(DEFAULT_PAGE_NUMBER),
+    });
   };
 
   const handleItemsPerPageChange = (option: ItemsPerPage) => {
     setPageSize(option as ItemsPerPage);
+    goToPage(DEFAULT_PAGE_NUMBER);
 
-    setSearchWith({ pageSize: option || null });
+    setSearchWith({
+      pageSize: option || null,
+      page: String(DEFAULT_PAGE_NUMBER),
+    });
+  };
+
+  const handlePageChange = (page: number) => {
+    goToPage(page);
+
+    setSearchWith({ page: String(page) || '1' });
   };
 
   return (
     <section className="accessories wrapper">
       <PathnameCategory category={ACCESSORIES_CATEGORY} />
 
-      <h1 className="accessories__wrapper-title">Accessories</h1>
+      <h1 className="accessories__wrapper-title">Mobile phones</h1>
       <p>{countProducts} models</p>
 
       <SortedProducts
@@ -90,26 +116,24 @@ export const AccessoriesPage = () => {
       />
 
       {loader ? (
-        <div className="accessories__loader">
-          <Loader />
-        </div>
+        <CatalogSkeleton />
       ) : (
-          <div className="accessories__content grid">
-            {accessories.map(accessory => (
-              <div className="catalog__card-container">
-                <ProductCard product={accessory} key={accessory.id} />
-              </div>
-            ))}
-          </div>
+        <div className="accessories__content grid">
+          {accessories.map(accessory => (
+            <div className="catalog__card-container">
+              <ProductCard product={accessory} key={accessory.id} />
+            </div>
+          ))}
+        </div>
       )}
 
       <div className="accessories__pagination">
-      <Pagination
+        <Pagination
           totalPages={totalPages}
           onPageChange={(page: number) => {
-            goToPage(page);
+            handlePageChange(page);
           }}
-          currentPage={currentPage}
+          currentPage={Number(pageCurrent)}
         />
       </div>
     </section>

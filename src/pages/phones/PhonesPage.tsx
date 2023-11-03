@@ -28,17 +28,23 @@ export const PhonesPage: React.FC = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { currentPage, totalPages, goToPage } = usePagination(
+
+
+  const { pageCurrent, totalPages, goToPage } = usePagination(
     countProducts,
     parseInt(pageSize),
   );
 
-  useEffect(() => {
+  const sortBy = searchParams.get('sortBy') || SortingOption.Newest;
+  const pageItems = searchParams.get('pageSize') || ItemsPerPage.Four;
+  const page = searchParams.get('page') || pageCurrent;
+
+ useEffect(() => {
     setSearchWith({
-      sortBy: sorting,
-      pageSize: pageSize,
+      sortBy: sortBy,
+      pageSize: pageItems,
       category: PHONES_CATEGORY,
-      page: String(currentPage),
+      page: String(page),
     });
 
     getProductsByCategory(PHONES_CATEGORY).then(products => {
@@ -47,14 +53,20 @@ export const PhonesPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    setSorting(sortBy as SortingOption);
+    setPageSize(pageItems as ItemsPerPage);
+    goToPage(Number(page));
+  }, [sortBy, pageItems, page]);
+
+  useEffect(() => {
     setLoader(true);
 
-    getProductsByParams(currentPage, pageSize, sorting, PHONES_CATEGORY)
+    getProductsByParams(Number(page), pageItems, sortBy, PHONES_CATEGORY)
       .then(setPhones)
       .finally(() => {
         setLoader(false);
       });
-  }, [currentPage, pageSize, sorting]);
+  }, [pageCurrent, pageSize, sorting]);
 
   function setSearchWith(params: SearchParams) {
     const search = getSearchWith(params, searchParams);
@@ -74,8 +86,12 @@ export const PhonesPage: React.FC = () => {
 
   const handleItemsPerPageChange = (option: ItemsPerPage) => {
     setPageSize(option as ItemsPerPage);
+    goToPage(DEFAULT_PAGE_NUMBER);
 
-    setSearchWith({ pageSize: option || null });
+    setSearchWith({
+      pageSize: option || null,
+      page: String(DEFAULT_PAGE_NUMBER),
+    });
   };
 
   const handlePageChange = (page: number) => {
@@ -116,7 +132,7 @@ export const PhonesPage: React.FC = () => {
           onPageChange={(page: number) => {
             handlePageChange(page);
           }}
-          currentPage={currentPage}
+          currentPage={Number(pageCurrent)}
         />
       </div>
     </section>

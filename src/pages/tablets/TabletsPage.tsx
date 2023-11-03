@@ -1,43 +1,52 @@
 import React, { useEffect, useState } from 'react';
+import './TabletsPage.scss';
+
+import { ProductCard } from '../../components/ProductCard';
 import { useSearchParams } from 'react-router-dom';
-import { Products } from '../../types/typeProducts';
-import { SortingOption } from '../../types/enumSortOption';
-import { ItemsPerPage } from '../../types/enumPageSize';
-import { usePagination } from '../../helpers/customHooks/usePagination';
+
 import {
   getProductsByCategory,
   getProductsByParams,
 } from '../../api/productsGeneral';
-import {
-  SearchParams,
-  getSearchWith,
-} from '../phones/components/searchHelpers';
-import { SortedProducts } from '../phones/components/SortedProducts/SortedProducts';
-import { ProductCard } from '../../components/ProductCard';
-import { Loader } from 'components/Loader';
+import { usePagination } from '../../helpers/customHooks/usePagination';
+import { SortingOption } from '../../types/enumSortOption';
+import { ItemsPerPage } from '../../types/enumPageSize';
+import { Products } from '../../types/typeProducts';
 import { PathnameCategory } from 'components/PathnameCategory';
 import { Pagination } from 'components/Pagination/Pagination';
-import './TabletsPage.scss';
-import { DEFAULT_PAGE_NUMBER, TABLETS_CATEGORY } from 'helpers/constants';
+import { DEFAULT_PAGE_NUMBER, PHONES_CATEGORY, TABLETS_CATEGORY } from 'helpers/constants';
+import { CatalogSkeleton } from 'pages/phones/components/CatalogSkeleton';
+import { SearchParams, getSearchWith } from 'pages/phones/components/searchHelpers';
+import { SortedProducts } from 'pages/phones/components/SortedProducts/SortedProducts';
 
 export const TabletsPage: React.FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [countProducts, setCountProducts] = useState(0);
   const [loader, setLoader] = useState(false);
-
+  const [countProducts, setCountProducts] = useState(0);
   const [tablets, setTablets] = useState<Products[]>([]);
 
   const [sorting, setSorting] = useState<SortingOption>(SortingOption.Newest);
   const [pageSize, setPageSize] = useState<ItemsPerPage>(ItemsPerPage.Four);
 
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const { currentPage, totalPages, goToPage } = usePagination(
+
+
+  const { pageCurrent, totalPages, goToPage } = usePagination(
     countProducts,
     parseInt(pageSize),
   );
 
-  useEffect(() => {
-    setSearchWith({ sortBy: sorting, pageSize: pageSize, category: TABLETS_CATEGORY });
+  const sortBy = searchParams.get('sortBy') || SortingOption.Newest;
+  const pageItems = searchParams.get('pageSize') || ItemsPerPage.Four;
+  const page = searchParams.get('page') || pageCurrent;
+
+ useEffect(() => {
+    setSearchWith({
+      sortBy: sortBy,
+      pageSize: pageItems,
+      category: TABLETS_CATEGORY,
+      page: String(page),
+    });
 
     getProductsByCategory(TABLETS_CATEGORY).then(products => {
       setCountProducts(products.length);
@@ -45,14 +54,20 @@ export const TabletsPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    setSorting(sortBy as SortingOption);
+    setPageSize(pageItems as ItemsPerPage);
+    goToPage(Number(page));
+  }, [sortBy, pageItems, page]);
+
+  useEffect(() => {
     setLoader(true);
 
-    getProductsByParams(currentPage, pageSize, sorting, TABLETS_CATEGORY)
+    getProductsByParams(Number(page), pageItems, sortBy, TABLETS_CATEGORY)
       .then(setTablets)
       .finally(() => {
         setLoader(false);
       });
-  }, [currentPage, pageSize, sorting]);
+  }, [pageCurrent, pageSize, sorting]);
 
   function setSearchWith(params: SearchParams) {
     const search = getSearchWith(params, searchParams);
@@ -64,20 +79,33 @@ export const TabletsPage: React.FC = () => {
     setSorting(option as SortingOption);
     goToPage(DEFAULT_PAGE_NUMBER);
 
-    setSearchWith({ sortBy: option || null, page: String(DEFAULT_PAGE_NUMBER) });
+    setSearchWith({
+      sortBy: option || null,
+      page: String(DEFAULT_PAGE_NUMBER),
+    });
   };
 
   const handleItemsPerPageChange = (option: ItemsPerPage) => {
     setPageSize(option as ItemsPerPage);
+    goToPage(DEFAULT_PAGE_NUMBER);
 
-    setSearchWith({ pageSize: option || null });
+    setSearchWith({
+      pageSize: option || null,
+      page: String(DEFAULT_PAGE_NUMBER),
+    });
+  };
+
+  const handlePageChange = (page: number) => {
+    goToPage(page);
+
+    setSearchWith({ page: String(page) || '1' });
   };
 
   return (
     <section className="tablets wrapper">
-      <PathnameCategory category={TABLETS_CATEGORY} />
+      <PathnameCategory category={PHONES_CATEGORY} />
 
-      <h1 className="tablets__wrapper-title">Tablets</h1>
+      <h1 className="tablets__wrapper-title">Mobile phones</h1>
       <p>{countProducts} models</p>
 
       <SortedProducts
@@ -88,9 +116,7 @@ export const TabletsPage: React.FC = () => {
       />
 
       {loader ? (
-        <div className="tablets__loader">
-          <Loader />
-        </div>
+        <CatalogSkeleton />
       ) : (
         <div className="tablets__content grid">
           {tablets.map(tablet => (
@@ -102,12 +128,12 @@ export const TabletsPage: React.FC = () => {
       )}
 
       <div className="tablets__pagination">
-      <Pagination
+        <Pagination
           totalPages={totalPages}
           onPageChange={(page: number) => {
-            goToPage(page);
+            handlePageChange(page);
           }}
-          currentPage={currentPage}
+          currentPage={Number(pageCurrent)}
         />
       </div>
     </section>

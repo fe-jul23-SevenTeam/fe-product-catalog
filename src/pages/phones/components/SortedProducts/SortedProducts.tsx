@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import { ItemsPerPage } from '../../../../types/enumPageSize';
 import cn from 'classnames';
 import { SortingOption } from '../../../../types/enumSortOption';
 import arrow from '../../../../assets/icons/arrow.png';
 import './SortedProducts.scss';
+import {useClickOutside } from 'helpers/customHooks/useOnClickOutside';
+import { TABLET_WIDTH } from 'helpers/constants';
 
 interface Props {
   sorting: string;
@@ -12,6 +14,7 @@ interface Props {
   handleSortingChange: (option: SortingOption) => void;
   handleItemsPerPageChange: (option: ItemsPerPage) => void;
 }
+
 
 export const SortedProducts: React.FC<Props> = ({
   sorting,
@@ -21,6 +24,12 @@ export const SortedProducts: React.FC<Props> = ({
 }) => {
   const [isOpenSorting, setIsOpenSorting] = useState(false);
   const [isOpenPageSize, setIsOpenPageSize] = useState(false);
+
+  const sortingRef = useRef(null);
+  const pageSizeRef = useRef(null);
+
+  useClickOutside(sortingRef, () => setIsOpenSorting(false), window.innerWidth <= TABLET_WIDTH);
+  useClickOutside(pageSizeRef, () => setIsOpenPageSize(false), window.innerWidth <= TABLET_WIDTH);
 
   return (
     <div className="sorted">
@@ -41,24 +50,23 @@ export const SortedProducts: React.FC<Props> = ({
           />
         </button>
 
-        {isOpenSorting && (
-          <ul className={cn('sorted__selector--list', {
-            'sorted__selector--list__open': isOpenSorting,
-          })}>
-            {Object.values(SortingOption).map(option => (
-              <li
-                key={option}
-                className="sorted__selector--list__options"
-                onClick={() => {
-                  handleSortingChange(option);
-                  setIsOpenSorting(false);
-                }}
-              >
-                {option}
-              </li>
-            ))}
-          </ul>
-        )}
+        <ul className={cn('sorted__selector--list', {
+          'sorted__selector--list__open': isOpenSorting,
+        })}
+        ref={sortingRef}>
+          {Object.values(SortingOption).map(option => (
+            <li
+              key={option}
+              className="sorted__selector--list__options"
+              onClick={() => {
+                handleSortingChange(option);
+                setIsOpenSorting(false);
+              }}
+            >
+              {option}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="sorted__selector">
@@ -78,24 +86,23 @@ export const SortedProducts: React.FC<Props> = ({
           />
         </button>
 
-        {isOpenPageSize && (
-          <ul className={cn('sorted__selector--list', {
-            'sorted__selector--list__open': isOpenPageSize,
-          })}>
-            {Object.values(ItemsPerPage).map(option => (
-              <li
-                key={option}
-                className="sorted__selector--list__options"
-                onClick={() => {
-                  handleItemsPerPageChange(option);
-                  setIsOpenPageSize(false);
-                }}
-              >
-                {option}
-              </li>
-            ))}
-          </ul>
-        )}
+        <ul className={cn('sorted__selector--list', {
+          'sorted__selector--list__open': isOpenPageSize,
+        })}
+        ref={pageSizeRef}>
+          {Object.values(ItemsPerPage).map(option => (
+            <li
+              key={option}
+              className="sorted__selector--list__options"
+              onClick={() => {
+                handleItemsPerPageChange(option);
+                setIsOpenPageSize(false);
+              }}
+            >
+              {option}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
