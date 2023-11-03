@@ -101,9 +101,9 @@ export const TabletsPage: React.FC = () => {
 
   return (
     <section className="tablets wrapper">
-      <PathnameCategory category={PHONES_CATEGORY} />
+      <PathnameCategory category={TABLETS_CATEGORY} />
 
-      <h1 className="tablets__wrapper-title">Mobile phones</h1>
+      <h1 className="tablets__wrapper-title">Tablets</h1>
       <p>{countProducts} models</p>
 
       <SortedProducts
