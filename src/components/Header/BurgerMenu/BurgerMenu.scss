@@ -1,5 +1,5 @@
-@import '../../../styles/utils/vars';
-@import '../../../styles/utils/mixins';
+@import 'styles/utils/vars';
+@import 'styles/utils/mixins';
 
 .menu {
   position: absolute;
@@ -16,7 +16,7 @@
 
   background-color: var(--body-background-color);
 
-  z-index: 5;
+  z-index: 9;
 
   @include onTablet {
     display: none;
