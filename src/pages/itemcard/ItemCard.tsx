@@ -1,38 +1,23 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ProductDetails } from '../../types/ProductDetails';
+import { ProductDetails } from 'types/ProductDetails';
 
-import { ReactComponent as HomeIcon } from '../../assets/icons/home_icon.svg';
-import { ReactComponent as ArrowRightIcon } from '../../assets/icons/arrow-right_icon.svg';
-import { ReactComponent as PhoneLoader } from '../../assets/iphone-icon.svg';
+import { ReactComponent as HomeIcon } from 'assets/icons/home_icon.svg';
+import { ReactComponent as ArrowRightIcon } from 'assets/icons/arrow-right_icon.svg';
+import { ReactComponent as PhoneLoader } from 'assets/iphone-icon.svg';
 
 import './ItemCard.scss';
-import { getProductInfoById } from '../../api/productsGeneral';
+import { getProductInfoById } from 'api/productsGeneral';
 
-import { BackButton } from '../../components/BackButton/BackButton';
-import { PhonePhotos } from '../../components/PhoneDetails/PhonePhotos';
-import { PhoneActions } from '../../components/PhoneDetails/PhoneActions';
+import { BackButton } from 'components/BackButton/BackButton';
+import { PhonePhotos } from 'components/PhoneDetails/PhonePhotos';
+import { PhoneActions } from 'components/PhoneDetails/PhoneActions';
 import { LikeSlider } from './ui/LikeSlider';
 
 export const ItemCard: React.FC = () => {
   const [productInfo, setProductInfo] = useState<ProductDetails>();
   const [selectedImage, setSelectedImage] = useState<string | null>();
   const [isLoading, setIsLoading] = useState(false);
-
-  const [phoneIdsInCart, setPhoneIdsInCart] = useState<number[]>(() => {
-    const storedIds = localStorage.getItem('phoneIdsInCart10');
-
-    return storedIds ? JSON.parse(storedIds) : [];
-  });
-
-  const [phoneIdsInFavourites, setPhoneIdsInFavourites] = useState<number[]>(
-    () => {
-      const storedIds = localStorage.getItem('phoneIdsInFavourites');
-
-      return storedIds ? JSON.parse(storedIds) : [];
-    },
-  );
-
   const { itemId } = useParams();
 
   useEffect(() => {
@@ -59,35 +44,15 @@ export const ItemCard: React.FC = () => {
     return null;
   }
 
-  const handleAddToCart = (id: number) => {
-    setPhoneIdsInCart(prevIds => [...prevIds, id]);
-  };
-
-  const handleRemoveFromCart = (id: number) => {
-    const filter = phoneIdsInCart.filter(phoneId => phoneId !== id);
-
-    setPhoneIdsInCart(filter);
-  };
-
-  const handleAddToFavourites = (id: number) => {
-    setPhoneIdsInFavourites(prevIds => [...prevIds, id]);
-  };
-
-  const handleRemoveFromFavourite = (id: number) => {
-    const filter = phoneIdsInFavourites.filter(phoneId => phoneId !== id);
-
-    setPhoneIdsInFavourites(filter);
-  };
-
   return (
     <div className="prod">
       <div className="breadcrumbs">
         <Link className="breadcrumbs__home" to="/">
-          <HomeIcon />
+          <HomeIcon className="breadcrumbs__home-icon" />
         </Link>
 
         <div className="breadcrumbs__arrow">
-          <ArrowRightIcon />
+          <ArrowRightIcon className="breadcrumbs__arrow-right" />
         </div>
 
         <Link className="breadcrumbs__category" to={`/${productInfo.category}`}>
@@ -95,7 +60,7 @@ export const ItemCard: React.FC = () => {
         </Link>
 
         <div className="breadcrumbs__arrow">
-          <ArrowRightIcon />
+          <ArrowRightIcon className="breadcrumbs__arrow-right" />
         </div>
         <p className="breadcrumbs__name">{productInfo.name}</p>
       </div>
@@ -126,12 +91,6 @@ export const ItemCard: React.FC = () => {
             productId={itemId}
             colorsAvailable={productInfo.colorsAvailable}
             capacityAvailable={productInfo.capacityAvailable}
-            phoneIdInCart={phoneIdsInCart}
-            phoneIdInFavourites={phoneIdsInFavourites}
-            handleRemoveFromCart={handleRemoveFromCart}
-            handleAddToCart={handleAddToCart}
-            handleRemoveFromFavourites={handleRemoveFromFavourite}
-            handleAddToFavourites={handleAddToFavourites}
             setSelectedImage={setSelectedImage}
           />
         </div>

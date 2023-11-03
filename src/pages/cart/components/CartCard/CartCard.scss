@@ -1,126 +1,10 @@
-// @import 'src/styles/utils/_mixins.scss';
-// @import 'src/styles/utils/_vars.scss';
-
-// .cart-card {
-//   width: 100%;
-//   padding: 16px;
-//   border: 1px solid var(--gray-elements, #e2e6e9);
-
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   flex-wrap: wrap;
-//   gap: 16px;
-
-//   @include onTablet {
-//     gap: 24px;
-//     padding: 24px;
-//   }
-
-//   &__product-info-container,
-//   &__actions-container {
-//     flex: 1;
-//     gap: 16px;
-
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//   }
-
-//   &__product-info-container {
-//     @include onTablet {
-//       max-width: 500px;
-//     }
-//   }
-
-//   &__actions-container {
-//     @include onTablet {
-//       max-width: 300px;
-//     }
-//   }
-
-//   &__remove-button {
-//     background: transparent;
-//     border: none;
-//     width: 16px;
-//     height: 16px;
-//   }
-
-//   &__remove-icon {
-//     fill: var(--gray-secondary-color);
-
-//     @include defaultHover;
-//   }
-
-//   &__img-container {
-//     width: 80px;
-//     height: 80px;
-//     display: flex;
-//     justify-content: center;
-//   }
-
-//   &__img {
-//     height: 100%;
-//   }
-
-//   &__title {
-//     font-size: 14px;
-//     font-weight: 200;
-//     color: var(--gray-primary-color);
-//     min-width: 100px;
-
-//     flex-shrink: 1;
-//   }
-
-//   &__amount {
-//     @include displayFlexCenter;
-//     gap: 13px;
-
-//     &-button {
-//       transition: opacity $transition-duration;
-//       width: 32px;
-//       height: 32px;
-
-//       @include displayFlexCenter;
-
-//       border: 1px solid var(--gray-icons-placeholders-color);
-//       background: transparent;
-
-//       opacity: 0.6;
-
-//       &--icon {
-//         width: 16px;
-//         height: 16px;
-//         fill: var(--gray-primary-color);
-//       }
-
-//       @include onDesktop {
-//         &:hover {
-//           opacity: 1;
-//         }
-//       }
-//     }
-
-//     &-number {
-//       font-size: 14px;
-//       font-weight: 400;
-//     }
-//   }
-
-//   &__price {
-//     color: var(--gray-primary-color);
-//     font-size: 22px;
-//     font-weight: 600;
-//   }
-// }
-
 @import 'src/styles/utils/_mixins.scss';
 @import 'src/styles/utils/_vars.scss';
 
 .cart-card {
   width: 100%;
   padding: 16px;
-  border: 1px solid var(--gray-elements-color);
+  border: 1px solid var(--icon-selected-border);
 
   display: grid;
   align-items: center;
@@ -141,7 +25,7 @@
   }
 
   &__remove-icon {
-    fill: var(--gray-secondary-color);
+    fill: var(--icon-right-color);
 
     @include defaultHover;
   }
@@ -168,7 +52,7 @@
 
     font-size: 14px;
     font-weight: 200;
-    color: var(--gray-primary-color);
+    color: var(--text-main-color);
     min-width: 100px;
   }
 
@@ -177,6 +61,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 13px;
+    color: var(--text-main-color);
 
     grid-column: span 3;
 
@@ -191,20 +76,21 @@
 
       @include displayFlexCenter;
 
-      border: 1px solid var(--gray-icons-placeholders-color);
-      background: transparent;
-
+      border: 1px solid var(--icon-border);
+      background-color: var(--icon-favorite-background);
+      cursor: pointer;
       opacity: 0.6;
 
-      &--icon {
+      &-icon {
+        fill: var(--icon-favorite);
         width: 16px;
         height: 16px;
-        fill: var(--gray-primary-color);
       }
 
       @include onDesktop {
         &:hover {
-          opacity: 1;
+          border-color: var(--icon-border-hover);
+          background-color: var(--icon-background-hover);
         }
       }
     }
@@ -223,7 +109,7 @@
       grid-column: span 2;
     }
 
-    color: var(--gray-primary-color);
+    color: var(--text-main-color);
     font-size: 22px;
     font-weight: 600;
   }

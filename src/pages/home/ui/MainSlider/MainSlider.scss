@@ -1,6 +1,6 @@
 @import 'styles/utils/mixins';
 @import 'styles/utils/fonts';
-@import '../../../../styles/utils/vars';
+@import 'styles/utils/vars';
 
 .slider {
   margin-bottom: 56px;
@@ -78,23 +78,24 @@
       top: 0;
       width: 32px;
       height: 100%;
-      border: 1px solid #b4bdc3;
-      background-color: #fff;
+      border: 1px solid var(--icon-border);
+      background-color: var(--icon-favorite-background);
       background-repeat: no-repeat;
       background-position: center;
       cursor: pointer;
       z-index: 99;
 
-      @include onDesktop {
-        &:hover :nth-child(n) {
-          fill: var(--gray-primary-color);
-        }
-      }
-
       &-icon {
         transition: fill $transition-duration;
+        fill: var(--icon-favorite);
       }
 
+      @include onDesktop {
+        &:hover {
+          border-color: var(--icon-border-hover);
+          background-color: var(--icon-background-hover);
+        }
+      }
       &-left {
         left: 0;
       }

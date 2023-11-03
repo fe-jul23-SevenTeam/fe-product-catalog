@@ -1,4 +1,4 @@
-@import '../../styles/utils/mixins';
+@import 'styles/utils/mixins';
 
 .prod {
   margin: 0 auto;
@@ -20,7 +20,7 @@
 
     font-size: 22px;
     font-weight: 800;
-    color: var(--gray-primary-color);
+    color: var(--text-main-color);
 
     @include onTablet {
       margin-bottom: 40px;
@@ -110,9 +110,9 @@
     padding-bottom: 16px;
     margin-bottom: 30px;
 
-    color: var(--gray-primary-color);
+    color: var(--card-main-text-color);
 
-    border-bottom: 1px solid #e2e6e9;
+    border-bottom: 1px solid var(--icon-selected-border);
   }
 }
 
@@ -128,7 +128,7 @@
   &__subtitle {
     font-size: 16px;
     font-weight: 600;
-    color: var(--gray-primary-color);
+    color: var(--card-main-text-color);
 
     @include onTablet {
       font-size: 20px;
@@ -138,7 +138,7 @@
   &__text {
     font-size: 14px;
     font-weight: normal;
-    color: var(--gray-secondary-color);
+    color: var(--text-secondary-color);
   }
 }
 
@@ -147,9 +147,6 @@
   flex-direction: row;
   align-items: center;
   gap: 8px;
-
-  color: var(--gray-secondary-color);
-
   margin-bottom: 24px;
 
   @include onTablet {
@@ -160,22 +157,31 @@
     display: block;
     width: 16px;
     height: 16px;
+
+    &-icon {
+      fill: var(--icon-favorite);
+    }
   }
 
   &__arrow {
     display: block;
     width: 16px;
     height: 16px;
+
+    &-right {
+      fill: var(--icon-right-color);
+    }
   }
 
   &__category {
     text-transform: capitalize;
     text-decoration: none;
     font-weight: 500;
-    color: var(--gray-primary-color);
+    color: var(--text-main-color);
   }
 
   &__name {
+    color: var(--text-secondary-color);
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -203,12 +209,12 @@
 
   &__title {
     font-weight: 500;
-    color: var(--gray-secondary-color);
+    color: var(--card-secondary-text-color);
   }
 
   &__value {
     padding-left: 10px;
-    color: var(--gray-primary-color);
+    color: var(--card-main-text-color);
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;

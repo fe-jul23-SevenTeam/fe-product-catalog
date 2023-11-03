@@ -1,5 +1,5 @@
-@import '../../../styles/utils/vars';
-@import '../../../styles/utils/mixins';
+@import 'styles/utils/vars';
+@import 'styles/utils/mixins';
 
 .phone-actions {
   width: 100%;
@@ -15,7 +15,7 @@
 
     font-family: 'Mont', sans-serif;
     font-size: 12px;
-    color: var(--gray-secondary-color);
+    color: var(--text-secondary-color);
 
     margin-bottom: 8px;
 
@@ -26,7 +26,7 @@
     & span {
       text-transform: uppercase;
       font-size: 10px;
-      color: var(--gray-icons-placeholders-color);
+      color: var(--icon-right-color);
     }
   }
 
@@ -34,7 +34,7 @@
     padding-bottom: 24px;
     margin-bottom: 32px;
 
-    border-bottom: 1px solid var(--gray-elements-color);
+    border-bottom: 1px solid var(--icon-selected-border);
 
     &-select {
       width: 32px;
@@ -43,7 +43,7 @@
       margin-right: 8px;
       padding: 2px;
 
-      border: 1px solid var(--gray-elements-color);
+      border: 1px solid var(--img-border);
       border-radius: 50%;
       background-clip: content-box;
 
@@ -52,7 +52,7 @@
       transition: border-color $transition-duration;
 
       &:hover {
-        border-color: var(--gray-icons-placeholders-color);
+        border-color: var(--img-border-hover);
       }
 
       /* #region all colors for products */
@@ -135,7 +135,7 @@
       /* #endregion*/
 
       &.selected {
-        border-color: var(--gray-primary-color);
+        border-color: var(--img-border-select);
       }
     }
   }
@@ -144,11 +144,11 @@
     padding-bottom: 24px;
     margin-bottom: 32px;
 
-    border-bottom: 1px solid var(--gray-elements-color);
+    border-bottom: 1px solid var(--icon-selected-border);
 
     &-select {
       height: 32px;
-
+      color: var(--text-main-color);
       padding: 4px 8px;
       margin-right: 8px;
 
@@ -157,21 +157,21 @@
       font-weight: 500;
       text-transform: uppercase;
 
-      background-color: var(--white-color);
-      border: 1px solid var(--gray-icons-placeholders-color);
+      background-color: inherit;
+      border: 1px solid var(--icon-right-color);
 
       transition: border-color $transition-duration;
 
       cursor: pointer;
 
       &:hover {
-        border-color: var(--gray-primary-color);
+        border-color: var(--text-main-color);
       }
 
       &.selected {
-        color: var(--white-color);
-        background-color: var(--gray-primary-color);
-        border-color: var(--gray-primary-color);
+        color: var(--text-return);
+        background-color: var(--text-main-color);
+        border-color: var(--text-main-color);
         pointer-events: none;
       }
     }
@@ -184,7 +184,7 @@
 
     margin-bottom: 16px;
 
-    color: var(--gray-primary-color);
+    color: var(--card-main-text-color);
     font-size: 32px;
     font-weight: 800;
 
@@ -193,7 +193,7 @@
       font-size: 22px;
       font-weight: normal;
 
-      color: var(--gray-secondary-color);
+      color: var(--card-secondary-text-color);
     }
   }
 
@@ -211,25 +211,23 @@
 
       font-size: 14px;
 
-      background-color: var(--gray-primary-color);
-      border: 1px solid var(--gray-primary-color);
-      color: var(--white-color);
+      border: 1px solid var(--add-button-border);
+      background: var(--card-add-button);
+      color: var(--card-text-in-button);
 
       transition: $transition-duration;
       cursor: pointer;
 
       &.selected {
-        border: 1px solid var(--gray-primary-color);
-        background-color: var(--white-color);
-        color: var(--green-color);
+        border: 1px solid var(--add-button-border-selected);
+        background-color: var(--add-button-background-selected);
+        color: var(--add-button-color-selected);
       }
 
       @include onTablet {
         &:hover {
-          border: 1px solid var(--gray-primary-color);
-          background-color: var(--white-color);
-          color: var(--gray-primary-color);
-
+          border: 1px solid var(--add-button-border-hover);
+          background-color: var(--add-button-background-hover);
           @include buttonHover;
         }
       }
@@ -241,20 +239,24 @@
       width: 48px;
       height: 48px;
 
-      border: 1px solid var(--gray-icons-placeholders-color);
-      background-color: var(--white-color);
-
+      border: 1px solid var(--icon-border);
+      background-color: var(--icon-favorite-background);
       transition: $transition-duration;
-
       cursor: pointer;
 
+      &-icon {
+        fill: var(--icon-favorite);
+      }
+
       &.selected {
-        border-color: var(--gray-primary-color);
+        border-color: var(--icon-selected-border);
+        background-color: var(--icon-selected-bg);
       }
 
       @include onTablet {
         &:hover {
-          border: 1px solid var(--gray-primary-color);
+          border-color: var(--icon-border-hover);
+          background-color: var(--icon-background-hover);
         }
       }
     }
@@ -275,14 +277,14 @@
     justify-content: space-between;
 
     &--title {
-      color: var(--gray-secondary-color);
+      color: var(--card-secondary-text-color);
       font-family: 'Mont', sans-serif;
       font-size: 12px;
       font-weight: 600;
     }
 
     &--value {
-      color: var(--gray-primary-color);
+      color: var(--card-main-text-color);
     }
   }
 }

@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import { ReactComponent as FavoritesIcon } from '../../../assets/icons/favorites_icon.svg';
 import { ReactComponent as FilledFavoritesIcon } from '../../../assets/icons/favourites-filled_icon.svg';
 
-import { ProductDetails } from '../../../types/ProductDetails';
-import { Product } from '../../../types/Product';
-import { getProducts } from '../../../api/productsGeneral';
+import { ProductDetails } from 'types/ProductDetails';
+import { Product } from 'types/Product';
+import { getProducts } from 'api/productsGeneral';
 import './PhoneAction.scss';
 import { changeItemId } from 'helpers/functions';
 import { useShoppingCart } from 'context/ShoppingCartContext';
@@ -15,14 +15,8 @@ import { useShoppingCart } from 'context/ShoppingCartContext';
 interface Props {
   product: ProductDetails;
   productId: string | undefined;
-  capacityAvailable: string[];
   colorsAvailable: string[];
-  phoneIdInCart: number[];
-  phoneIdInFavourites: number[];
-  handleRemoveFromCart: (productId: number) => void;
-  handleAddToCart: (productId: number) => void;
-  handleRemoveFromFavourites: (productId: number) => void;
-  handleAddToFavourites: (productId: number) => void;
+  capacityAvailable: string[];
   setSelectedImage: (photo: string | null) => void;
 }
 
@@ -31,10 +25,6 @@ export const PhoneActions: React.FC<Props> = ({
   productId,
   colorsAvailable,
   capacityAvailable,
-  phoneIdInCart,
-  phoneIdInFavourites,
-  handleRemoveFromCart,
-  handleRemoveFromFavourites,
   setSelectedImage,
 }) => {
   const {
@@ -52,7 +42,8 @@ export const PhoneActions: React.FC<Props> = ({
   const [selectedColor, setSelectedColor] = useState(color);
   const [selectedCapacity, setSelectedCapacity] = useState(capacity);
   const [id, setId] = useState<number>();
-  const { addToCart, addToFavorites, removeFromCart } = useShoppingCart();
+  const { addToCart, addToFavorites, checkInCart, checkInFav, removeFromCart } =
+    useShoppingCart();
 
   useEffect(() => {
     const fetchId = async () => {
@@ -81,14 +72,14 @@ export const PhoneActions: React.FC<Props> = ({
     return null;
   }
 
-  const isPhoneInCart = phoneIdInCart.includes(id);
-  const isPhoneInFavourites = phoneIdInFavourites.includes(id);
+  const isInFav = checkInFav(id);
+  const isInCart = checkInCart(id);
 
   return (
     <div className="phone-actions">
       <div className="phone-actions__color">
         <div className="phone-actions__title">
-          <h4>Avaliable colors</h4>
+          <h4>Available colors</h4>
           <span>{category}</span>
         </div>
 
@@ -157,10 +148,10 @@ export const PhoneActions: React.FC<Props> = ({
       )}
 
       <div className="phone-actions__buttons">
-        {isPhoneInCart ? (
+        {isInCart ? (
           <button
             className="phone-actions__buttons-cart selected"
-            onClick={() => handleRemoveFromCart(id)}
+            onClick={() => removeFromCart(id)}
           >
             Added
           </button>
@@ -173,10 +164,10 @@ export const PhoneActions: React.FC<Props> = ({
           </button>
         )}
 
-        {isPhoneInFavourites ? (
+        {isInFav ? (
           <button
             className="phone-actions__buttons-like selected"
-            onClick={() => handleRemoveFromFavourites(id)}
+            onClick={() => addToFavorites(id)}
           >
             <FilledFavoritesIcon />
           </button>
@@ -185,7 +176,7 @@ export const PhoneActions: React.FC<Props> = ({
             className="phone-actions__buttons-like"
             onClick={() => addToFavorites(id)}
           >
-            <FavoritesIcon />
+            <FavoritesIcon className="phone-actions__buttons-like-icon" />
           </button>
         )}
       </div>

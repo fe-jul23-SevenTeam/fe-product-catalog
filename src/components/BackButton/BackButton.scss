@@ -1,4 +1,4 @@
-@import 'src/styles/utils/_mixins.scss';
+@import 'styles/utils/_mixins.scss';
 
 .back-link {
   display: flex;
@@ -9,13 +9,13 @@
   background: transparent;
   cursor: pointer;
 
-  color: var(--gray-secondary-color);
+  color: var(--text-back);
   font-size: 12px;
   font-weight: 500;
   font-family: 'Mont', sans-serif;
 
   &__icon {
-    fill: var(--gray-primary-color);
+    fill: var(--icon-favorite);
     width: 16px;
     height: 16px;
   }
