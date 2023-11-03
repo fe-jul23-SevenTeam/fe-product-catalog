@@ -29,13 +29,11 @@ export const AccessoriesPage: React.FC = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-
-
   const { pageCurrent, totalPages, goToPage } = usePagination(
     countProducts,
     parseInt(pageSize),
   );
-  
+
   const sortBy = searchParams.get('sortBy') || SortingOption.Newest;
   const pageItems = searchParams.get('pageSize') || ItemsPerPage.Four;
   const page = searchParams.get('page') || pageCurrent;
@@ -46,6 +44,7 @@ export const AccessoriesPage: React.FC = () => {
       pageSize: pageItems,
       category: ACCESSORIES_CATEGORY,
       page: String(page),
+    });
 
     getProductsByCategory(ACCESSORIES_CATEGORY).then(products => {
       setCountProducts(products.length);
@@ -118,9 +117,9 @@ export const AccessoriesPage: React.FC = () => {
         <CatalogSkeleton />
       ) : (
         <div className="accessories__content grid">
-          {accessories.map(accessory => (
+          {accessories.map(accessorie => (
             <div className="catalog__card-container">
-              <ProductCard product={accessory} key={accessory.id} />
+              <ProductCard product={accessorie} key={accessorie.id} />
             </div>
           ))}
         </div>
