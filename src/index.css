@@ -19,7 +19,7 @@
   --add-button-background-hover: #313237;
   --add-button-background-selected: #fff;
   --add-button-color-selected: #27ae60;
-  --add-button-border-selected: #E2E6E9;
+  --add-button-border-selected: #e2e6e9;
 
   --card-text-in-button: #fff;
   --card-border-color: #e2e6e9;
@@ -31,13 +31,13 @@
   --icon-border-hover: #313237;
   --icon-background-hover: #fff;
   --icon-selected-bg: none;
-  --icon-selected-border: #E2E6E9;
-  --icon-right-color: #B4BDC3;
+  --icon-selected-border: #e2e6e9;
+  --icon-right-color: #b4bdc3;
   /* text-color */
   --text-main-color: #313237;
   --text-secondary-color: #89939a;
   --header-box-shadow-color: #e2e6e9;
-  --text-back: #89939A;
+  --text-back: #89939a;
   --text-return: #fff;
   /* img-border */
   --img-border: #e2e6e9;
@@ -61,9 +61,9 @@
   --card-secondary-text-color: #75767f;
   --card-divider-color: #3b3e4a;
   --card-add-button: #905bff;
-  --add-button-border: #905BFF;
-  --add-button-border-hover: #A378FF;
-  --add-button-background-hover: #A378FF;
+  --add-button-border: #905bff;
+  --add-button-border-hover: #a378ff;
+  --add-button-background-hover: #a378ff;
   --add-button-background-selected: #323542;
   --add-button-color-selected: #f1f2f9;
   --add-button-border-selected: #323542;
@@ -77,16 +77,16 @@
   --icon-border-hover: #4a4d58;
   --icon-background-hover: #4a4d58;
   --icon-selected-bg: none;
-  --icon-selected-border: #3B3E4A;
-  --icon-right-color: #4A4D58;
+  --icon-selected-border: #3b3e4a;
+  --icon-right-color: #4a4d58;
   /* text-color */
   --text-main-color: #f1f2f9;
   --text-secondary-color: #75767f;
   --header-box-shadow-color: #323542;
   --text-back: #f1f2f9;
-  --text-return: #0F1121;
+  --text-return: #0f1121;
   /* img-border */
-  --img-border: #4A4D58;
+  --img-border: #4a4d58;
   --img-border-hover: #f1f2f9;
   --img-border-select: #f1f2f9;
 }

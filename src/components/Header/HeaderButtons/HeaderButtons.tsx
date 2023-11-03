@@ -13,7 +13,6 @@ import DarkMode from 'DarkMode/DarkMode';
 
 import { useShoppingCart } from '../../../context/ShoppingCartContext';
 
-
 export const HeaderButtons: React.FC = () => {
   const [isActiveBurger, setIsActiveBurger] = useState(false);
   const { cartItems, favoritesItems } = useShoppingCart();

@@ -256,7 +256,7 @@
       @include onTablet {
         &:hover {
           border-color: var(--icon-border-hover);
-        background-color: var(--icon-background-hover);
+          background-color: var(--icon-background-hover);
         }
       }
     }
