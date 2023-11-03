@@ -28,49 +28,60 @@
   }
 
   button {
-    text-decoration: none;
-    color: #ababab;
-    font-weight: bold;
-    padding: 3px 5px;
-    border: none;
-    border-radius: 5px;
-    border: 1px solid #333;
     cursor: pointer;
     transition:
       background-color 0.2s,
       transform 0.2s;
 
-    @include onMiniTalet {
-      padding: 10px 15px;
-    }
+    // @include onMiniTalet {
+    //   padding: 10px 15px;
+    // }
 
-    @include onTablet {
-      padding: 10px 15px;
-    }
+    // @include onTablet {
+    //   padding: 10px 15px;
+    // }
 
-    @include onTablet {
-      padding: 10px 15px;
+    // @include onTablet {
+    //   padding: 10px 15px;
+    // }
+  }
+
+  .page-link {
+    @include displayFlexCenter;
+    width: 32px;
+    height: 32px;
+    color: var(--text-main-color);
+    border: 1px solid var(--icon-border);
+    background-color: var(--icon-favorite-background);
+    cursor: pointer;
+
+    &-icon {
+      fill: var(--icon-favorite);
+      width: 16px;
+      height: 16px;
     }
 
     &:hover {
-      background-color: #00b0b3;
+      border-color: var(--icon-border-hover);
+      background-color: var(--card-add-button);
       color: #fff;
-      transform: scale(1.2);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      .page-link-icon {
+        fill: #fff;
+      }
     }
   }
-
   .active {
     button {
-      background-color: #333;
+      background-color: var(--card-add-button);
       color: #fff;
     }
   }
 
   .disabled {
     button {
-      background-color: #a8a8a8;
-      color: #fff;
+      background-color: inherit;
+      color: var(--icon-right-color);
       cursor: not-allowed;
     }
   }
@@ -79,8 +90,6 @@
   .next {
     button {
       padding: 10px 15px;
-      background-color: #333;
-      color: #fff;
       border: none;
       border-radius: 5px;
     }
@@ -89,8 +98,7 @@
   .previous:hover,
   .next:hover {
     button {
-      background-color: #333;
-      transform: scale(1.05);
+      background-color: var(--card-add-button);
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
   }

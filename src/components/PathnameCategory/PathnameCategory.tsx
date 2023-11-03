@@ -11,7 +11,7 @@ interface Props {
 export const PathnameCategory: React.FC<Props> = ({ category }) => (
   <div className="pathname">
     <Link className="pathname__home" to="/">
-      <HomeIcon />
+      <HomeIcon className="pathname__home-icon" />
     </Link>
 
     <ArrowRightIcon className="pathname__arrow" />

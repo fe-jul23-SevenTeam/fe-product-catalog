@@ -15,7 +15,10 @@ import { Products } from '../../types/typeProducts';
 import { PathnameCategory } from 'components/PathnameCategory';
 import { Pagination } from 'components/Pagination/Pagination';
 import { ACCESSORIES_CATEGORY, DEFAULT_PAGE_NUMBER } from 'helpers/constants';
-import { SearchParams, getSearchWith } from 'pages/phones/components/searchHelpers';
+import {
+  SearchParams,
+  getSearchWith,
+} from 'pages/phones/components/searchHelpers';
 import { SortedProducts } from 'pages/phones/components/SortedProducts/SortedProducts';
 import { CatalogSkeleton } from 'components/CatalogSkeleton';
 
@@ -38,7 +41,7 @@ export const AccessoriesPage: React.FC = () => {
   const pageItems = searchParams.get('pageSize') || ItemsPerPage.Four;
   const page = searchParams.get('page') || pageCurrent;
 
- useEffect(() => {
+  useEffect(() => {
     setSearchWith({
       sortBy: sortBy,
       pageSize: pageItems,
@@ -104,7 +107,7 @@ export const AccessoriesPage: React.FC = () => {
       <PathnameCategory category={ACCESSORIES_CATEGORY} />
 
       <h1 className="accessories__wrapper-title">Mobile phones</h1>
-      <p>{countProducts} models</p>
+      <p className="phones__wrapper-title-second">{countProducts} models</p>
 
       <SortedProducts
         sorting={sorting}

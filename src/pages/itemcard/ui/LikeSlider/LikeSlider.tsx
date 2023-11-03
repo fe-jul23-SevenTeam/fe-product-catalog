@@ -41,17 +41,17 @@ export const LikeSlider: React.FC = () => {
         {isLoading ? (
           <CardSliderSkeleton />
         ) : (
-          <div
-            onClick={() => {
-              window.location.reload();
-            }}
-          >
-            <CardSlider
-              leftArrowName="likeSlide__arrow-left"
-              rightArrowName="likeSlide__arrow-right"
-              products={recommended}
-            />
-          </div>
+          // <div
+          //   onClick={() => {
+          //     window.location.reload();
+          //   }}
+          // >
+          <CardSlider
+            leftArrowName="likeSlide__arrow-left"
+            rightArrowName="likeSlide__arrow-right"
+            products={recommended}
+          />
+          // </div>
         )}
       </div>
     </section>

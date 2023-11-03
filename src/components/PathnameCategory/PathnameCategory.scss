@@ -18,17 +18,22 @@
     display: block;
     width: 16px;
     height: 16px;
+
+    &-icon {
+      fill: var(--icon-favorite);
+    }
   }
 
   &__arrow {
     width: 16px;
     height: 16px;
+    fill: var(--icon-right-color);
   }
 
   &__category {
     text-transform: capitalize;
     text-decoration: none;
     font-weight: 500;
-    color: var(--gray-primary-color);
+    color: var(--text-secondary-color);
   }
 }

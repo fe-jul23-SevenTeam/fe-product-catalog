@@ -14,7 +14,7 @@
   width: 100vw;
   padding-top: 24px;
 
-  background-color: var(--white-color);
+  background-color: var(--body-background-color);
 
   z-index: 5;
 
@@ -38,11 +38,11 @@
     font-size: 12px;
     font-weight: 800;
     line-height: 27px;
-    color: var(--gray-secondary-color);
+    color: var(--text-secondary-color);
 
     &.is-active {
-      color: var(--gray-primary-color);
-      border-bottom: 3px solid var(--gray-primary-color);
+      color: var(--text-main-color);
+      border-bottom: 3px solid var(--text-main-color);
     }
   }
 
@@ -58,10 +58,10 @@
     width: 50%;
     height: 64px;
 
-    border: solid 1px var(--gray-elements-color);
+    box-shadow: -1px -1px 0px 0px var(--header-box-shadow-color);
 
     &.is-active {
-      border-bottom: 3px solid var(--gray-primary-color);
+      border-bottom: 3px solid var(--text-main-color);
     }
   }
 }

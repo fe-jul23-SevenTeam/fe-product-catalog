@@ -20,6 +20,11 @@
 
   &__wrapper-title {
     margin-top: 30px;
+    color: var(--card-main-text-color);
+
+    &-second {
+      color: var(--text-secondary-color);
+    }
   }
 
   &__content {

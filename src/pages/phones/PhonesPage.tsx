@@ -28,8 +28,6 @@ export const PhonesPage: React.FC = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-
-
   const { pageCurrent, totalPages, goToPage } = usePagination(
     countProducts,
     parseInt(pageSize),
@@ -39,7 +37,7 @@ export const PhonesPage: React.FC = () => {
   const pageItems = searchParams.get('pageSize') || ItemsPerPage.Four;
   const page = searchParams.get('page') || pageCurrent;
 
- useEffect(() => {
+  useEffect(() => {
     setSearchWith({
       sortBy: sortBy,
       pageSize: pageItems,
@@ -105,7 +103,7 @@ export const PhonesPage: React.FC = () => {
       <PathnameCategory category={PHONES_CATEGORY} />
 
       <h1 className="phones__wrapper-title">Mobile phones</h1>
-      <p>{countProducts} models</p>
+      <p className="phones__wrapper-title-second">{countProducts} models</p>
 
       <SortedProducts
         sorting={sorting}

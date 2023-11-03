@@ -14,8 +14,15 @@ import { ItemsPerPage } from '../../types/enumPageSize';
 import { Products } from '../../types/typeProducts';
 import { PathnameCategory } from 'components/PathnameCategory';
 import { Pagination } from 'components/Pagination/Pagination';
-import { DEFAULT_PAGE_NUMBER, PHONES_CATEGORY, TABLETS_CATEGORY } from 'helpers/constants';
-import { SearchParams, getSearchWith } from 'pages/phones/components/searchHelpers';
+import {
+  DEFAULT_PAGE_NUMBER,
+  PHONES_CATEGORY,
+  TABLETS_CATEGORY,
+} from 'helpers/constants';
+import {
+  SearchParams,
+  getSearchWith,
+} from 'pages/phones/components/searchHelpers';
 import { SortedProducts } from 'pages/phones/components/SortedProducts/SortedProducts';
 import { CatalogSkeleton } from 'components/CatalogSkeleton';
 
@@ -38,7 +45,7 @@ export const TabletsPage: React.FC = () => {
   const pageItems = searchParams.get('pageSize') || ItemsPerPage.Four;
   const page = searchParams.get('page') || pageCurrent;
 
- useEffect(() => {
+  useEffect(() => {
     setSearchWith({
       sortBy: sortBy,
       pageSize: pageItems,
@@ -104,7 +111,7 @@ export const TabletsPage: React.FC = () => {
       <PathnameCategory category={PHONES_CATEGORY} />
 
       <h1 className="tablets__wrapper-title">Mobile phones</h1>
-      <p>{countProducts} models</p>
+      <p className="phones__wrapper-title-second">{countProducts} models</p>
 
       <SortedProducts
         sorting={sorting}

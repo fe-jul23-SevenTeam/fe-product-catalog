@@ -25,6 +25,7 @@
 
   &__img {
     display: block;
+    fill: var(--text-main-color);
 
     margin: 0 auto;
     width: 64px;
@@ -36,6 +37,7 @@
 
     &__img {
       width: 80px;
+      fill: var(--text-main-color)
     }
   }
 }
