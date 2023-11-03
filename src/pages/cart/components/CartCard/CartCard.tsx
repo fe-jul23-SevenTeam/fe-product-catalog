@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { ReactComponent as CloseIcon } from '../../../../assets/icons/close_icon.svg';
-import { ReactComponent as MinusIcon } from '../../../../assets/icons/minus_icon.svg';
-import { ReactComponent as PlusIcon } from '../../../../assets/icons/plus_icon.svg';
-import { useShoppingCart } from '../../../../context/ShoppingCartContext';
-import { Product } from '../../../../types/Product';
+import { ReactComponent as CloseIcon } from 'assets/icons/close_icon.svg';
+import { ReactComponent as MinusIcon } from 'assets/icons/minus_icon.svg';
+import { ReactComponent as PlusIcon } from 'assets/icons/plus_icon.svg';
+import { useShoppingCart } from 'context/ShoppingCartContext';
+import { Product } from 'types/Product';
 
 import './CartCard.scss';
 
@@ -53,11 +53,11 @@ export const CartCard: React.FC<Props> = ({ product }) => {
 
         <span className="cart-card__amount-number">{quantity}</span>
 
-        <button className="cart-card__amount-button">
-          <PlusIcon
-            className="cart-card__amount-button-icon"
-            onClick={() => increaseCartQuantity(id)}
-          />
+        <button
+          className="cart-card__amount-button"
+          onClick={() => increaseCartQuantity(id)}
+        >
+          <PlusIcon className="cart-card__amount-button-icon" />
         </button>
       </div>
       <h5 className="cart-card__price">{`$${price}`}</h5>

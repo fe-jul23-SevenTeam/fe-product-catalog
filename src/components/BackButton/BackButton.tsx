@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { ReactComponent as ArrowLeftIcon } from '../../assets/icons/arrow-left_icon.svg';
+import { ReactComponent as ArrowLeftIcon } from 'assets/icons/arrow-left_icon.svg';
 
 import './BackButton.scss';
 

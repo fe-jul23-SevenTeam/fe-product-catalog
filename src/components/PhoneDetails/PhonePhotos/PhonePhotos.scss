@@ -1,5 +1,5 @@
-@import '../../../styles/utils/mixins';
-@import '../../../styles/utils/vars';
+@import 'styles/utils/mixins';
+@import 'styles/utils/vars';
 
 .photos {
   @include displayFlexCenter;
@@ -65,15 +65,15 @@
 
     object-fit: contain;
 
-    border: 1px solid var(--gray-elements-color);
+    border: 1px solid var(--img-border);
     transition: border-color $transition-duration;
 
     &:hover {
-      border-color: var(--gray-primary-color);
+      border-color: var(--img-border-hover);
     }
 
     &.active {
-      border-color: var(--gray-primary-color);
+      border-color: var(--img-border-select);
     }
 
     @include onTablet {

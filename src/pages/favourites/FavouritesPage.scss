@@ -18,7 +18,7 @@
   &__title {
     font-size: 32px;
     font-weight: 800;
-    color: var(--gray-primary-color);
+    color: var(--text-main-color);
 
     @include onTablet {
       font-size: 48px;
