@@ -15,9 +15,9 @@ import { Products } from '../../types/typeProducts';
 import { PathnameCategory } from 'components/PathnameCategory';
 import { Pagination } from 'components/Pagination/Pagination';
 import { DEFAULT_PAGE_NUMBER, PHONES_CATEGORY, TABLETS_CATEGORY } from 'helpers/constants';
-import { CatalogSkeleton } from 'pages/phones/components/CatalogSkeleton';
 import { SearchParams, getSearchWith } from 'pages/phones/components/searchHelpers';
 import { SortedProducts } from 'pages/phones/components/SortedProducts/SortedProducts';
+import { CatalogSkeleton } from 'components/CatalogSkeleton';
 
 export const TabletsPage: React.FC = () => {
   const [loader, setLoader] = useState(false);
@@ -27,7 +27,9 @@ export const TabletsPage: React.FC = () => {
   const [sorting, setSorting] = useState<SortingOption>(SortingOption.Newest);
   const [pageSize, setPageSize] = useState<ItemsPerPage>(ItemsPerPage.Four);
 
-  const { currentPage, totalPages, goToPage } = usePagination(
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const { pageCurrent, totalPages, goToPage } = usePagination(
     countProducts,
     parseInt(pageSize),
   );
@@ -42,7 +44,7 @@ export const TabletsPage: React.FC = () => {
       pageSize: pageItems,
       category: TABLETS_CATEGORY,
       page: String(page),
-    })
+    });
 
     getProductsByCategory(TABLETS_CATEGORY).then(products => {
       setCountProducts(products.length);
