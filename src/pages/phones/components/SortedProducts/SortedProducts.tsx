@@ -5,7 +5,7 @@ import cn from 'classnames';
 import { SortingOption } from '../../../../types/enumSortOption';
 import arrow from '../../../../assets/icons/arrow.png';
 import './SortedProducts.scss';
-import {useClickOutside } from 'helpers/customHooks/useOnClickOutside';
+import { useClickOutside } from 'helpers/customHooks/useOnClickOutside';
 import { TABLET_WIDTH } from 'helpers/constants';
 
 interface Props {
@@ -14,7 +14,6 @@ interface Props {
   handleSortingChange: (option: SortingOption) => void;
   handleItemsPerPageChange: (option: ItemsPerPage) => void;
 }
-
 
 export const SortedProducts: React.FC<Props> = ({
   sorting,
@@ -28,8 +27,16 @@ export const SortedProducts: React.FC<Props> = ({
   const sortingRef = useRef(null);
   const pageSizeRef = useRef(null);
 
-  useClickOutside(sortingRef, () => setIsOpenSorting(false), window.innerWidth <= TABLET_WIDTH);
-  useClickOutside(pageSizeRef, () => setIsOpenPageSize(false), window.innerWidth <= TABLET_WIDTH);
+  useClickOutside(
+    sortingRef,
+    () => setIsOpenSorting(false),
+    window.innerWidth <= TABLET_WIDTH,
+  );
+  useClickOutside(
+    pageSizeRef,
+    () => setIsOpenPageSize(false),
+    window.innerWidth <= TABLET_WIDTH,
+  );
 
   return (
     <div className="sorted">
@@ -50,10 +57,12 @@ export const SortedProducts: React.FC<Props> = ({
           />
         </button>
 
-        <ul className={cn('sorted__selector--list', {
-          'sorted__selector--list__open': isOpenSorting,
-        })}
-        ref={sortingRef}>
+        <ul
+          className={cn('sorted__selector--list', {
+            'sorted__selector--list__open': isOpenSorting,
+          })}
+          ref={sortingRef}
+        >
           {Object.values(SortingOption).map(option => (
             <li
               key={option}
@@ -86,10 +95,12 @@ export const SortedProducts: React.FC<Props> = ({
           />
         </button>
 
-        <ul className={cn('sorted__selector--list', {
-          'sorted__selector--list__open': isOpenPageSize,
-        })}
-        ref={pageSizeRef}>
+        <ul
+          className={cn('sorted__selector--list', {
+            'sorted__selector--list__open': isOpenPageSize,
+          })}
+          ref={pageSizeRef}
+        >
           {Object.values(ItemsPerPage).map(option => (
             <li
               key={option}
