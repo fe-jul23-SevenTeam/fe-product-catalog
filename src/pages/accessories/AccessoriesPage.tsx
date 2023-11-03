@@ -15,9 +15,9 @@ import { Products } from '../../types/typeProducts';
 import { PathnameCategory } from 'components/PathnameCategory';
 import { Pagination } from 'components/Pagination/Pagination';
 import { ACCESSORIES_CATEGORY, DEFAULT_PAGE_NUMBER } from 'helpers/constants';
-import { CatalogSkeleton } from 'pages/phones/components/CatalogSkeleton';
 import { SearchParams, getSearchWith } from 'pages/phones/components/searchHelpers';
 import { SortedProducts } from 'pages/phones/components/SortedProducts/SortedProducts';
+import { CatalogSkeleton } from 'components/CatalogSkeleton';
 
 export const AccessoriesPage: React.FC = () => {
   const [loader, setLoader] = useState(false);
@@ -35,7 +35,7 @@ export const AccessoriesPage: React.FC = () => {
     countProducts,
     parseInt(pageSize),
   );
-
+  
   const sortBy = searchParams.get('sortBy') || SortingOption.Newest;
   const pageItems = searchParams.get('pageSize') || ItemsPerPage.Four;
   const page = searchParams.get('page') || pageCurrent;
@@ -46,7 +46,6 @@ export const AccessoriesPage: React.FC = () => {
       pageSize: pageItems,
       category: ACCESSORIES_CATEGORY,
       page: String(page),
-    });
 
     getProductsByCategory(ACCESSORIES_CATEGORY).then(products => {
       setCountProducts(products.length);

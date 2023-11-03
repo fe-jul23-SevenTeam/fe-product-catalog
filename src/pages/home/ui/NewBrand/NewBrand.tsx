@@ -6,7 +6,6 @@ import { getProductsForSlider } from 'api/productsGeneral';
 
 import './NewBrand.scss';
 import { Product } from '../../../../types/Product';
-import { Loader } from 'components/Loader';
 import { CardSliderSkeleton } from 'components/CardSliderSkeleton';
 
 export const NewBrand: React.FC = () => {
@@ -28,12 +27,12 @@ export const NewBrand: React.FC = () => {
           <h2 className="newBrand__title">Brand new models</h2>
 
           <div className="newBrand__arrows">
-            <div className="newBrand__arrow-left arrow">
-              <LeftArrow />
+            <div className="newBrand__arrow-left newBrand__arrows-icons">
+              <LeftArrow className="newBrand__arrows-icons-arrow" />
             </div>
 
-            <div className="newBrand__arrow-right arrow">
-              <RightArrow />
+            <div className="newBrand__arrow-right newBrand__arrows-icons">
+              <RightArrow className="newBrand__arrows-icons-arrow" />
             </div>
           </div>
         </div>

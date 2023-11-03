@@ -7,10 +7,10 @@
   left: 0;
   width: 100%;
   z-index: 999;
-  background-color: var(--white-color);
+  background-color: var(--body-background-color);
 
   // display: block;
-  border-top: 1px solid var(--gray-elements-color);
+  box-shadow: 0px -1px 0px 0px var(--header-box-shadow-color);
 
   &__container {
     margin: auto;
@@ -44,7 +44,7 @@
     align-items: center;
 
     border: none;
-    background-color: var(--white-color);
+    background-color: var(--body-background-color);
 
     font-size: 12px;
     font-family: 'Mont', sans-serif;
@@ -52,7 +52,7 @@
 
     cursor: pointer;
 
-    color: var(--gray-secondary-color);
+    color: var(--text-secondary-color);
 
     transition: color $transition-duration;
 
@@ -61,11 +61,11 @@
       padding-top: 0;
 
       &:hover {
-        color: var(--gray-primary-color);
+        color: var(--text-main-color);
       }
 
       &:hover .footer__btn--icon {
-        border-color: var(--gray-primary-color);
+        border-color: var(--text-main-color);
       }
     }
 
@@ -86,7 +86,6 @@
 
 .contacts {
   max-width: 370px;
-  width: 100%;
 
   &__list {
     display: flex;
@@ -113,12 +112,12 @@
     font-weight: 800;
     letter-spacing: 0.48px;
 
-    color: var(--gray-secondary-color);
+    color: var(--text-secondary-color);
     transition: color $transition-duration;
 
     @include onTablet {
       &:hover {
-        color: var(--gray-primary-color);
+        color: var(--text-main-color);
       }
     }
   }

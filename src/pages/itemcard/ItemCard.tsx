@@ -4,6 +4,7 @@ import { ProductDetails } from '../../types/ProductDetails';
 
 import { ReactComponent as HomeIcon } from '../../assets/icons/home_icon.svg';
 import { ReactComponent as ArrowRightIcon } from '../../assets/icons/arrow-right_icon.svg';
+import { ReactComponent as PhoneLoader } from '../../assets/iphone-icon.svg';
 
 import './ItemCard.scss';
 import { getProductInfoById } from '../../api/productsGeneral';
@@ -11,7 +12,6 @@ import { getProductInfoById } from '../../api/productsGeneral';
 import { BackButton } from '../../components/BackButton/BackButton';
 import { PhonePhotos } from '../../components/PhoneDetails/PhonePhotos';
 import { PhoneActions } from '../../components/PhoneDetails/PhoneActions';
-import { Loader } from 'components/Loader';
 import { LikeSlider } from './ui/LikeSlider';
 
 export const ItemCard: React.FC = () => {
@@ -107,7 +107,9 @@ export const ItemCard: React.FC = () => {
       <div className="prod__container">
         <div className="prod__details">
           {isLoading ? (
-            <Loader />
+            <div className="prod__loader">
+              <PhoneLoader className="prod__loader-icon" />
+            </div>
           ) : (
             <>
               <PhonePhotos
@@ -139,16 +141,14 @@ export const ItemCard: React.FC = () => {
             <h2 className="description__title">About</h2>
 
             {productInfo.description.map(desc => (
-              <>
-                <div className="about__info" key={desc.title}>
-                  <h3 className="about__subtitle">{desc.title}</h3>
-                  {desc.text.map(p => (
-                    <p className="about__text" key={p}>
-                      {p}
-                    </p>
-                  ))}
-                </div>
-              </>
+              <div className="about__info" key={desc.title}>
+                <h3 className="about__subtitle">{desc.title}</h3>
+                {desc.text.map(p => (
+                  <p className="about__text" key={p}>
+                    {p}
+                  </p>
+                ))}
+              </div>
             ))}
           </div>
 

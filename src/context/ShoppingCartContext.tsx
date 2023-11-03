@@ -18,9 +18,11 @@ type ShoppingCartContext = {
   removeFromCart: (id: number) => void;
   cartQuantity: number;
   cartItems: CartItem[];
-  addToFavorites: (product: Product) => void;
-  addToCart: (product: Product) => void;
-  removeFromFavorites: (id: number) => void;
+  favoritesItems: CartItem[];
+  addToFavorites: (id: number) => void;
+  addToCart: (id: number) => void;
+  checkInCart: (id: number) => boolean;
+  checkInFav: (id: number) => boolean;
 };
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext);
@@ -40,60 +42,60 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     [],
   );
 
-  const addToCart = (product: Product) => {
-    const existingCartItem = cartItems.find(item => item.id === product.id);
+  const checkInCart = (id: number) => {
+    return cartItems.some(item => item.id === id);
+  };
+
+  const checkInFav = (id: number) => {
+    return favoritesItems.some(item => item.id === id);
+  };
+
+  const addToCart = (id: number) => {
+    const existingCartItem = cartItems.find((item: CartItem) => item.id === id);
 
     if (existingCartItem) {
-      // If the product is already in the cart, increase the quantity.
       setCartItems(
-        cartItems.map(item =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item,
+        cartItems.map((item: CartItem) =>
+          item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
         ),
       );
     } else {
-      // If the product is not in the cart, add it with a quantity of 1.
-      setCartItems([...cartItems, { id: product.id, quantity: 1 }]);
+      setCartItems([...cartItems, { id: id, quantity: 1 }]);
     }
   };
 
-  const addToFavorites = (product: Product) => {
+  const addToFavorites = (id: number) => {
     const existingCartItem = favoritesItems.find(
-      item => item.id === product.id,
+      (item: CartItem) => item.id === id,
     );
 
     if (existingCartItem) {
-      // If the product is already in the cart, increase the quantity.
-      setFavoritesItems(
-        favoritesItems.map(item =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item,
-        ),
+      setFavoritesItems((favoritesItems: CartItem[]) =>
+        favoritesItems.filter(item => item.id !== existingCartItem.id),
       );
     } else {
-      // If the product is not in the cart, add it with a quantity of 1.
-      setFavoritesItems([...favoritesItems, { id: product.id, quantity: 1 }]);
+      setFavoritesItems((favoritesItems: CartItem[]) => [
+        ...favoritesItems,
+        { id: id, quantity: 1 },
+      ]);
     }
   };
 
   const cartQuantity = cartItems.reduce(
-    (quantity: any, item: { quantity: any }) => item.quantity + quantity,
+    (quantity: number, item: CartItem) => item.quantity + quantity,
     0,
   );
 
   function getItemQuantity(id: number) {
-    return (
-      cartItems.find((item: { id: number }) => item.id === id)?.quantity || 0
-    );
+    return cartItems.find((item: CartItem) => item.id === id)?.quantity || 0;
   }
+
   function increaseCartQuantity(id: number) {
-    setCartItems((currItems: any[]) => {
-      if (!currItems.find((item: { id: number }) => item.id === id)) {
+    setCartItems((currItems: CartItem[]) => {
+      if (!currItems.find((item: CartItem) => item.id === id)) {
         return [...currItems, { id, quantity: 1 }];
       } else {
-        return currItems.map((item: { id: number; quantity: number }) => {
+        return currItems.map((item: CartItem) => {
           if (item.id === id) {
             return { ...item, quantity: item.quantity + 1 };
           } else {
@@ -103,14 +105,13 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
       }
     });
   }
+
   function decreaseCartQuantity(id: number) {
-    setCartItems((currItems: any[]) => {
-      if (
-        currItems.find((item: { id: number }) => item.id === id)?.quantity === 1
-      ) {
-        return currItems.filter((item: { id: number }) => item.id !== id);
+    setCartItems((currItems: CartItem[]) => {
+      if (currItems.find((item: CartItem) => item.id === id)?.quantity === 1) {
+        return currItems.filter((item: CartItem) => item.id !== id);
       } else {
-        return currItems.map((item: { id: number; quantity: number }) => {
+        return currItems.map((item: CartItem) => {
           if (item.id === id) {
             return { ...item, quantity: item.quantity - 1 };
           } else {
@@ -122,14 +123,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   }
 
   function removeFromCart(id: number) {
-    setCartItems((currItems: any[]) => {
-      return currItems.filter((item: { id: number }) => item.id !== id);
-    });
-  }
-
-  function removeFromFavorites(id: number) {
-    setFavoritesItems((currItems: any[]) => {
-      return currItems.filter((item: { id: number }) => item.id !== id);
+    setCartItems((currItems: CartItem[]) => {
+      return currItems.filter((item: CartItem) => item.id !== id);
     });
   }
 
@@ -142,9 +137,11 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         removeFromCart,
         cartItems,
         cartQuantity,
+        favoritesItems,
         addToCart,
         addToFavorites,
-        removeFromFavorites,
+        checkInCart,
+        checkInFav,
       }}
     >
       {children}

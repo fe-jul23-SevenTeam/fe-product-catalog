@@ -10,6 +10,7 @@ import { Product } from '../../../types/Product';
 import { getProducts } from '../../../api/productsGeneral';
 import './PhoneAction.scss';
 import { changeItemId } from 'helpers/functions';
+import { useShoppingCart } from 'context/ShoppingCartContext';
 
 interface Props {
   product: ProductDetails;
@@ -33,9 +34,7 @@ export const PhoneActions: React.FC<Props> = ({
   phoneIdInCart,
   phoneIdInFavourites,
   handleRemoveFromCart,
-  handleAddToCart,
   handleRemoveFromFavourites,
-  handleAddToFavourites,
   setSelectedImage,
 }) => {
   const {
@@ -53,6 +52,7 @@ export const PhoneActions: React.FC<Props> = ({
   const [selectedColor, setSelectedColor] = useState(color);
   const [selectedCapacity, setSelectedCapacity] = useState(capacity);
   const [id, setId] = useState<number>();
+  const { addToCart, addToFavorites, removeFromCart } = useShoppingCart();
 
   useEffect(() => {
     const fetchId = async () => {
@@ -167,7 +167,7 @@ export const PhoneActions: React.FC<Props> = ({
         ) : (
           <button
             className="phone-actions__buttons-cart"
-            onClick={() => handleAddToCart(id)}
+            onClick={() => addToCart(id)}
           >
             Add to cart
           </button>
@@ -183,7 +183,7 @@ export const PhoneActions: React.FC<Props> = ({
         ) : (
           <button
             className="phone-actions__buttons-like"
-            onClick={() => handleAddToFavourites(id)}
+            onClick={() => addToFavorites(id)}
           >
             <FavoritesIcon />
           </button>

@@ -27,11 +27,7 @@ export const TabletsPage: React.FC = () => {
   const [sorting, setSorting] = useState<SortingOption>(SortingOption.Newest);
   const [pageSize, setPageSize] = useState<ItemsPerPage>(ItemsPerPage.Four);
 
-  const [searchParams, setSearchParams] = useSearchParams();
-
-
-
-  const { pageCurrent, totalPages, goToPage } = usePagination(
+  const { currentPage, totalPages, goToPage } = usePagination(
     countProducts,
     parseInt(pageSize),
   );
@@ -46,7 +42,7 @@ export const TabletsPage: React.FC = () => {
       pageSize: pageItems,
       category: TABLETS_CATEGORY,
       page: String(page),
-    });
+    })
 
     getProductsByCategory(TABLETS_CATEGORY).then(products => {
       setCountProducts(products.length);
