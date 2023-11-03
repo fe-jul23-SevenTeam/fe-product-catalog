@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { ReactComponent as LeftArrow } from 'assets/icons/arrow-left_icon.svg';
+import { ReactComponent as RightArrow } from 'assets/icons/arrow-right_icon.svg';
 import './Pagination.scss';
 
 interface Props {
@@ -37,10 +39,11 @@ export const Pagination: React.FC<Props> = ({
     <ul className="pagination">
       <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
         <button
+          disabled={currentPage === 1}
           className="page-link"
           onClick={() => handlePageClick(currentPage - 1)}
         >
-          {'<'}
+          <LeftArrow className="page-link-icon" />
         </button>
       </li>
       {pages.map(page => (
@@ -57,10 +60,11 @@ export const Pagination: React.FC<Props> = ({
         className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}
       >
         <button
+          disabled={currentPage === totalPages}
           className="page-link"
           onClick={() => handlePageClick(currentPage + 1)}
         >
-          {'>'}
+          <RightArrow className="page-link-icon" />
         </button>
       </li>
     </ul>

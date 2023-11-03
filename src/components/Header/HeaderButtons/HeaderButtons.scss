@@ -28,6 +28,7 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
+    fill: var(--icon-favorite);
 
     @include onTablet {
       display: none;

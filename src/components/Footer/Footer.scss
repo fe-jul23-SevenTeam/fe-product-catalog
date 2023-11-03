@@ -30,6 +30,7 @@
     &--icon {
       width: 89px;
       height: 32px;
+      fill: var(--text-main-color);
     }
 
     @include onTablet {

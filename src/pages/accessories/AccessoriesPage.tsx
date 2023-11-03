@@ -107,7 +107,7 @@ export const AccessoriesPage: React.FC = () => {
       <PathnameCategory category={ACCESSORIES_CATEGORY} />
 
       <h1 className="accessories__wrapper-title">Accessories</h1>
-      <p>{countProducts} models</p>
+      <p className="phones__wrapper-title-second">{countProducts} models</p>
 
       <SortedProducts
         sorting={sorting}

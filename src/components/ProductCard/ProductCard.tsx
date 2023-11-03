@@ -22,13 +22,23 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <div className="card">
       <div className="card__container">
-        <Link to={`/product-info/${itemId}`}>
+        <Link
+          to={`/product-info/${itemId}`}
+          onClick={() => {
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+          }}
+        >
           <div className="card__image">
             <img className="card__image-img" src={image} alt={name} />
           </div>
         </Link>
 
-        <Link to={`/product-info/${itemId}`}>
+        <Link
+          to={`/product-info/${itemId}`}
+          onClick={() => {
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+          }}
+        >
           <h3 className="card__name">{name}</h3>
         </Link>
 

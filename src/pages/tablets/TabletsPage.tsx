@@ -111,7 +111,7 @@ export const TabletsPage: React.FC = () => {
       <PathnameCategory category={TABLETS_CATEGORY} />
 
       <h1 className="tablets__wrapper-title">Tablets</h1>
-      <p>{countProducts} models</p>
+      <p className="phones__wrapper-title-second">{countProducts} models</p>
 
       <SortedProducts
         sorting={sorting}

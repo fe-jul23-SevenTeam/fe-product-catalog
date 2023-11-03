@@ -20,6 +20,7 @@
   --add-button-background-selected: #fff;
   --add-button-color-selected: #27ae60;
   --add-button-border-selected: #e2e6e9;
+  --modal-bg-color: #fafbfc;
 
   --card-text-in-button: #fff;
   --card-border-color: #e2e6e9;
@@ -70,6 +71,7 @@
   --card-text-in-button: #f1f2f9;
   --card-border-color: #161827;
   --card-border-hover-color: #323542;
+  --modal-bg-color: #161827;
   /* icons */
   --icon-favorite: #f1f2f9;
   --icon-favorite-background: #323542;

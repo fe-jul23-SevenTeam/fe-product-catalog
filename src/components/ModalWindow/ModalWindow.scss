@@ -38,13 +38,17 @@
     padding: 40px;
   }
 
-  background-color: var(--white-color);
+  background-color: var(--body-background-color);
   border: solid 1px var(--gray-secondary-color);
 
   &__logo-container {
     position: absolute;
     top: 10px;
     left: 10px;
+
+    &-icon {
+      fill: var(--text-main-color);
+    }
 
     @include onTablet {
       top: 27px;

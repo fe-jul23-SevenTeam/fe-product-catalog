@@ -22,7 +22,7 @@ export const ModalWindow: FC<Props> = ({ children, isOpen, close }) => {
           <Close className="modal-window__close-icon" />
         </button>
         <div className="modal-window__logo-container">
-          <Logo />
+          <Logo className="modal-window__logo-container-icon" />
         </div>
         {children}
       </div>
