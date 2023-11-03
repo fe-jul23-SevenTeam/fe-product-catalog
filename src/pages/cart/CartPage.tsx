@@ -17,6 +17,14 @@ export const CartPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { cartItems } = useShoppingCart();
 
+  const openModal = () => {
+    if (!cartItems.length) {
+      return;
+    }
+
+    setIsModalOpen(true);
+  };
+
   useEffect(() => {
     getProducts().then(setProducts);
   }, []);
@@ -62,10 +70,7 @@ export const CartPage = () => {
         ))}
       </section>
       <section className="cart__checkout">
-        <Checkout
-          openModal={() => setIsModalOpen(true)}
-          productsTotal={productsTotal}
-        />
+        <Checkout openModal={openModal} productsTotal={productsTotal} />
       </section>
     </div>
   );

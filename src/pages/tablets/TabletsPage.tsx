@@ -108,9 +108,9 @@ export const TabletsPage: React.FC = () => {
 
   return (
     <section className="tablets wrapper">
-      <PathnameCategory category={PHONES_CATEGORY} />
+      <PathnameCategory category={TABLETS_CATEGORY} />
 
-      <h1 className="tablets__wrapper-title">Mobile phones</h1>
+      <h1 className="tablets__wrapper-title">Tablets</h1>
       <p className="phones__wrapper-title-second">{countProducts} models</p>
 
       <SortedProducts
@@ -125,8 +125,8 @@ export const TabletsPage: React.FC = () => {
       ) : (
         <div className="tablets__content grid">
           {tablets.map(tablet => (
-            <div className="catalog__card-container">
-              <ProductCard product={tablet} key={tablet.id} />
+            <div key={tablet.id} className="catalog__card-container">
+              <ProductCard product={tablet} />
             </div>
           ))}
         </div>

@@ -106,7 +106,7 @@ export const AccessoriesPage: React.FC = () => {
     <section className="accessories wrapper">
       <PathnameCategory category={ACCESSORIES_CATEGORY} />
 
-      <h1 className="accessories__wrapper-title">Mobile phones</h1>
+      <h1 className="accessories__wrapper-title">Accessories</h1>
       <p className="phones__wrapper-title-second">{countProducts} models</p>
 
       <SortedProducts
@@ -121,8 +121,8 @@ export const AccessoriesPage: React.FC = () => {
       ) : (
         <div className="accessories__content grid">
           {accessories.map(accessorie => (
-            <div className="catalog__card-container">
-              <ProductCard product={accessorie} key={accessorie.id} />
+            <div key={accessorie.id} className="catalog__card-container">
+              <ProductCard product={accessorie} />
             </div>
           ))}
         </div>

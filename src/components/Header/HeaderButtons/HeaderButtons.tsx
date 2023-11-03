@@ -29,7 +29,6 @@ export const HeaderButtons: React.FC = () => {
   return (
     <div className="buttons">
       <DarkMode />
-      {/* тут буде іконка бургер меню і компонент меню */}
       <div
         className="icon-wrapper icon-wrapper--menu"
         onClick={() => setIsActiveBurger(!isActiveBurger)}
@@ -56,7 +55,9 @@ export const HeaderButtons: React.FC = () => {
         }
       >
         <FavoritesIcon className="icon icon--favorites" />
-        <div className="icon__quantity">{quantityFavorites}</div>
+        {favoritesItems.length > 0 && (
+          <div className="icon__quantity">{quantityFavorites}</div>
+        )}
       </NavLink>
 
       <NavLink
@@ -66,7 +67,9 @@ export const HeaderButtons: React.FC = () => {
         }
       >
         <ShoppingBagIcon className="icon icon--shopping-bag" />
-        <div className="icon__quantity">{quantityProducts}</div>
+        {cartItems.length > 0 && (
+          <div className="icon__quantity">{quantityProducts}</div>
+        )}
       </NavLink>
     </div>
   );

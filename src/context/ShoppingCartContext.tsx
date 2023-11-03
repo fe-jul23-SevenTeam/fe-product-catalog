@@ -1,6 +1,5 @@
 import { createContext, ReactNode, useContext } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
-import { Product } from '../types/Product';
 
 type ShoppingCartProviderProps = {
   children: ReactNode;
@@ -21,6 +20,7 @@ type ShoppingCartContext = {
   favoritesItems: CartItem[];
   addToFavorites: (id: number) => void;
   addToCart: (id: number) => void;
+  clearCart: () => void;
   checkInCart: (id: number) => boolean;
   checkInFav: (id: number) => boolean;
 };
@@ -62,6 +62,10 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     } else {
       setCartItems([...cartItems, { id: id, quantity: 1 }]);
     }
+  };
+
+  const clearCart = () => {
+    setCartItems([]);
   };
 
   const addToFavorites = (id: number) => {
@@ -139,6 +143,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         cartQuantity,
         favoritesItems,
         addToCart,
+        clearCart,
         addToFavorites,
         checkInCart,
         checkInFav,
