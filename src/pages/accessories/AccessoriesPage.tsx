@@ -15,7 +15,10 @@ import { Products } from '../../types/typeProducts';
 import { PathnameCategory } from 'components/PathnameCategory';
 import { Pagination } from 'components/Pagination/Pagination';
 import { ACCESSORIES_CATEGORY, DEFAULT_PAGE_NUMBER } from 'helpers/constants';
-import { SearchParams, getSearchWith } from 'pages/phones/components/searchHelpers';
+import {
+  SearchParams,
+  getSearchWith,
+} from 'pages/phones/components/searchHelpers';
 import { SortedProducts } from 'pages/phones/components/SortedProducts/SortedProducts';
 import { CatalogSkeleton } from 'components/CatalogSkeleton';
 
@@ -38,7 +41,7 @@ export const AccessoriesPage: React.FC = () => {
   const pageItems = searchParams.get('pageSize') || ItemsPerPage.Four;
   const page = searchParams.get('page') || pageCurrent;
 
- useEffect(() => {
+  useEffect(() => {
     setSearchWith({
       sortBy: sortBy,
       pageSize: pageItems,
@@ -118,8 +121,8 @@ export const AccessoriesPage: React.FC = () => {
       ) : (
         <div className="accessories__content grid">
           {accessories.map(accessorie => (
-            <div className="catalog__card-container">
-              <ProductCard product={accessorie} key={accessorie.id} />
+            <div key={accessorie.id} className="catalog__card-container">
+              <ProductCard product={accessorie} />
             </div>
           ))}
         </div>

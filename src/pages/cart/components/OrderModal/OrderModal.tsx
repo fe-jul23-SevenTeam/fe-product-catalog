@@ -3,6 +3,7 @@ import { ModalWindow } from 'components/ModalWindow';
 
 import './OrderModal.scss';
 import { SuccessContent } from '../SuccessContent';
+import { useShoppingCart } from 'context/ShoppingCartContext';
 
 type Props = {
   isOpen: boolean;
@@ -11,13 +12,13 @@ type Props = {
 
 export const OrderModal: FC<Props> = ({ isOpen, close }) => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const { clearCart } = useShoppingCart();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // eslint-disable-next-line
-    console.log(isFormSubmitted);
 
     setIsFormSubmitted(true);
+    clearCart();
   };
 
   useEffect(() => {
@@ -35,24 +36,28 @@ export const OrderModal: FC<Props> = ({ isOpen, close }) => {
             className="order-modal__form"
           >
             <input
+              required
               type="text"
               placeholder="Full Name"
               className="order-modal__form-input order-modal__form-input-m"
             />
 
             <input
+              required
               type="tel"
               placeholder="Phone No."
               className="order-modal__form-input order-modal__form-input-m"
             />
 
             <input
+              required
               type="email"
               placeholder="Email"
               className="order-modal__form-input order-modal__form-input-l"
             />
 
             <input
+              required
               type="text"
               placeholder="Delivery Address"
               className="order-modal__form-input order-modal__form-input-l"
