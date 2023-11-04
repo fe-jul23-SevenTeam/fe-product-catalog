@@ -14,8 +14,26 @@ import DarkMode from 'DarkMode/DarkMode';
 import { useShoppingCart } from '../../../context/ShoppingCartContext';
 
 export const HeaderButtons: React.FC = () => {
-  const [isActiveBurger, setIsActiveBurger] = useState(false);
+  const [isBurgerActive, setIsBurgerActive] = useState(false);
   const { cartItems, favoritesItems } = useShoppingCart();
+
+  const handleCloseBurger = () => {
+    setIsBurgerActive(false);
+
+    document.body.style.overflow = 'unset';
+  };
+
+  const handleOpenBurger = () => {
+    setIsBurgerActive(true);
+
+    if (typeof window !== 'undefined' && window.document) {
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  const handleChangeBurgerState = () => {
+    isBurgerActive ? handleCloseBurger() : handleOpenBurger();
+  };
 
   const quantityProducts = cartItems.reduce(
     (acc: number, item: { quantity: number }) => acc + item.quantity,
@@ -31,19 +49,19 @@ export const HeaderButtons: React.FC = () => {
       <DarkMode />
       <div
         className="icon-wrapper icon-wrapper--menu"
-        onClick={() => setIsActiveBurger(!isActiveBurger)}
+        onClick={handleChangeBurgerState}
       >
-        {isActiveBurger ? (
+        {isBurgerActive ? (
           <CloseIcon className="icon icon--close" />
         ) : (
           <BurgerMenuIcon
-            className={cn('icon icon--menu', { 'is-active': isActiveBurger })}
+            className={cn('icon icon--menu', { 'is-active': isBurgerActive })}
           />
         )}
       </div>
 
-      {isActiveBurger && (
-        <div onClick={() => setIsActiveBurger(false)}>
+      {isBurgerActive && (
+        <div onClick={handleCloseBurger}>
           <BurgerMenu />
         </div>
       )}

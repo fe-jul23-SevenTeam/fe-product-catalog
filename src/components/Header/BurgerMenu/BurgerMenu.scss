@@ -1,7 +1,32 @@
 @import 'styles/utils/vars';
 @import 'styles/utils/mixins';
 
+@keyframes burgerAppearing {
+  0% {
+    border-radius: 400px 0 0 600px;
+    max-width: 40px;
+    max-height: 40px;
+    opacity: 0.4;
+  }
+
+  75% {
+    max-width: 100vw;
+    border-top-left-radius: 0;
+  }
+
+  100% {
+    opacity: 1;
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+}
+
 .menu {
+  transform-origin: right top;
+
+  overflow: hidden;
+
+  animation: burgerAppearing 0.5s linear;
   position: absolute;
   top: 49px;
   right: 0;
@@ -16,7 +41,7 @@
 
   background-color: var(--body-background-color);
 
-  z-index: 9;
+  z-index: 5;
 
   @include onTablet {
     display: none;

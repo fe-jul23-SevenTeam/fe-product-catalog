@@ -14,11 +14,7 @@ import { ItemsPerPage } from '../../types/enumPageSize';
 import { Products } from '../../types/typeProducts';
 import { PathnameCategory } from 'components/PathnameCategory';
 import { Pagination } from 'components/Pagination/Pagination';
-import {
-  DEFAULT_PAGE_NUMBER,
-  PHONES_CATEGORY,
-  TABLETS_CATEGORY,
-} from 'helpers/constants';
+import { DEFAULT_PAGE_NUMBER, TABLETS_CATEGORY } from 'helpers/constants';
 import {
   SearchParams,
   getSearchWith,
