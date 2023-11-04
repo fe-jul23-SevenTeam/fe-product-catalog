@@ -1,3 +1,5 @@
+@import 'styles/utils/vars';
+
 .sorted {
   margin-top: 20px;
 
@@ -32,11 +34,7 @@
       justify-content: space-between;
       position: relative;
 
-      transition:
-        box-shadow 0.3s,
-        color 0.3s;
-
-      &__text {
+      transition: box-shadow color $transition-duration &__text {
         color: #625d5d;
         font-size: 14px;
         font-weight: 700;
@@ -61,6 +59,8 @@
       background: rgba(255, 255, 255, 0.7);
       border-radius: 6px;
       overflow: hidden;
+
+      z-index: 5;
 
       position: absolute;
       top: 100%;

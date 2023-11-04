@@ -6,7 +6,7 @@ import { ProductCard } from '../../components/ProductCard';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
 
 import './FavouritesPage.scss';
-import { CatalogSkeleton } from 'components/CatalogSkeleton';
+import { CatalogSkeleton } from 'components/ProductsCatalog/ui/CatalogSkeleton';
 
 export const FavoritesPage = () => {
   const [products, setProducts] = useState<Product[]>([]);

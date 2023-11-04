@@ -1,22 +1,7 @@
-.tablets {
+@import 'styles/utils/mixins';
+
+.products-catalog {
   margin-top: 30px;
-
-  &__pathname {
-    display: flex;
-    flex-direction: row;
-
-    margin-top: 30px;
-
-    &-icon {
-      margin-right: 5px;
-    }
-
-    &-title {
-      color: #89939a;
-      font-size: 12px;
-      font-weight: 600;
-    }
-  }
 
   &__wrapper-title {
     margin-top: 30px;
@@ -34,16 +19,16 @@
     align-items: center;
   }
 
-  &__pagination {
-    margin-bottom: 30px;
+  &__loader {
+    margin-top: 80px;
 
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  &__loader {
-    margin-top: 80px;
+  &__pagination {
+    margin-bottom: 30px;
 
     display: flex;
     justify-content: center;
