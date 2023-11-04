@@ -1,9 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
-import './BurgerMenu.scss';
 import { ReactComponent as FavoritesIcon } from '../../../assets/icons/favorites_icon.svg';
 import { ReactComponent as ShoppingBagIcon } from '../../../assets/icons/shopping-bag_icon.svg';
 import { navItems } from '../../../helpers/constants';
+
+import './BurgerMenu.scss';
 
 export const BurgerMenu: React.FC = () => {
   return (
