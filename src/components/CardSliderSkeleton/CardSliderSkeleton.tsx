@@ -3,7 +3,7 @@ import './CardSliderSkeleton.scss';
 
 export const CardSliderSkeleton = () => {
   return (
-    <div className="card-slider-skeleton wrapper">
+    <div className="card-slider-skeleton">
       <div className="card-slider-skeleton__item-container">
         <Skeleton />
       </div>

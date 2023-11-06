@@ -1,8 +1,22 @@
 @import '../../styles/utils/mixins';
 
 .card-slider-skeleton {
+  max-width: calc(100vw);
   width: 100%;
+
   height: 440px;
+
+  padding-left: 16px;
+
+  @include onTablet {
+    padding-left: 24px;
+  }
+
+  @include onDesktop {
+    padding-left: 0;
+    max-width: 1200px;
+    margin-inline: auto;
+  }
 
   @include onTablet {
     height: 505px;

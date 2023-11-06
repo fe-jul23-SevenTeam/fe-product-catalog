@@ -7,10 +7,10 @@
   &__container {
     width: 100%;
     max-width: 288px;
-    height: 440px;
+    height: 449px;
 
     @include onTablet {
-      height: 505px;
+      height: 513px;
     }
   }
 }

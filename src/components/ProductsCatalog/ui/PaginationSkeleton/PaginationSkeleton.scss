@@ -1,0 +1,11 @@
+.pagination-skeleton {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-block: 60px;
+
+  &__button {
+    width: 32px;
+    height: 32px;
+  }
+}
