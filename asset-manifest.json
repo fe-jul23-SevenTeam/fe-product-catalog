@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/fe-product-catalog/static/css/main.248c74cb.css",
-    "main.js": "/fe-product-catalog/static/js/main.9d3e0983.js",
+    "main.css": "/fe-product-catalog/static/css/main.1a179f57.css",
+    "main.js": "/fe-product-catalog/static/js/main.ffb20b3f.js",
     "static/media/viktoria-roik.png": "/fe-product-catalog/static/media/viktoria-roik.9a5e028dbbd607d22123.png",
     "static/media/rostyslav-kravchuk.png": "/fe-product-catalog/static/media/rostyslav-kravchuk.83b8386699e3abc79107.png",
     "static/media/iphone.png": "/fe-product-catalog/static/media/iphone.4c2527ef76b578160091.png",
@@ -39,11 +39,11 @@
     "static/media/minus_icon.svg": "/fe-product-catalog/static/media/minus_icon.3a58fecb158505013f9851d866f0127c.svg",
     "static/media/email-svg.svg": "/fe-product-catalog/static/media/email-svg.b28e75c656b448d620d105258a469d62.svg",
     "static/media/success_circle-icon.svg": "/fe-product-catalog/static/media/success_circle-icon.f0023bfdf84f7cfa5fb360bfa7b2bb6a.svg",
-    "main.248c74cb.css.map": "/fe-product-catalog/static/css/main.248c74cb.css.map",
-    "main.9d3e0983.js.map": "/fe-product-catalog/static/js/main.9d3e0983.js.map"
+    "main.1a179f57.css.map": "/fe-product-catalog/static/css/main.1a179f57.css.map",
+    "main.ffb20b3f.js.map": "/fe-product-catalog/static/js/main.ffb20b3f.js.map"
   },
   "entrypoints": [
-    "static/css/main.248c74cb.css",
-    "static/js/main.9d3e0983.js"
+    "static/css/main.1a179f57.css",
+    "static/js/main.ffb20b3f.js"
   ]
 }
